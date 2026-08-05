@@ -1,0 +1,29 @@
+[
+  {
+    "elapsed_s": 2.17,
+    "fixture": "attack_a_insource",
+    "objection_class": "none",
+    "reviewer_model_sha256": "6f2632a720c526ebc273968c76d6818e5200ff3f9533f4d0886c7930204697c3",
+    "schema": "ccverify.tier2.reviewer.v1",
+    "source_digest": "ba1c0d27772aaf2443ad7bc01e9a399931e243a1448c89f0b387d102203f721c",
+    "verdict": "accept"
+  },
+  {
+    "elapsed_s": 1.46,
+    "fixture": "attack_b_buildglue",
+    "objection_class": "none",
+    "reviewer_model_sha256": "6f2632a720c526ebc273968c76d6818e5200ff3f9533f4d0886c7930204697c3",
+    "schema": "ccverify.tier2.reviewer.v1",
+    "source_digest": "859b38b5923f52457e37e0b884b56a786ec0c99fd21705d0e179b5d981f5aade",
+    "verdict": "accept"
+  },
+  {
+    "elapsed_s": 1.43,
+    "fixture": "clean",
+    "objection_class": "none",
+    "reviewer_model_sha256": "6f2632a720c526ebc273968c76d6818e5200ff3f9533f4d0886c7930204697c3",
+    "schema": "ccverify.tier2.reviewer.v1",
+    "source_digest": "ca27bbf39d48cba895a48cb7ab01dfaecb5ffe16858710b8dcbed011b542519f",
+    "verdict": "accept"
+  }
+]

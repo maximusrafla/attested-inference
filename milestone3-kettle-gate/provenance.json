@@ -1,0 +1,71 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://confidential.ai/attested-builds/v1",
+      "externalParameters": {
+        "buildCommand": "cargo build --locked --release",
+        "source": {
+          "digest": {
+            "gitCommit": "efa02a01eabbb8d65bf11b4242b90ffd3c4c578f",
+            "gitTree": "915b31d6aa823da342d3ef33e0e58474eea42d3e"
+          },
+          "uri": ""
+        }
+      },
+      "internalParameters": {
+        "lockfileHash": {
+          "sha256": "a4ae0f88938ed23bddb5c2bd02d6e516c5626eb9f3bc69194710507cebfb1a36"
+        },
+        "toolchain": {
+          "cargo": {
+            "digest": {
+              "sha256": "828980723df339d62434390e9fb8ef8831036583343ae2316b7ab5646b5c1953"
+            },
+            "version": "cargo 1.97.1 (c980f4866 2026-06-30)"
+          },
+          "rustc": {
+            "digest": {
+              "sha256": "d3a664c970a9fd8361b64194861bebc1ae37b9054e5ee3400dc1c9e691797eea"
+            },
+            "version": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+          },
+          "kettle": {
+            "digest": {
+              "sha256": "ca9927e51fd1207e21e8853bd7ba385a94a22a31360207c1050c1e4e27d98e2c"
+            },
+            "version": "1.1.1"
+          }
+        }
+      },
+      "resolvedDependencies": []
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://confidential.ai/attested-builds"
+      },
+      "byproducts": [
+        {
+          "digest": {
+            "sha256": "310e80b006120a7ad0c705088c5b8a5d5035c55636bbd633c44d7115b3d3710e"
+          },
+          "name": "input_merkle_root"
+        }
+      ],
+      "metadata": {
+        "invocationId": "build-20260726-075959-a0dc0f91",
+        "startedOn": "2026-07-26T07:59:59.913615+00:00",
+        "finishedOn": "2026-07-26T07:59:59.936473+00:00"
+      }
+    }
+  },
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "subject": [
+    {
+      "digest": {
+        "sha256": "0f4f08d3309a2239e4ea6e35d132554d2634151d81b03065c92669ba185ade46"
+      },
+      "name": "hello"
+    }
+  ]
+}

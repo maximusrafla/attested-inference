@@ -1,0 +1,65 @@
+== vTPM access and platform quiesce ==
+== GPU ready state ==
+CC status: ON
+== IMA policy (runtime write: this image has no /etc/default/grub, the kernel command
+   line is managed by the snapd FDE boot chain, so the boot-pinned route is unavailable) ==
+policy loaded; second write: DENIED
+== warmup ==
+    10: 0x2AF45310819F1F5BEE52A18E844D80822CEAD525A9F3A043FB145907057AD817
+baseline: 239 log entries, 191 distinct file digests
+warmup done
+== settling 300s so the provider's in-guest agents cycle into the platform set ==
+== baseline ==
+baseline: 2214 log entries, 476 distinct file digests
+== declaration (approved reference run, real GPU work) ==
+declared stack ran: weights 7fb782b6892d849d... euid=1000 elapsed 14.343s
+declaration 'declared-serving-stack': 53 newly measured file digests since baseline (log entries 2214 to 2355)
+declared weights: /home/azureuser/t1/work/weights.bin  sha256 7fb782b6892d849d...
+########## case: accept
+log replay covered 2426 of 2446 entries (match=True); baseline froze the first 2214
+  "ima_entries_checked": 2426,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_match_declaration": true,
+########## case: undeclared-import --undeclared-import
+log replay covered 2503 of 2523 entries (match=True); baseline froze the first 2214
+  "ima_entries_checked": 2503,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_match_declaration": true,
+########## case: tampered --tampered
+log replay covered 2590 of 2610 entries (match=True); baseline froze the first 2214
+  "ima_entries_checked": 2590,
+  "rejected_by": [
+  "undeclared_entries": 0,
+  "verdict": "reject",
+  "weights_match_declaration": false,
+########## case: undeclared-exec --undeclared-exec
+log replay covered 2698 of 2718 entries (match=True); baseline froze the first 2214
+  "ima_entries_checked": 2698,
+  "rejected_by": [
+  "undeclared_entries": 1,
+  "verdict": "reject",
+  "weights_match_declaration": true,
+########## case: import-as-root --undeclared-import --as-root
+log replay covered 3802 of 3822 entries (match=True); baseline froze the first 2214
+  "ima_entries_checked": 3802,
+  "rejected_by": [
+  "undeclared_entries": 994,
+  "verdict": "reject",
+  "weights_match_declaration": true,
+== binding the accept and reject cases to both hardware roots ==
+-rw-rw-r-- 1 azureuser azureuser     65 Jul 31 00:49 nonce.txt
+-rw-r--r-- 1 root      root        3055 Jul 31 00:49 nras-token.json
+-rw-rw-r-- 1 azureuser azureuser     85 Jul 31 00:49 pcrread-after-quote.txt
+-rw-rw---- 1 azureuser azureuser    145 Jul 31 00:49 quote.msg
+-rw-rw---- 1 azureuser azureuser    668 Jul 31 00:49 quote.pcrs
+-rw-rw---- 1 azureuser azureuser    262 Jul 31 00:49 quote.sig
+-rw-rw-r-- 1 azureuser azureuser     65 Jul 31 00:49 nonce.txt
+-rw-r--r-- 1 root      root        3055 Jul 31 00:49 nras-token.json
+-rw-rw-r-- 1 azureuser azureuser     85 Jul 31 00:49 pcrread-after-quote.txt
+-rw-rw---- 1 azureuser azureuser    145 Jul 31 00:49 quote.msg
+-rw-rw---- 1 azureuser azureuser    668 Jul 31 00:49 quote.pcrs
+-rw-rw---- 1 azureuser azureuser    262 Jul 31 00:49 quote.sig

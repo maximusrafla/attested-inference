@@ -1,0 +1,16 @@
+{
+  "cuda_profiler_api": {
+    "raised": false
+  },
+  "cupti_hardware_metrics": {
+    "raised": false,
+    "table_head": ""
+  },
+  "cupti_kernel_trace": {
+    "cuda_events_with_device_time": 0,
+    "raised": false,
+    "sample": []
+  },
+  "device": "NVIDIA H100 NVL",
+  "torch": "2.13.0+cu130"
+}

@@ -1,0 +1,71 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://confidential.ai/attested-builds/v1",
+      "externalParameters": {
+        "buildCommand": "cargo build --locked --release",
+        "source": {
+          "digest": {
+            "gitCommit": "1a0ef29092eb93b1bb94ffd97961a142039220a3",
+            "gitTree": "44fdc2ca745c929d655aee92ebf3400f82a5a37c"
+          },
+          "uri": ""
+        }
+      },
+      "internalParameters": {
+        "lockfileHash": {
+          "sha256": "79ce1f911a76b89839aeccd324fbbc939f66a64871bf5c72b140d2d080906472"
+        },
+        "toolchain": {
+          "cargo": {
+            "digest": {
+              "sha256": "828980723df339d62434390e9fb8ef8831036583343ae2316b7ab5646b5c1953"
+            },
+            "version": "cargo 1.97.1 (c980f4866 2026-06-30)"
+          },
+          "rustc": {
+            "digest": {
+              "sha256": "d3a664c970a9fd8361b64194861bebc1ae37b9054e5ee3400dc1c9e691797eea"
+            },
+            "version": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+          },
+          "kettle": {
+            "digest": {
+              "sha256": "ca9927e51fd1207e21e8853bd7ba385a94a22a31360207c1050c1e4e27d98e2c"
+            },
+            "version": "1.1.1"
+          }
+        }
+      },
+      "resolvedDependencies": []
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://confidential.ai/attested-builds"
+      },
+      "byproducts": [
+        {
+          "digest": {
+            "sha256": "e6373635e8f6f9d1d85c9147bdec4f43dc7d80820ce2b11d7d01100115a9eaab"
+          },
+          "name": "input_merkle_root"
+        }
+      ],
+      "metadata": {
+        "invocationId": "build-20260727-010511-24c5430c",
+        "startedOn": "2026-07-27T01:05:11.044624+00:00",
+        "finishedOn": "2026-07-27T01:05:11.170957+00:00"
+      }
+    }
+  },
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "subject": [
+    {
+      "digest": {
+        "sha256": "a52ad4c8e185f675ee5b9ac9acf7013afaa32b1f75fcc94b8158833d9fd53b0a"
+      },
+      "name": "greeter"
+    }
+  ]
+}

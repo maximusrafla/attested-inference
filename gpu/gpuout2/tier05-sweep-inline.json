@@ -1,0 +1,91 @@
+{
+  "clean_mean_tflops": 419.5106212469166,
+  "clean_relative_noise": 0.06526698074135441,
+  "clean_stdev_tflops": 27.38019163771613,
+  "device": "NVIDIA H100 NVL",
+  "matrix_n": 8192,
+  "repeats": 3,
+  "rows": [
+    {
+      "detectable_at_3sigma": false,
+      "drop_pct": 0.0,
+      "duty": 0.0,
+      "fraction_of_clean": 1.0,
+      "mean": 419.5106212469166,
+      "stdev": 27.38019163771613,
+      "tflops": [
+        450.54320875320184,
+        409.2296668921915,
+        398.7589880953565
+      ]
+    },
+    {
+      "detectable_at_3sigma": false,
+      "drop_pct": 6.7220567598433645,
+      "duty": 0.05,
+      "fraction_of_clean": 0.9327794324015664,
+      "mean": 391.3108791731274,
+      "stdev": 25.496585470395267,
+      "tflops": [
+        420.71359640206566,
+        377.9079947846226,
+        375.31104633269393
+      ]
+    },
+    {
+      "detectable_at_3sigma": false,
+      "drop_pct": 9.983448616527191,
+      "duty": 0.1,
+      "fraction_of_clean": 0.9001655138347281,
+      "mean": 377.6289939338567,
+      "stdev": 21.52000143634215,
+      "tflops": [
+        402.4770239386776,
+        365.4099557101547,
+        365.00000215273786
+      ]
+    },
+    {
+      "detectable_at_3sigma": false,
+      "drop_pct": 16.892658636327496,
+      "duty": 0.25,
+      "fraction_of_clean": 0.831073413636725,
+      "mean": 348.64412405653826,
+      "stdev": 17.76759109384381,
+      "tflops": [
+        369.15042135197217,
+        338.9442580684975,
+        337.83769274914516
+      ]
+    },
+    {
+      "detectable_at_3sigma": true,
+      "drop_pct": 26.087170211435396,
+      "duty": 0.5,
+      "fraction_of_clean": 0.739128297885646,
+      "mean": 310.07217142718343,
+      "stdev": 12.099347302320226,
+      "tflops": [
+        324.04073959081984,
+        303.3192587687224,
+        302.85651592200804
+      ]
+    },
+    {
+      "detectable_at_3sigma": true,
+      "drop_pct": 40.21389234350025,
+      "duty": 1.0,
+      "fraction_of_clean": 0.5978610765649975,
+      "mean": 250.8090716491325,
+      "stdev": 4.229376085601881,
+      "tflops": [
+        255.68608609317977,
+        248.5911764346624,
+        248.14995241955532
+      ]
+    }
+  ],
+  "schema": "ccverify.tier05.sweep.v1",
+  "seconds_per_run": 12.0,
+  "undeclared_work_mode": "same process, same CUDA context"
+}

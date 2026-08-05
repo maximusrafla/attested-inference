@@ -1,0 +1,18 @@
+--- conf-compute -f (CC status) ---
+CC status: ON
+--- conf-compute -q (full state) ---
+
+==============NVSMI CONF-COMPUTE LOG==============
+
+    CC State                   : ON
+    Multi-GPU Mode             : None
+    CPU CC Capabilities        : AMD SEV-SNP(vTOM Mode)
+    GPU CC Capabilities        : CC Capable
+    CC GPUs Ready State        : Ready
+
+--- conf-compute -d (DevTools mode) ---
+DevTools Mode: OFF
+--- conf-compute -grs (ready state) ---
+
+Confidential Compute GPUs Ready state: ready
+

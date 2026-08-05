@@ -1,0 +1,5 @@
+--- which tools exist ---
+absent: nvattest
+present: gpu-attestation (Waiting for nvidia-persistenced to be ready ...)
+absent: cc-admin
+python nv-attestation-sdk: not importable

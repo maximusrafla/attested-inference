@@ -1,0 +1,9 @@
+{
+  "code_matches_declaration": true,
+  "code_sha256": "81ae9f8d999ddc11da150ce955bd9c38bb7e1acd25523cecd32a7fa2ab370845",
+  "commitment_scheme": "sha256(salt||output), salt retained in enclave",
+  "declared_code_sha256": "81ae9f8d999ddc11da150ce955bd9c38bb7e1acd25523cecd32a7fa2ab370845",
+  "output_commitment": "8a46c065c3cad6753fa7a9f55d8ba960833093d09204d3b959bd3b8794455738",
+  "schema": "ccverify.disclosure.v1",
+  "verdict": "accept"
+}

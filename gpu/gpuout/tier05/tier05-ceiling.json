@@ -1,0 +1,6 @@
+{
+  "device": "NVIDIA H100 NVL",
+  "matrix_n": 8192,
+  "measured_ceiling_tflops": 440.49,
+  "schema": "ccverify.tier05.ceiling.v1"
+}

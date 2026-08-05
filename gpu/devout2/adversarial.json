@@ -1,0 +1,96 @@
+[
+  {
+    "caught": true,
+    "entries_covered_by_quote": 1391,
+    "intact_prefix_reproduces_quote": true,
+    "note": "the log has no authority of its own; only agreement with the quoted value does",
+    "probe": "trim_log",
+    "question": "can the operator delete a measurement and still satisfy the quote?",
+    "trimmed_prefix_reproduces_quote": false
+  },
+  {
+    "caught": false,
+    "code_bytes": 6,
+    "code_executed": true,
+    "new_entries_during_probe": 8,
+    "new_entry_paths": [
+      "/proc/4069/stat",
+      "/proc/4069/comm",
+      "/proc/4069/cmdline",
+      "/proc/4069/status",
+      "/proc/4069/attr/current",
+      "/proc/4069/sessionid",
+      "/proc/4069/loginuid",
+      "/proc/4069/cgroup"
+    ],
+    "note": "the declared, approved interpreter executed code that never existed as a file. Generalises the Python-import result: file-backed measurement cannot see execution that is not file-backed",
+    "payload_digest": "sha256::e321af1e4fa56ebc...",
+    "payload_digest_appears_in_log": false,
+    "payload_is_a_file": true,
+    "probe": "jit_anon",
+    "question": "does executing code from anonymous memory reach the measurement?"
+  },
+  {
+    "caught": true,
+    "child_status": 0,
+    "new_entries_during_probe": 9,
+    "new_entry_paths": [
+      "memfd:anon",
+      "/proc/4079/stat",
+      "/proc/4079/comm",
+      "/proc/4079/cmdline",
+      "/proc/4079/status",
+      "/proc/4079/attr/current",
+      "/proc/4079/sessionid",
+      "/proc/4079/loginuid"
+    ],
+    "payload_bytes": 15960,
+    "payload_digest": "sha256::6cf3637a73e7c31d...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "memfd_exec",
+    "question": "is a binary that never exists on disk measured when executed?"
+  },
+  {
+    "caught": true,
+    "edited": true,
+    "new_entries_during_probe": 9,
+    "new_entry_paths": [
+      "/home/azureuser/t1/bin/declared_stack.py",
+      "/proc/4084/stat",
+      "/proc/4084/comm",
+      "/proc/4084/cmdline",
+      "/proc/4084/status",
+      "/proc/4084/attr/current",
+      "/proc/4084/sessionid",
+      "/proc/4084/loginuid"
+    ],
+    "original_digest": "sha256::9a4f566b225abac8...",
+    "payload_digest": "sha256::0876d6b533218884...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "post_approval_edit",
+    "question": "does editing the approved program after approval change the measurement?"
+  },
+  {
+    "as_user": "undeclared as nobody",
+    "caught": true,
+    "new_entries_during_probe": 17,
+    "new_entry_paths": [
+      "/proc/4088/stat",
+      "/proc/4088/comm",
+      "/proc/4088/cmdline",
+      "/proc/4088/status",
+      "/tmp/tmpp8yd6_rl/u.sh",
+      "/proc/4088/attr/current",
+      "/proc/4088/sessionid",
+      "/proc/4088/loginuid"
+    ],
+    "payload_digest": "sha256::808c225702dae56b...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "other_user",
+    "question": "does running undeclared code as another user avoid measurement?",
+    "ran": true
+  }
+]

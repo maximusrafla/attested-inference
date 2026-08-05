@@ -1,0 +1,10 @@
+// Attack B, the BUILD GLUE. This file is the xz analog: it ships in the "distribution" build but is
+// NOT in the committed git repo. At distribution time it is copied to `build.rs`. It changes the compiled
+// binary (sets BUILD_TAG), so the distributed artifact differs from what Kettle builds from the clean git.
+//
+// Because it is not committed, a source reviewer of the git repo never sees it -> review MISSES attack B.
+// Because Kettle rebuilds from the clean git commit, its attested artifact digest will not match the
+// distributed (poisoned) artifact -> `kettle verify` FAILS the checksum -> attestation CATCHES attack B.
+fn main() {
+    println!("cargo:rustc-env=BUILD_TAG=backdoor-active");
+}

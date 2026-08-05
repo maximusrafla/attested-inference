@@ -1,0 +1,16 @@
+{
+  "ak_pub_sha256": "1e72d2c69f2803b2312da8cd6aae6721a2c20e5f58ef75ee5d640d28c7f3d9ae",
+  "baseline_sha256": "6ce509d9cc64ef865ab26f491b44be3947b21fae505e05fb7b03a7b6df68dfee",
+  "config_matches_declaration": true,
+  "config_sha256": "cb84cbdc80bdec507c0084f20bd1c444d1ef2169b0831855f33e05f096553229",
+  "declaration_sha256": "d0c6ddd318cf54d3e3a93f0c85d29aa2f7e447c67127babe13d1b340c4ed1fee",
+  "ima_entries_checked": 2081,
+  "pcr10_sha256": "8eacd5f56932df3d2ff13dfbc682acc9f3bc83e1f59fe4cadffe9f1bead7ac29",
+  "quote_sha256": "05f15860e71d6dfcadff74ae801b084e6638d76a9686e8b7bb06c06469b19ac7",
+  "rejected_by": [],
+  "schema": "ccverify.disclosure.v3",
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_match_declaration": true,
+  "weights_sha256": "674ec4d7c32f7593a454482667bc222067bb05fd594e5cbc2ee21afd02dae943"
+}

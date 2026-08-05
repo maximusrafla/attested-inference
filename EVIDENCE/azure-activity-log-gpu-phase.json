@@ -1,0 +1,2508 @@
+[
+    {
+        "time": "2026-07-31T17:56:28.8794493Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T17:33:54.5515384Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T17:33:54.0746478Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T17:33:53.8870259Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T17:32:52.8053358Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T17:32:41.7964738Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T17:31:54.966457Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T17:31:53.9742447Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T17:31:30.8565555Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_46ff090ee0b044738747046f28da4c0a"
+    },
+    {
+        "time": "2026-07-31T17:31:02.1696041Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T17:31:00.423678Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T17:30:59.5546246Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T17:30:30.747444Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_414c89b004bf430ab6d1e8ebfb5466ef"
+    },
+    {
+        "time": "2026-07-31T17:29:59.54065Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T17:24:22.5572682Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T17:23:53.480298Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T17:23:52.8093485Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T17:23:52.2137838Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T17:22:51.9253844Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T17:22:24.3699832Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T17:21:54.2729534Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T17:21:53.6600931Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T17:21:30.5581432Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_46ff090ee0b044738747046f28da4c0a"
+    },
+    {
+        "time": "2026-07-31T17:21:00.5071587Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T17:20:59.7772354Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T17:20:58.9353559Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T17:20:29.1234012Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_414c89b004bf430ab6d1e8ebfb5466ef"
+    },
+    {
+        "time": "2026-07-31T17:19:58.7684076Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T17:19:29.958Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T17:19:29.415Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T17:19:28.499Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T17:19:22.7619193Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T17:19:22.6525375Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T17:19:21.2605694Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T17:19:21.0886834Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T17:05:40.6309531Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_46ff090ee0b044738747046f28da4c0a"
+    },
+    {
+        "time": "2026-07-31T17:04:28.5553581Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_414c89b004bf430ab6d1e8ebfb5466ef"
+    },
+    {
+        "time": "2026-07-31T17:04:24.7218111Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T17:04:18.2769749Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T17:04:14.9021339Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T17:04:14.2094729Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T17:04:13.8726896Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:59:06.5919126Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:58:59.1125481Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:58:58.8416651Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T16:58:46.096Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:58:36.262679Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:58:05.7327884Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:57:35.4995454Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:57:05.1603867Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:57:03.715Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:57:03.715Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:57:01.077Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:56:34.8505612Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:56:04.6826329Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:55:48.054Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:55:47.726Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:55:40.5664924Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_46ff090ee0b044738747046f28da4c0a"
+    },
+    {
+        "time": "2026-07-31T16:55:40.4415024Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_46ff090ee0b044738747046f28da4c0a"
+    },
+    {
+        "time": "2026-07-31T16:55:40.4003276Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:55:39.0622943Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T16:55:38.7810305Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T16:55:38.1345869Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:55:37.7820142Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:55:37.7205567Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:55:37.4381889Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:55:37.0811438Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:55:35.126644Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:55:35.0641434Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:55:35.0485155Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:55:34.8610051Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:55:34.8610051Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:55:34.8453773Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:55:34.5090601Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:55:34.3175105Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:55:34.3018895Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:55:31.0987602Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_xuyfqnho9tgMfeNwhfmXibUKWxUI7pr5"
+    },
+    {
+        "time": "2026-07-31T16:55:27.8952245Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T16:55:26.6764688Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T16:55:13.7114224Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:53.0521916Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:51.4056393Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T16:54:43.4557487Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:40.668Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T16:54:40.668Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T16:54:38.569Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T16:54:29.958Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T16:54:29.63Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T16:54:27.5490846Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_414c89b004bf430ab6d1e8ebfb5466ef"
+    },
+    {
+        "time": "2026-07-31T16:54:27.4397094Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_414c89b004bf430ab6d1e8ebfb5466ef"
+    },
+    {
+        "time": "2026-07-31T16:54:26.6862796Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T16:54:23.9205608Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T16:54:20.0825091Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:54:19.1608565Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:54:18.001954Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:54:17.84826Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:54:16.5220966Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:54:15.0048106Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:54:13.7500511Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:54:13.7500511Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:54:13.718799Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:54:13.4688666Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:54:13.4688666Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:54:13.4688666Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:54:13.3241411Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:13.1586633Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:13.1430408Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:12.0961835Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_A94l7UT4RnuqnZAFnQr0NVB0FJZVDguE"
+    },
+    {
+        "time": "2026-07-31T16:54:07.7403346Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T16:54:06.4903316Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T16:16:48.4661432Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:16:47.966081Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:16:47.1700892Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:15:45.6263143Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:14:27.0945025Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_9478bd6d90d74f14978bac804a793d55"
+    },
+    {
+        "time": "2026-07-31T16:13:54.6311149Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T16:07:17.7035402Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T16:06:46.9572078Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T16:06:46.6031661Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T16:06:46.2253437Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T16:05:45.0947409Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T16:04:25.2224252Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_9478bd6d90d74f14978bac804a793d55"
+    },
+    {
+        "time": "2026-07-31T16:03:53.8237145Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T16:02:23.228Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:02:22.845Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T16:02:13.9218891Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T16:02:13.8125123Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T15:56:58.5844965Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:49:14.592Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:47:20.627Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:47:20.627Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:23:59.3839493Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T15:23:57.8288878Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T15:23:06.6520653Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T15:23:06.3148361Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_9478bd6d90d74f14978bac804a793d55"
+    },
+    {
+        "time": "2026-07-31T15:23:05.7862302Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T15:22:35.8257763Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_35985a0d2364418180a11e06b2c14cc4"
+    },
+    {
+        "time": "2026-07-31T15:22:05.3427115Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T15:16:56.3145854Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:16:35.4460306Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T15:16:33.7152948Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:16:26.1379675Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:16:14.578Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:15:55.8766599Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:15:25.7010881Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:14:55.5026033Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:14:32.449Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:14:32.449Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:14:29.568Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:14:27.0951518Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T15:14:25.1145178Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:13:58.669646Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T15:13:57.6133682Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T15:13:54.8500789Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:13:24.5468651Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:13:14.669Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:13:14.309Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T15:13:06.141495Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_9478bd6d90d74f14978bac804a793d55"
+    },
+    {
+        "time": "2026-07-31T15:13:06.1038696Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T15:13:05.9539895Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_9478bd6d90d74f14978bac804a793d55"
+    },
+    {
+        "time": "2026-07-31T15:13:05.4875603Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T15:13:05.3139353Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T15:13:04.2982941Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T15:13:02.218539Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T15:12:59.8545533Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T15:12:58.9326493Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T15:12:58.0511932Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T15:12:56.878644Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T15:12:55.8482798Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T15:12:54.4947601Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T15:12:54.4635097Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T15:12:54.4478831Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T15:12:54.2916345Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T15:12:54.2760113Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T15:12:54.2760113Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T15:12:54.2554775Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:12:54.021761Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:12:54.0061365Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:12:53.3030216Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_66HwaIdB1wE6ggARaob8oV88CsSmHQvo"
+    },
+    {
+        "time": "2026-07-31T15:12:48.7556886Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T15:12:47.8494413Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T15:12:35.5990467Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_35985a0d2364418180a11e06b2c14cc4"
+    },
+    {
+        "time": "2026-07-31T15:12:04.9896034Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T15:11:34.931Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:11:34.442Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:11:26.3038758Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T15:11:26.1632601Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T15:08:57.72Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:08:44.369Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:06:47.4806583Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_35985a0d2364418180a11e06b2c14cc4"
+    },
+    {
+        "time": "2026-07-31T15:05:27.637Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T15:05:23.679Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:59:25.696Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:57:34.4352846Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:57:15.9406135Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:57:14.8834793Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T14:57:04.0321609Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:56:59.478Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:56:59.478Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:56:57.623Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:56:48.717Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:56:48.357Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-31T14:56:46.1445109Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_35985a0d2364418180a11e06b2c14cc4"
+    },
+    {
+        "time": "2026-07-31T14:56:45.9570152Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_35985a0d2364418180a11e06b2c14cc4"
+    },
+    {
+        "time": "2026-07-31T14:56:44.1604855Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T14:56:42.7016756Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T14:56:42.5198874Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-31T14:56:39.491343Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T14:56:38.4913134Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T14:56:37.5541806Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T14:56:36.5520009Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T14:56:36.5330393Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T14:56:33.821419Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T14:56:33.8057948Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T14:56:33.774552Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T14:56:33.7216138Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:56:33.6026687Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-31T14:56:33.6026687Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-31T14:56:33.5870499Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T14:56:33.3784753Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:56:33.3472341Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:56:32.5347362Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_8clDDUSUgqqBbv5l70o1DKnUx3FsagwO"
+    },
+    {
+        "time": "2026-07-31T14:56:25.512224Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T14:56:24.3090944Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-31T01:34:10.9243513Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T01:05:30.3114983Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T01:05:29.6040847Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T01:05:27.4911426Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T01:04:27.9340039Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T01:03:16.6351211Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_b6fe4d3ca94a459ab9ca44baa39b1e53"
+    },
+    {
+        "time": "2026-07-31T01:02:44.3689336Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T00:55:57.6653407Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T00:55:28.5195945Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-31T00:55:28.4340187Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-31T00:55:27.2857689Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-31T00:54:27.4783221Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-31T00:53:14.5186205Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_b6fe4d3ca94a459ab9ca44baa39b1e53"
+    },
+    {
+        "time": "2026-07-31T00:52:43.01237Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-31T00:51:12.796Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:51:12.392Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:50:56.1210007Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T00:50:55.6366269Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-31T00:42:14.816Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:42:06.043Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:42:06.043Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:22:33.417Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:20:42.334Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:20:03.405Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:18:07.623Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:18:07.623Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:11:03.404Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:09:13.562Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:02:33.395Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-31T00:00:51.552Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:53:33.385Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:52:47.2330702Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:51:46.826Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:51:46.826Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:39:11.3716422Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_b6fe4d3ca94a459ab9ca44baa39b1e53"
+    },
+    {
+        "time": "2026-07-30T23:36:45.7515342Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:36:44.2368728Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:36:44.1664341Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:35:49.3894145Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:35:20.6092138Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_7c369be06c044eef97b9a95389c699bd"
+    },
+    {
+        "time": "2026-07-30T23:34:49.2111608Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-30T23:33:01.7235678Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:32:34.4027105Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:32:32.6469935Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-30T23:32:31.5210277Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:32:18.362Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:32:01.3153925Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:31:31.1641314Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:31:00.9546228Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:30:36.982Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:30:36.982Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:30:33.358Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:30:30.7656529Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:30:00.5288792Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:29:30.2426688Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:29:18.821Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:29:18.508Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "CCVERIFY-GPU-VM"
+    },
+    {
+        "time": "2026-07-30T23:29:10.7482085Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_b6fe4d3ca94a459ab9ca44baa39b1e53"
+    },
+    {
+        "time": "2026-07-30T23:29:10.6544574Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPU-RG",
+        "resource": "ccverify-gpu-vm_OsDisk_1_b6fe4d3ca94a459ab9ca44baa39b1e53"
+    },
+    {
+        "time": "2026-07-30T23:29:09.6130985Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-30T23:29:09.2849597Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vm"
+    },
+    {
+        "time": "2026-07-30T23:29:07.1675254Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:29:05.7390434Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:29:05.2520996Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:29:04.7390142Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:29:03.8817611Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:29:02.8954006Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:29:00.2123261Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:29:00.2123261Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:29:00.1810756Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:29:00.0248308Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:29:00.0248308Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:29:00.0092014Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:28:59.9776974Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:28:59.7371751Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:28:59.7215987Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:28:58.8465992Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "vm_deploy_K6GPla8RqlEnds6had2SDVR5itdPO8BK"
+    },
+    {
+        "time": "2026-07-30T23:28:56.7510447Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-30T23:28:55.8916692Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-30T23:28:18.54516Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-30T23:28:17.3107973Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpu-rg",
+        "resource": "ccverify-gpu-rg"
+    },
+    {
+        "time": "2026-07-30T23:27:13.9072753Z",
+        "op": "Delete resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:26:44.3962993Z",
+        "op": "Delete Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:26:43.8717963Z",
+        "op": "Delete Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:26:43.6120453Z",
+        "op": "Delete Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:25:48.8797735Z",
+        "op": "Delete Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:25:20.116397Z",
+        "op": "Delete Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_7c369be06c044eef97b9a95389c699bd"
+    },
+    {
+        "time": "2026-07-30T23:24:48.8377871Z",
+        "op": "Delete Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-30T23:24:19.449Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:24:18.544Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:24:12.6264513Z",
+        "op": "Delete resource group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:24:12.5013521Z",
+        "op": "Delete resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:22:26.169Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:22:22.545Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:19:47.2425563Z",
+        "op": "Create or Update Disk",
+        "status": "Succeeded",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_7c369be06c044eef97b9a95389c699bd"
+    },
+    {
+        "time": "2026-07-30T23:19:41.4954742Z",
+        "op": "Create or Update Network Watcher",
+        "status": "Succeeded",
+        "resourceGroupName": "NetworkWatcherRG",
+        "resource": "NetworkWatcher_eastus2"
+    },
+    {
+        "time": "2026-07-30T23:17:42.936Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:10:37.1282843Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:10:17.3362587Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-30T23:10:14.8607936Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:10:06.8443224Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:09:59.896Z",
+        "op": "Health Event InProgress",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:09:59.895Z",
+        "op": "Health Event Activated",
+        "status": "Active",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:09:57.915Z",
+        "op": "Health Event Resolved",
+        "status": "Resolved",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:09:49.823Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:09:49.464Z",
+        "op": "Health Event Updated",
+        "status": "Updated",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "CCVERIFY-GPUDEV-VM"
+    },
+    {
+        "time": "2026-07-30T23:09:47.171759Z",
+        "op": "Create or Update Disk",
+        "status": "Accepted",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_7c369be06c044eef97b9a95389c699bd"
+    },
+    {
+        "time": "2026-07-30T23:09:46.9998899Z",
+        "op": "Create or Update Disk",
+        "status": "Started",
+        "resourceGroupName": "CCVERIFY-GPUDEV-RG",
+        "resource": "ccverify-gpudev-vm_OsDisk_1_7c369be06c044eef97b9a95389c699bd"
+    },
+    {
+        "time": "2026-07-30T23:09:44.8348444Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-30T23:09:43.7803834Z",
+        "op": "Create or Update Network Interface",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:09:41.9911044Z",
+        "op": "Create or Update Virtual Machine",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vm"
+    },
+    {
+        "time": "2026-07-30T23:09:41.5196392Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:09:41.270422Z",
+        "op": "Create or Update Network Watcher",
+        "status": "Succeeded",
+        "resourceGroupName": "NetworkWatcherRG",
+        "resource": "NetworkWatcher_eastus2"
+    },
+    {
+        "time": "2026-07-30T23:09:41.0878137Z",
+        "op": "Create or Update Network Interface",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:09:40.942295Z",
+        "op": "Create or Update Network Watcher",
+        "status": "Started",
+        "resourceGroupName": "NetworkWatcherRG",
+        "resource": "NetworkWatcher_eastus2"
+    },
+    {
+        "time": "2026-07-30T23:09:40.8534397Z",
+        "op": "Create or Update Network Interface",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVMNic"
+    },
+    {
+        "time": "2026-07-30T23:09:40.2886622Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:09:38.2869366Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:09:37.4283838Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:09:37.4283838Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:09:37.3033791Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:09:36.6783625Z",
+        "op": "Create or Update Network Security Group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmNSG"
+    },
+    {
+        "time": "2026-07-30T23:09:36.6783625Z",
+        "op": "Create or Update Public Ip Address",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmPublicIP"
+    },
+    {
+        "time": "2026-07-30T23:09:36.6783625Z",
+        "op": "Create or Update Virtual Network",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-vmVNET"
+    },
+    {
+        "time": "2026-07-30T23:09:36.4654917Z",
+        "op": "Get deployment operation status",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:09:36.2650235Z",
+        "op": "Create Deployment",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:09:36.2650235Z",
+        "op": "Create Deployment",
+        "status": "Accepted",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:09:35.5306436Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_JXfp1W49opL3xgPOC1JegCorDR2QczDe"
+    },
+    {
+        "time": "2026-07-30T23:09:31.4524913Z",
+        "op": "Update resource group",
+        "status": "Failed",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:09:31.3587267Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:06:15.0780766Z",
+        "op": "Create Deployment",
+        "status": "Failed",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_EAPJYA2fDhEEnU9pjF1aQVQYuaQlBXcJ"
+    },
+    {
+        "time": "2026-07-30T23:06:14.5468247Z",
+        "op": "Create Deployment",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "vm_deploy_EAPJYA2fDhEEnU9pjF1aQVQYuaQlBXcJ"
+    },
+    {
+        "time": "2026-07-30T23:06:11.1948443Z",
+        "op": "Update resource group",
+        "status": "Succeeded",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    },
+    {
+        "time": "2026-07-30T23:06:09.757356Z",
+        "op": "Update resource group",
+        "status": "Started",
+        "resourceGroupName": "ccverify-gpudev-rg",
+        "resource": "ccverify-gpudev-rg"
+    }
+]

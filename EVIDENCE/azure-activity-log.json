@@ -1,0 +1,352 @@
+﻿[
+    {
+        "time":  "2026-07-27T01:07:52.5642274Z",
+        "op":  "Delete Disk",
+        "status":  "Succeeded",
+        "resourceGroupName":  "CCVERIFY-M3RUN-RG",
+        "resource":  "ccverify-m3run-vm_OsDisk_1_1b0acc8d5c854d5ba22aaa68430ac9ca"
+    },
+    {
+        "time":  "2026-07-27T01:06:52.0055836Z",
+        "op":  "Delete schedules.",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "shutdown-computevm-ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T01:06:45.9588347Z",
+        "op":  "Delete resource group",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-rg"
+    },
+    {
+        "time":  "2026-07-27T01:06:45.8494591Z",
+        "op":  "Delete resource group",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-rg"
+    },
+    {
+        "time":  "2026-07-27T01:06:34.1045002Z",
+        "op":  "Create or Update Network Security Group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-27T00:57:48.6459468Z",
+        "op":  "Add or modify schedules.",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "shutdown-computevm-ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T00:57:47.6615763Z",
+        "op":  "Add or modify schedules.",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "shutdown-computevm-ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T00:57:43.0663727Z",
+        "op":  "Get deployment operation status",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:57:18.0593418Z",
+        "op":  "Create or Update Virtual Machine",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T00:57:17.3462502Z",
+        "op":  "Create Deployment",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:57:12.7717958Z",
+        "op":  "Get deployment operation status",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:56:50.6071772Z",
+        "op":  "Create or Update Network Interface",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVMNic"
+    },
+    {
+        "time":  "2026-07-27T00:56:49.604123Z",
+        "op":  "Create or Update Disk",
+        "status":  "Accepted",
+        "resourceGroupName":  "CCVERIFY-M3RUN-RG",
+        "resource":  "ccverify-m3run-vm_OsDisk_1_1b0acc8d5c854d5ba22aaa68430ac9ca"
+    },
+    {
+        "time":  "2026-07-27T00:56:49.4634923Z",
+        "op":  "Create or Update Disk",
+        "status":  "Started",
+        "resourceGroupName":  "CCVERIFY-M3RUN-RG",
+        "resource":  "ccverify-m3run-vm_OsDisk_1_1b0acc8d5c854d5ba22aaa68430ac9ca"
+    },
+    {
+        "time":  "2026-07-27T00:56:48.604521Z",
+        "op":  "Create or Update Virtual Machine",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T00:56:47.9169541Z",
+        "op":  "Create or Update Virtual Machine",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vm"
+    },
+    {
+        "time":  "2026-07-27T00:56:47.2953205Z",
+        "op":  "Create or Update Virtual Network",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVNET"
+    },
+    {
+        "time":  "2026-07-27T00:56:46.8069439Z",
+        "op":  "Create or Update Network Interface",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVMNic"
+    },
+    {
+        "time":  "2026-07-27T00:56:46.5725738Z",
+        "op":  "Create or Update Network Interface",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVMNic"
+    },
+    {
+        "time":  "2026-07-27T00:56:44.4762719Z",
+        "op":  "Create or Update Public Ip Address",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmPublicIP"
+    },
+    {
+        "time":  "2026-07-27T00:56:43.0956388Z",
+        "op":  "Create or Update Virtual Network",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVNET"
+    },
+    {
+        "time":  "2026-07-27T00:56:43.0331371Z",
+        "op":  "Create or Update Public Ip Address",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmPublicIP"
+    },
+    {
+        "time":  "2026-07-27T00:56:42.767514Z",
+        "op":  "Create or Update Public Ip Address",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmPublicIP"
+    },
+    {
+        "time":  "2026-07-27T00:56:42.767514Z",
+        "op":  "Create or Update Virtual Network",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-vmVNET"
+    },
+    {
+        "time":  "2026-07-27T00:56:42.5250658Z",
+        "op":  "Get deployment operation status",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:56:42.2832024Z",
+        "op":  "Create Deployment",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:56:42.2675691Z",
+        "op":  "Create Deployment",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:56:41.486297Z",
+        "op":  "Create Deployment",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "vm_deploy_XqurRSD8KN8RZEZz0Njp9W726wCLNR74"
+    },
+    {
+        "time":  "2026-07-27T00:56:37.7092189Z",
+        "op":  "Create or Update Security Rule",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "allow-ssh-from-maxim"
+    },
+    {
+        "time":  "2026-07-27T00:56:37.2191956Z",
+        "op":  "Create or Update Security Rule",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "allow-ssh-from-maxim"
+    },
+    {
+        "time":  "2026-07-27T00:56:37.1254434Z",
+        "op":  "Create or Update Security Rule",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "allow-ssh-from-maxim"
+    },
+    {
+        "time":  "2026-07-27T00:56:36.5609459Z",
+        "op":  "Create or Update Network Security Group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-27T00:56:33.9535711Z",
+        "op":  "Create or Update Network Security Group",
+        "status":  "Accepted",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-27T00:56:33.6098215Z",
+        "op":  "Create or Update Network Security Group",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-27T00:56:31.692349Z",
+        "op":  "Update resource group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-rg"
+    },
+    {
+        "time":  "2026-07-27T00:56:30.5048647Z",
+        "op":  "Update resource group",
+        "status":  "Started",
+        "resourceGroupName":  "ccverify-m3run-rg",
+        "resource":  "ccverify-m3run-rg"
+    },
+    {
+        "time":  "2026-07-26T08:27:01.8527092Z",
+        "op":  "Health Event Updated",
+        "status":  "Updated",
+        "resourceGroupName":  "CCVERIFY-M3-RG",
+        "resource":  "CCVERIFY-M3-VM"
+    },
+    {
+        "time":  "2026-07-26T08:13:12.8933356Z",
+        "op":  "Delete Virtual Network",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmVNET"
+    },
+    {
+        "time":  "2026-07-26T08:13:12.4186848Z",
+        "op":  "Delete Network Security Group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-26T08:13:12.3533462Z",
+        "op":  "Delete Public Ip Address",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmPublicIP"
+    },
+    {
+        "time":  "2026-07-26T08:12:18.8275983Z",
+        "op":  "Delete Network Interface",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmVMNic"
+    },
+    {
+        "time":  "2026-07-26T08:11:50.6801351Z",
+        "op":  "Delete Disk",
+        "status":  "Succeeded",
+        "resourceGroupName":  "CCVERIFY-M3-RG",
+        "resource":  "ccverify-m3-vm_OsDisk_1_ea8b6d1abea54bbc998fc35884dc5011"
+    },
+    {
+        "time":  "2026-07-26T08:11:19.3170225Z",
+        "op":  "Delete Virtual Machine",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vm"
+    },
+    {
+        "time":  "2026-07-26T08:10:48.4264976Z",
+        "op":  "Delete schedules.",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "shutdown-computevm-ccverify-m3-vm"
+    },
+    {
+        "time":  "2026-07-26T08:03:42.6858864Z",
+        "op":  "Delete resource group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-rg"
+    },
+    {
+        "time":  "2026-07-26T08:03:12.2007832Z",
+        "op":  "Delete Virtual Network",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmVNET"
+    },
+    {
+        "time":  "2026-07-26T08:03:11.9664083Z",
+        "op":  "Delete Public Ip Address",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmPublicIP"
+    },
+    {
+        "time":  "2026-07-26T08:03:11.9201892Z",
+        "op":  "Delete Network Security Group",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "m3-nsg"
+    },
+    {
+        "time":  "2026-07-26T08:02:18.5443115Z",
+        "op":  "Delete Network Interface",
+        "status":  "Succeeded",
+        "resourceGroupName":  "ccverify-m3-rg",
+        "resource":  "ccverify-m3-vmVMNic"
+    },
+    {
+        "time":  "2026-07-26T08:01:49.3299843Z",
+        "op":  "Delete Disk",
+        "status":  "Succeeded",
+        "resourceGroupName":  "CCVERIFY-M3-RG",
+        "resource":  "ccverify-m3-vm_OsDisk_1_ea8b6d1abea54bbc998fc35884dc5011"
+    }
+]

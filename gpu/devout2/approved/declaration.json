@@ -1,0 +1,9 @@
+{
+  "config_path": "/home/azureuser/t1/work/config.json",
+  "config_sha256": "cb84cbdc80bdec507c0084f20bd1c444d1ef2169b0831855f33e05f096553229",
+  "digests": [],
+  "label": "declared-serving-stack",
+  "schema": "ccverify.declaration.v1",
+  "weights_path": "/home/azureuser/t1/work/weights.bin",
+  "weights_sha256": "f8b4559ac2514ccc091898464742aba326a089bceb8e0a75b1384121684d16b7"
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "The regulator's side of the declaration. In the scheme, the operator declares the code it intends to run and the regulator approves it; this file is what the regulator retains. It holds a hash, never the code's contents, and never anything about the operator's data. Regenerate with: python -c \"import hashlib,pathlib;print(hashlib.sha256(pathlib.Path('workload.py').read_bytes()).hexdigest())\"",
+  "declared_program": "workload.py",
+  "declared_sha256": "81ae9f8d999ddc11da150ce955bd9c38bb7e1acd25523cecd32a7fa2ab370845",
+  "approved_on": "2026-07-22"
+}
+

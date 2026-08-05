@@ -1,0 +1,14 @@
+{
+  "device": "NVIDIA H100 NVL",
+  "enclave_self_reported_occupancy_UNTRUSTED": 0.8809,
+  "enclave_self_reported_tflops_UNTRUSTED": 388.03,
+  "final_state_sha256": "c0a7fcedc378b89c6285e97d310d6ba96790552a644f2dac38a455383833535a",
+  "measured_ceiling_tflops": 440.49,
+  "nonce_issued": "9c435c9631306b609fe2a97346df76b50af8e8749442cfbbbbeb5ba5cac63e4a",
+  "occupancy_over_full_bracket": 0.8473,
+  "orchestration_slack_s": 2.2145,
+  "schema": "ccverify.tier05.verifier.v1",
+  "tflops_over_full_bracket": 373.22,
+  "total_flops": 3.493148441444352e+16,
+  "verifier_bracket_s": 93.5943
+}

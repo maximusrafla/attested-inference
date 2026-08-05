@@ -1,0 +1,9 @@
+{
+  "digests": [
+    "sha256::9bce747782ce854910322be219ffac7adb338824b0a326bd9781d5e0fb59c6f7"
+  ],
+  "label": "declared-serving-stack",
+  "schema": "ccverify.declaration.v1",
+  "weights_path": "/home/azureuser/t1/work/weights.bin",
+  "weights_sha256": "81c74d99a1f5c9b20f380c9f66abbc0b7f4de4428b5527ad57560e564fcc951f"
+}

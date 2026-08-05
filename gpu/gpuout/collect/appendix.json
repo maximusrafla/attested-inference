@@ -1,0 +1,36 @@
+{
+  "audit_batch_projected_hours": 0.35,
+  "audit_batch_records": 30000,
+  "determinism_harness": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": true,
+    "shape": "batch=1 teacher-forced, prover and verifier both"
+  },
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "noise_floor_nats": {
+    "max": 0.0,
+    "median": 0.0
+  },
+  "note": "throughput measured in CC-On on the verification workload. NOT an overhead measurement: CC-off is not togglable on a rented instance, and the general overhead numbers are Chrapek's and Zhu's to cite.",
+  "records": 24,
+  "schema": "ccverify.appendix.reexec.v1",
+  "tamper_ladder_caught_fraction": {
+    "perturb_0.0001": 1.0,
+    "perturb_0.001": 1.0,
+    "perturb_0.01": 1.0
+  },
+  "tamper_ladder_median_nats": {
+    "perturb_0.0001": 0.0003853724348914511,
+    "perturb_0.001": 0.0031197562702636283,
+    "perturb_0.01": 0.03267377262032175
+  },
+  "tolerance_T_nats": 1e-06,
+  "verification_seconds_per_record": 0.0417,
+  "versions": {
+    "cuda": "13.0",
+    "device": "NVIDIA H100 NVL",
+    "driver": "595.71.05",
+    "torch": "2.13.0+cu130"
+  }
+}

@@ -1,0 +1,109 @@
+--- rider a: clocks in CC-On ---
+### nvidia-smi -q -d CLOCK
+
+==============NVSMI LOG==============
+
+Timestamp                                              : Thu Jul 30 23:59:34 2026
+Driver Version                                         : 595.71.05
+CUDA Version                                           : 13.2
+
+Attached GPUs                                          : 1
+GPU 00000001:00:00.0
+    Clocks
+        Graphics                                       : 345 MHz
+        SM                                             : 345 MHz
+        Memory                                         : 2619 MHz
+        Video                                          : 765 MHz
+    Applications Clocks
+        Graphics                                       : Requested functionality has been deprecated
+        Memory                                         : Requested functionality has been deprecated
+    Default Applications Clocks
+        Graphics                                       : Requested functionality has been deprecated
+        Memory                                         : Requested functionality has been deprecated
+    Deferred Clocks
+        Memory                                         : N/A
+    Max Clocks
+        Graphics                                       : 1785 MHz
+        SM                                             : 1785 MHz
+        Memory                                         : 2619 MHz
+        Video                                          : 1410 MHz
+    Max Customer Boost Clocks
+        Graphics                                       : 1785 MHz
+    SM Clock Samples
+        Duration                                       : Not Found
+        Number of Samples                              : Not Found
+        Max                                            : Not Found
+        Min                                            : Not Found
+        Avg                                            : Not Found
+    Memory Clock Samples
+        Duration                                       : Not Found
+        Number of Samples                              : Not Found
+        Max                                            : Not Found
+        Min                                            : Not Found
+        Avg                                            : Not Found
+    Clock Policy
+        Auto Boost                                     : N/A
+        Auto Boost Default                             : N/A
+
+### attempt to lock graphics clocks
+GPU clocks set to "(gpuClkMin 1200, gpuClkMax 1200)" for GPU 00000001:00:00.0
+All done.
+lgc exit: 0
+### re-read after the lock attempt
+    Applications Clocks
+        Graphics                                       : Requested functionality has been deprecated
+        Memory                                         : Requested functionality has been deprecated
+    Default Applications Clocks
+        Graphics                                       : Requested functionality has been deprecated
+        Memory                                         : Requested functionality has been deprecated
+    Deferred Clocks
+        Memory                                         : N/A
+    Max Clocks
+        Graphics                                       : 1785 MHz
+--
+    SM Clock Samples
+        Duration                                       : Not Found
+        Number of Samples                              : Not Found
+        Max                                            : Not Found
+        Min                                            : Not Found
+        Avg                                            : Not Found
+    Memory Clock Samples
+### is the locked state externally queryable
+clocks.applications.graphics [MHz], clocks.max.graphics [MHz], clocks.current.graphics [MHz]
+[Requested functionality has been deprecated], 1785 MHz, 1200 MHz
+### release
+All done.
+rgc exit: 0
+--- rider b(i): CUPTI / device profiling counters (whitepaper says disabled in CC-On) ---
+ncu (Nsight Compute) not installed on the VMI
+nsys (Nsight Systems) not installed on the VMI
+--- rider b(ii): NVML card-health telemetry, a DIFFERENT path, may still read ---
+
+==============NVSMI LOG==============
+
+Timestamp                                              : Thu Jul 30 23:59:35 2026
+Driver Version                                         : 595.71.05
+CUDA Version                                           : 13.2
+
+Attached GPUs                                          : 1
+GPU 00000001:00:00.0
+    Utilization
+        GPU                                            : 0 %
+        Memory                                         : 0 %
+        Encoder                                        : 0 %
+        Decoder                                        : 0 %
+        JPEG                                           : 0 %
+        OFA                                            : 0 %
+    GPU Utilization Samples
+        Duration                                       : 14.00 sec
+        Number of Samples                              : 71
+        Max                                            : 6 %
+        Min                                            : 0 %
+        Avg                                            : 0 %
+    Memory Utilization Samples
+        Duration                                       : 14.00 sec
+        Number of Samples                              : 71
+utilization.gpu [%], utilization.memory [%], power.draw [W], temperature.gpu
+0 %, 0 %, 66.05 W, 40
+--- rider c: mode reporting, so a verifier can tell CC-On from CC-DevTools ---
+DevTools Mode: OFF

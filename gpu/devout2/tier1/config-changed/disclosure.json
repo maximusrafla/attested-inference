@@ -1,0 +1,18 @@
+{
+  "ak_pub_sha256": "546ef4abd7cbeb3ddd04bfa3c7cd35b970aaccaeab3fcc5bd62fa12ec67453a3",
+  "baseline_sha256": "13c193cff3f237ea1cd0b4caf893367feae8ddd4b470236db6c75f9f7575a880",
+  "config_matches_declaration": false,
+  "config_sha256": "66e8db95956c04f1745a42654393c0ce73471c83165995ef361bc0902d693c88",
+  "declaration_sha256": "862518dd9d65573fe3c19199ca7600bdc1fc4692fbfcd5cbb9f78288dca0b62c",
+  "ima_entries_checked": 585,
+  "pcr10_sha256": "f59764215cfbc19480682a26bb763cae427943b2f64b59ceddbf0b04134b432e",
+  "quote_sha256": "c4a0af2d7b5ea1351b69c59e3f8f574c0f93aa9d2435c1381abb3d02aa2a0c80",
+  "rejected_by": [
+    "configuration_identity"
+  ],
+  "schema": "ccverify.disclosure.v3",
+  "undeclared_entries": 0,
+  "verdict": "reject",
+  "weights_match_declaration": true,
+  "weights_sha256": "f8b4559ac2514ccc091898464742aba326a089bceb8e0a75b1384121684d16b7"
+}

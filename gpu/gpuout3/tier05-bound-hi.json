@@ -1,0 +1,46 @@
+{
+  "clean_mean_tflops": 367.6405170428717,
+  "clean_runs": [
+    374.539646514578,
+    367.3933647176325,
+    366.9677235245935,
+    361.66133341468264
+  ],
+  "detection_threshold_paired_drop": 0.009800657179459304,
+  "detection_threshold_unpaired_drop": 0.04314403884972525,
+  "device": "NVIDIA H100 NVL",
+  "duty_response": [
+    {
+      "drop": 0.07250344946804466,
+      "duty": 0.15,
+      "mean_ratio": 0.9274965505319553,
+      "stdev_ratio": 0.0015408377899193842
+    },
+    {
+      "drop": 0.09972945722125137,
+      "duty": 0.2,
+      "mean_ratio": 0.9002705427787486,
+      "stdev_ratio": 0.0009048792356825958
+    },
+    {
+      "drop": 0.11794601874916744,
+      "duty": 0.25,
+      "mean_ratio": 0.8820539812508326,
+      "stdev_ratio": 0.0006714291434136274
+    },
+    {
+      "drop": 0.14111110026556273,
+      "duty": 0.3,
+      "mean_ratio": 0.8588888997344373,
+      "stdev_ratio": 0.0016072708914807183
+    }
+  ],
+  "hideable_duty_paired": 0.020276257029216663,
+  "hideable_duty_unpaired": 0.08925928179887632,
+  "matrix_n": 8192,
+  "null_sigma_paired": 0.0032668857264864346,
+  "null_sigma_unpaired": 0.014381346283241751,
+  "schema": "ccverify.tier05.bound.v1",
+  "seconds_per_run": 10.0,
+  "sigma_multiple": 3.0
+}

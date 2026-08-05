@@ -1,0 +1,25 @@
+{
+  "clean_mean_tflops": 407.18558185470715,
+  "clean_relative_noise": 0.07243514656756463,
+  "clean_stdev_tflops": 29.494547301844797,
+  "device": "NVIDIA H100 NVL",
+  "matrix_n": 8192,
+  "repeats": 3,
+  "rows": [
+    {
+      "detectable_at_3sigma": false,
+      "drop_pct": 0.0,
+      "duty": 0.0,
+      "fraction_of_clean": 1.0,
+      "mean": 407.18558185470715,
+      "stdev": 29.494547301844797,
+      "tflops": [
+        441.07850978572526,
+        393.1340095517428,
+        387.34422622665346
+      ]
+    }
+  ],
+  "schema": "ccverify.tier05.sweep.v1",
+  "seconds_per_run": 12.0
+}

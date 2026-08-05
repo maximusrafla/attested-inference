@@ -1,0 +1,13 @@
+# Ephemeral per-run VM addresses (machines are torn down; files serve no reproduction purpose)
+*vm-ip.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Internal build-execution runbook (process notes, not part of the artifact)
+gpu/RUNBOOK.md
