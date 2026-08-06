@@ -86,7 +86,35 @@ ssh ... 'cd ~/t1/bin && CCV_GPU=1 ./tier1.sh run undeclared-gpu --undeclared-gpu
 ssh ... 'python3 -c "import json;print(json.load(open(\"/home/azureuser/t1/work/undeclared-gpu.out\"))[\"undeclared_gpu_iterations\"])"'
 ```
 **Expect:** disclosure `accept`, `undeclared_entries: 0`, alongside roughly 20,000 undeclared GPU
-iterations recorded in the withheld output. **~3 min, included in the session above.**
+iterations recorded in the workload's own output. **~3 min, included in the session above.**
+
+**Retained result, so this claim does not depend on rerunning anything:**
+`../EVIDENCE/undeclared-gpu-rerun/`. It holds the measured iteration count with the FLOP arithmetic
+written out (`iteration-count.json`), and the disclosure from the same run with its quote, challenge,
+attestation key, declaration and baseline, so the accept verdict is checkable too:
+
+```
+21,897 iterations x (2 x 4096^3) = 21,897 x 137,438,953,472 = 3,009,500,764,176,384 FLOP
+                                                            = 3.0095 PFLOP
+```
+
+The per-iteration constant is fixed by the source: `declared_stack.py` runs one 4096x4096 bfloat16
+matmul per iteration, so only the integer is measured and the rest is arithmetic you can check.
+The undeclared work is **time-bounded, not count-bounded**, so the iteration count will differ on
+your run and is not meant to match; an earlier run measured 22,813 (3.1354 PFLOP). Both round to
+about 3 PFLOP. Verify the paired disclosure with:
+
+```powershell
+$d="..\EVIDENCE\undeclared-gpu-rerun"; $ch=(Get-Content "$d\challenge.txt").Trim()
+python verify_completeness.py --disclosure "$d\disclosure.json" --quote "$d\quote.msg" `
+  --signature "$d\quote.sig" --ak-pub "$d\ak.pub.pem" --challenge $ch `
+  --declaration "$d\declaration.json" --baseline "$d\baseline.json"
+```
+
+Note what is deliberately absent: the raw workload output is not retained. The counter lives on the
+operator's side of the boundary, which the disclosure discipline never transmits, so only the single
+integer needed to check the arithmetic was extracted. That is a researcher-side measurement, not
+something a regulator would receive.
 
 ## 5. Contention asymmetry: separate process versus same context
 

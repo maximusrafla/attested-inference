@@ -1,0 +1,47 @@
+{
+  "schema": "ccverify.undeclared-gpu.count.v1",
+  "what_this_is": "The retained iteration counter for the claim that a declared, approved process can submit undeclared GPU work and still receive an accept verdict. The count was previously reported from a session transcript only; this file makes it an artifact.",
+  "measured": {
+    "date_utc": "2026-08-06",
+    "undeclared_gpu_iterations": 21897,
+    "declared_stack_elapsed_s": 9.778
+  },
+  "flop_arithmetic": {
+    "note": "Exact arithmetic, not an estimate. Check the multiplication yourself.",
+    "source": "gpu/declared_stack.py, the --undeclared-gpu-frac branch: one 4096x4096 bfloat16 matmul per iteration.",
+    "matrix_dimension_n": 4096,
+    "n_cubed": 68719476736,
+    "flop_per_iteration_expression": "2 * n^3",
+    "flop_per_iteration": 137438953472,
+    "total_flop_expression": "21897 * 137438953472",
+    "total_flop": 3009500764176384,
+    "total_pflop": 3.0095,
+    "rounded_for_prose": "about 3.0 PFLOP",
+    "excluded_from_the_count": "The row-wise normalize() after each matmul adds roughly 3*n^2 = 0.037 percent. It is excluded, so the figure is a slight underestimate of total device work."
+  },
+  "paired_verdict": {
+    "note": "The point of the claim is that this work was invisible to the code measurement. The disclosure emitted by the same run is in this directory.",
+    "verdict": "accept",
+    "undeclared_entries": 0,
+    "ima_entries_checked": 2854,
+    "disclosure_file": "disclosure.json"
+  },
+  "provenance_and_scope": {
+    "how_obtained": "The counter lives in the workload's own output on the machine, which the disclosure discipline deliberately never sends to the verifier. It is extracted here as a RESEARCHER-side measurement so the published figure is checkable. It is not part of the disclosure and a regulator would not receive it.",
+    "raw_withheld_output_retained": false,
+    "why_not": "Copying the whole withheld output would publish operator-side content the scheme is designed to keep local. Only the single integer needed to check the arithmetic is retained.",
+    "time_bounded_not_count_bounded": "The undeclared work runs for a fixed wall-clock interval, so the iteration count varies between runs and is not expected to reproduce exactly. An earlier run of the same command measured 22,813 iterations (3.1354 PFLOP). Both round to about 3 PFLOP.",
+    "single_run": true,
+    "platform": "one NVIDIA H100 NVL in an AMD SEV-SNP confidential VM; cooperative operator running these scripts"
+  },
+  "environment": {
+    "device": "NVIDIA H100 NVL",
+    "driver": "595.71.05",
+    "vbios": "96.00.9F.00.04",
+    "cuda": "13.0",
+    "torch": "2.13.0+cu130",
+    "gpu_cc_status": "ON",
+    "gpu_devtools_mode": "OFF"
+  },
+  "reproduce": "gpu/REPRODUCE.md section 4"
+}
