@@ -1,0 +1,104 @@
+==========================================================================================
+E1 v2. Every figure recomputed from the raw per-window and per-repeat values.
+==========================================================================================
+
+RETAINED CALIBRATION, queue depth 4
+  short in-run calibration : 392.6 matmul/s = 431.7 TFLOP/s
+  sustained 20s solo run   : 433.8 matmul/s = 477.0 TFLOP/s
+  ratio 1.105
+  The short calibration reads low: one warm-up burst is not enough at this matrix
+  size. THE SUSTAINED RATE IS THE DENOMINATOR TO USE. Device shares computed in-run
+  against the short calibration are overstated by that ratio.
+RETAINED CALIBRATION, unbounded submission: sustained 423.0 matmul/s
+
+A1  separate process, bounded submission   [non-adaptive, never reacts]
+   duty knob     drop   sd of ratio   device share taken
+        0.02    2.04%         0.18%                1.08%
+        0.05    3.79%         0.27%                2.96%
+         0.1    6.38%         0.28%                6.17%
+        0.25   13.90%         0.40%               15.28%
+         0.5   27.37%         0.36%               31.63%
+
+A2  separate process, UNBOUNDED (the July protocol)   [non-adaptive, never reacts]
+   duty knob     drop   sd of ratio   device share taken
+        0.02    8.75%         0.57%                2.16%
+        0.05   10.24%         0.21%                5.50%
+         0.1   12.66%         0.23%               12.08%
+        0.25   19.56%         0.60%               30.84%
+         0.5   31.26%         0.59%               63.13%
+
+A3  dormant undeclared context   [adaptive, yields while a challenge is in flight]
+   duty knob     drop   sd of ratio   device share taken
+        0.25    0.31%         0.39%                6.28%
+  NOTE: With a single challenge as long as the measured window, an operator that pauses on the challenge does no undeclared work inside it at all: the competitor's own counters show it paused for the whole window. So this arm is NOT evasion at a duty cycle. It is the cost of an undeclared CUDA context that is present, allocated and resident but submitting nothing, measured against a run with no such process. The duty axis has no effect on it and the rows are replicates.
+
+BOUND  non-adaptive adversary
+  solo calibration (retained): 361.9 matmul/s = 397.9 TFLOP/s
+  clean mean 361.3 TFLOP/s   paired sigma 0.94%   unpaired sigma 0.63%
+  excluding the warmup run: paired 0.73%   unpaired 0.50%
+  paired null mean ratio 0.99763 (1.0 means no systematic bias between the halves of a pair)
+  95% interval on the paired sigma from 5 df: 0.59% to 2.30%  <-- the width inherits this
+  -- nonadaptive
+     knob 0.05   drop   4.50%   DEVICE SHARE   4.33%
+     knob 0.1    drop   8.52%   DEVICE SHARE   8.27%
+     knob 0.15   drop  12.27%   DEVICE SHARE  11.93%
+     knob 0.2    drop  15.74%   DEVICE SHARE  15.29%
+     knob 0.3    drop  21.94%   DEVICE SHARE  21.21%
+     hideable DEVICE SHARE: paired 2.71%   stored ceiling 1.82%
+     (the duty knob at that threshold, which v1 wrongly reported as device capacity: 3.13%)
+
+BOUND  adaptive adversary
+  solo calibration (retained): 356.2 matmul/s = 391.7 TFLOP/s
+  clean mean 360.9 TFLOP/s   paired sigma 0.86%   unpaired sigma 0.51%
+  excluding the warmup run: paired 0.76%   unpaired 0.49%
+  paired null mean ratio 0.99831 (1.0 means no systematic bias between the halves of a pair)
+  95% interval on the paired sigma from 5 df: 0.54% to 2.11%  <-- the width inherits this
+  -- adaptive
+     nothing undeclared executed inside the window at any level; arithmetic, not a detection result
+
+B1  verifier duty sweep, separate process   [adaptive, pauses while a challenge is in flight; separate competing process; react 0 ms; settle 0.0s; 3 repeats]
+    duty     drop  sd(reps)    3*SE  detected   out-win    share    kept    1-d
+    0.00      n/a       n/a     n/a      None    54.46%   49.36%   1.000   1.00
+    0.10    0.21%     0.27%   0.46%     False    54.33%   44.36%   0.900   0.90
+    0.25    0.29%     0.20%   0.35%     False    54.34%   36.36%   0.737   0.75
+    0.50    0.48%     0.26%   0.46%      True    54.27%   25.42%   0.515   0.50
+
+B2  verifier duty sweep, same context   [adaptive, pauses while a challenge is in flight; same process, same CUDA context; react 0 ms; settle 0.0s; 3 repeats]
+    duty     drop  sd(reps)    3*SE  detected   out-win    share    kept    1-d
+    0.00      n/a       n/a     n/a      None    49.61%   51.68%   1.000   1.00
+    0.10    0.09%     0.11%   0.20%     False    50.57%   45.64%   0.883   0.90
+    0.25    0.07%     0.06%   0.10%     False    50.44%   37.20%   0.720   0.75
+    0.50    0.03%     0.05%   0.09%     False    50.29%   25.66%   0.497   0.50
+
+B3  POSITIVE CONTROL, large effect   [non-adaptive, never reacts; separate competing process; react 0 ms; settle 0.0s; 3 repeats]
+    duty     drop  sd(reps)    3*SE  detected   out-win    share    kept    1-d
+    0.25   54.24%     0.07%   0.13%      True    54.21%   49.31%       -   0.75
+
+B4  POSITIVE CONTROL, near threshold   [non-adaptive, never reacts; separate competing process; react 0 ms; settle 0.0s; 3 repeats]
+    duty     drop  sd(reps)    3*SE  detected   out-win    share    kept    1-d
+    0.25    4.47%     0.22%   0.38%      True     4.18%    3.97%       -   0.75
+
+C1  reaction sweep, separate process
+    asked   measured     drop  sd(reps)    3*SE   caught
+        0      4.7ms   -0.12%     0.02%   0.03%    False
+        5      9.6ms   -0.00%     0.07%   0.15%    False
+       10     15.2ms    0.65%     0.01%   0.01%     True
+       15     23.2ms    0.84%     0.02%   0.03%     True
+       20     27.2ms    1.11%     0.12%   0.25%     True
+       30     34.0ms    1.46%     0.09%   0.20%     True
+       50     55.2ms    2.53%     0.05%   0.11%     True
+      100    106.2ms    4.96%     0.04%   0.08%     True
+      250    256.2ms   11.98%     0.07%   0.14%     True
+  BRACKETED BY MEASUREMENT: not caught at 9.6 ms, caught at 15.2 ms.
+  Quote the bracket. A fit through these points is an extrapolation and v1's was
+  contradicted by its own zero-reaction measurement.
+
+C2  reaction sweep, same context
+    asked   measured     drop  sd(reps)    3*SE   caught
+        0        n/a    0.43%     0.52%   1.11%    False
+       15        n/a    3.01%     0.39%   0.82%     True
+       50        n/a    2.96%     0.20%   0.43%     True
+      150        n/a    8.33%     0.15%   0.32%     True
+  BRACKETED BY MEASUREMENT: not caught at 0.0 ms, caught at 15.0 ms.
+  Quote the bracket. A fit through these points is an extrapolation and v1's was
+  contradicted by its own zero-reaction measurement.

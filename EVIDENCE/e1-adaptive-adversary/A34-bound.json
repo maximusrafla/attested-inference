@@ -1,0 +1,162 @@
+{
+  "clean_mean_tflops": 364.4182213455837,
+  "clean_runs": [
+    370.4742867842069,
+    365.76120772139865,
+    366.4058648214041,
+    361.5630913921758,
+    365.31150910278717,
+    361.9586699520262,
+    361.3052221598764,
+    363.9845166337472,
+    365.5119770605433,
+    364.9697533349889,
+    361.217475597674,
+    364.5550815861755
+  ],
+  "detection_threshold_paired_drop": 0.02991093605461191,
+  "detection_threshold_unpaired_drop": 0.022071755156799645,
+  "device": "NVIDIA H100 NVL",
+  "duty_response": [
+    {
+      "drop": 0.027367811275922804,
+      "duty": 0.05,
+      "mean_ratio": 0.9726321887240772,
+      "stdev_ratio": 0.0005024323580501901,
+      "undeclared_iterations_in_window": [
+        161,
+        161,
+        161,
+        159
+      ]
+    },
+    {
+      "drop": 0.07189484764981846,
+      "duty": 0.15,
+      "mean_ratio": 0.9281051523501815,
+      "stdev_ratio": 0.0015324865150457639,
+      "undeclared_iterations_in_window": [
+        460,
+        462,
+        462,
+        457
+      ]
+    },
+    {
+      "drop": 0.14053713521192845,
+      "duty": 0.3,
+      "mean_ratio": 0.8594628647880715,
+      "stdev_ratio": 0.0017265340377770706,
+      "undeclared_iterations_in_window": [
+        852,
+        855,
+        855,
+        849
+      ]
+    }
+  ],
+  "hideable_duty_paired": 0.055711417120453216,
+  "hideable_duty_unpaired": 0.04032429728170766,
+  "matrix_n": 8192,
+  "modes": {
+    "adaptive": {
+      "adversary": "pauses its hidden work while the challenge is in flight",
+      "duty_response": [
+        {
+          "drop": -0.00037023343154807264,
+          "duty": 0.05,
+          "mean_ratio": 1.000370233431548,
+          "stdev_ratio": 0.00016031025647893712,
+          "undeclared_iterations_in_window": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "drop": -0.00025866855797040955,
+          "duty": 0.15,
+          "mean_ratio": 1.0002586685579704,
+          "stdev_ratio": 0.0003450372204325528,
+          "undeclared_iterations_in_window": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "drop": 5.161353272031821e-05,
+          "duty": 0.3,
+          "mean_ratio": 0.9999483864672797,
+          "stdev_ratio": 0.0005379221033678337,
+          "undeclared_iterations_in_window": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "hideable_duty_paired": null,
+      "hideable_duty_unpaired": null,
+      "max_measured_drop": 5.161353272031821e-05,
+      "no_tested_duty_detectable_paired": true,
+      "no_tested_duty_detectable_unpaired": true,
+      "react_ms": 0.0
+    },
+    "nonadaptive": {
+      "adversary": "never reacts to the verifier",
+      "duty_response": [
+        {
+          "drop": 0.027367811275922804,
+          "duty": 0.05,
+          "mean_ratio": 0.9726321887240772,
+          "stdev_ratio": 0.0005024323580501901,
+          "undeclared_iterations_in_window": [
+            161,
+            161,
+            161,
+            159
+          ]
+        },
+        {
+          "drop": 0.07189484764981846,
+          "duty": 0.15,
+          "mean_ratio": 0.9281051523501815,
+          "stdev_ratio": 0.0015324865150457639,
+          "undeclared_iterations_in_window": [
+            460,
+            462,
+            462,
+            457
+          ]
+        },
+        {
+          "drop": 0.14053713521192845,
+          "duty": 0.3,
+          "mean_ratio": 0.8594628647880715,
+          "stdev_ratio": 0.0017265340377770706,
+          "undeclared_iterations_in_window": [
+            852,
+            855,
+            855,
+            849
+          ]
+        }
+      ],
+      "hideable_duty_paired": 0.055711417120453216,
+      "hideable_duty_unpaired": 0.04032429728170766,
+      "max_measured_drop": 0.14053713521192845,
+      "no_tested_duty_detectable_paired": false,
+      "no_tested_duty_detectable_unpaired": false,
+      "react_ms": null
+    }
+  },
+  "null_sigma_paired": 0.00997031201820397,
+  "null_sigma_unpaired": 0.007357251718933215,
+  "schema": "ccverify.tier05.bound.v2",
+  "seconds_per_run": 10.0,
+  "sigma_multiple": 3.0
+}

@@ -1,0 +1,28 @@
+
+[PASS] quote is a TPM 2.0 quote answering the regulator's challenge  (PCRs selected [10])
+[PASS] quote signature verifies under the key the bundle names  (RSASSA)
+[PASS] disclosure's quote and key hashes match
+[PASS] MAA token verifies against the issuer's published keys  (https://sharedeus2.eus2.attest.azure.net (expiry not enforced: archival check))
+[PASS] MAA reports a compliant sevsnpvm confidential VM  (sevsnpvm, azure-compliant-cvm)
+[PASS] MAA nonce equals sha256 of this disclosure  (expected 00c3e2e5717ebcba...)
+[FAIL] quote key is the vTPM attestation key the platform attests (HCLAkPub)  (a different key signed the quote)
+[PASS] secure boot on; boot and kernel debugging off
+[FAIL] boot registers MAA attests equal the ones the quote covers  (MAA attests PCRs [0, 1, 2, 3, 4, 5, 6, 7])
+[PASS] exported log and quoted boot registers reproduce the quote's pcrDigest  (prefix 2426 of 2446 entries)
+[FAIL] log's boot_aggregate equals sha256 over the quoted PCRs 0 to 9  (quote does not cover PCRs 0 to 9)
+[PASS] replayed PCR 10 value is the one in the disclosure
+[FAIL] verifier's own verdict is accept  (reject, reasons ['payload_identity'])
+[FAIL] disclosure agrees with the verifier's own verdict, reasons and counts  (disclosure accept [] 2426/0; verifier 2426/0)
+[PASS] bundle contains an NVIDIA-issued GPU attestation
+[FAIL] GPU attestation verifies against NVIDIA's published keys  (PyJWKClientError: Unable to find a signing key that matches: "nv-eat-kid-prod-20260730212413928-c1dc872d-1985-41de-a6d1-723298935c52")
+[PASS] declaration and baseline the operator used are the approved ones
+[PASS] disclosure carries no fields beyond the allowlist
+
+what the regulator established for itself:
+  - 2426 measured entries in the attested window, 0 outside the approved sets
+  - declared weights present by digest: False; declared configuration present by digest: None
+  - it holds the file names and digests behind those counts, never the weights, outputs or prompts
+not covered: which IMA policy was loaded (a single unmeasured write on this image); work an
+already-declared process submits to the accelerator; code that never arrives as a file.
+
+12/18 checks passed

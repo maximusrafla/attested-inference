@@ -1,0 +1,24 @@
+==========================================================================================
+E1 v2. Every figure recomputed from the raw per-window and per-repeat values.
+==========================================================================================
+
+E1b  leak vs window count at fixed duty (2026-09-03 follow-up)
+         arm  win s  windows  duty    drop     sd   3*SE  n   det  out-win   share  lost ms/win  react ms
+    separate   3.00        5  0.25   0.08%  0.16%  0.19%  6 False   51.61%  37.56%          2.3      10.3
+    separate   1.00       15  0.25   1.06%  1.50%  1.83%  6 False   51.54%  37.53%         10.7       8.0
+   separate*   1.00       15  0.25   0.45%  0.14%  0.19%  5  True   51.31%  37.68%          4.6       8.0
+    separate   0.50       30  0.25   0.64%  0.16%  0.20%  6  True   51.19%  37.88%          3.3      10.2
+    separate   0.25       60  0.25   0.97%  0.17%  0.21%  6  True   51.49%  38.13%          2.5       9.2
+      inline   0.25       60  0.25  -0.15%  0.08%  0.10%  6 False   45.70%  41.39%         -0.4       n/a
+  * = flagged repeats removed (reference in-window mean >2% from the file's median reference).
+  lost ms/win = mean drop x total challenge seconds / windows, the challenge time the leak cost per transition.
+  react ms = the competitor's own flag-to-synchronised latency, mean over all yields.
+    separate win 3.0s repeats: 0.105, 0.321, -0.116, -0.075, 0.071, 0.146
+    separate win 1.0s repeats: 4.100, 0.419, 0.372, 0.397, 0.353, 0.705   FLAGGED repeats [0] (reference means 457.1, 434.4, 434.3, 434.0, 434.4, 434.5 TFLOP/s)
+    separate win 0.5s repeats: 0.682, 0.850, 0.642, 0.761, 0.447, 0.454
+    separate win 0.25s repeats: 1.173, 0.825, 0.984, 0.760, 0.885, 1.167
+    inline win 0.25s repeats: -0.201, -0.209, -0.239, -0.171, -0.061, -0.042
+  separate, all repeats: slope +0.0105 %/window (se 0.0108), intercept +0.397%, log-log exponent 0.96 (1.0 = proportional to window count), monotone rising: False
+  separate, flagged repeats removed: slope +0.0149 %/window (se 0.0031), intercept +0.123%, log-log exponent 1.02 (1.0 = proportional to window count), monotone rising: True
+  separate, MEDIAN per arm, no exclusion: slope +0.0145 %/window (se 0.0030), intercept +0.126%, log-log exponent 0.96 (1.0 = proportional to window count), monotone rising: True
+  separate, means, only arms with no flagged repeat: slope +0.0160 %/window (se 0.0033), intercept +0.053%, log-log exponent 1.06 (1.0 = proportional to window count), monotone rising: True

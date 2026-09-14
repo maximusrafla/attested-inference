@@ -1,0 +1,6 @@
+NVIDIA H100 NVL, 595.71.05, 96.00.9F.00.04
+CC status: ON
+DevTools Mode: OFF
+6.8.0-1058-azure-fde
+    Clocks Event Reasons
+    Clocks Event Reasons Counters

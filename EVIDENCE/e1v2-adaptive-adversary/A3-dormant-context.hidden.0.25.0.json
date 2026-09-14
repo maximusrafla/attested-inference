@@ -1,0 +1,35 @@
+{
+  "achieved_duty_of_active_time": 0.258968098485322,
+  "adaptive": true,
+  "burst_matmuls": 9,
+  "calibration": {
+    "elapsed_s": 1.5075902938842773,
+    "iterations": 552,
+    "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+    "queue_depth": 4,
+    "seconds_per_matmul": 0.002731141836746879,
+    "solo_iterations_per_second": 366.147223313426,
+    "solo_tflops": 402.5831295110076
+  },
+  "counted_elapsed_s": 13.508589744567871,
+  "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+  "device_share_taken": 0.0636861208196228,
+  "duty_requested": 0.25,
+  "flop_per_iteration": 1099511627776,
+  "iterations": 315,
+  "iterations_per_second": 23.318496301708258,
+  "matrix_n": 8192,
+  "paused_s": 10.513932704925537,
+  "queue_depth": 4,
+  "react_ms_nominal": 0.0,
+  "reaction_latency_max_s": 0.002487,
+  "reaction_latency_mean_s": 0.002487,
+  "reaction_latency_s": [
+    0.002487
+  ],
+  "schema": "ccverify.e1.contention.v2",
+  "slept_s": 2.2189478874206543,
+  "tflops_delivered": 25.638957825979883,
+  "worked_s": 0.7754547595977783,
+  "yield_events": 1
+}

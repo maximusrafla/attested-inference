@@ -1,0 +1,576 @@
+{
+  "adversary": "adaptive, pauses while a challenge is in flight",
+  "challenge_window_seconds": 1.0,
+  "decision_rules_note": "detected_across_repeats is the primary rule: mean drop against three standard errors of the across-repeat spread. The within-run rules are reported per repeat for comparison; the raw-sigma one is what v1 used and it compares a mean against the spread of individuals, which is the standard deviation of the wrong thing.",
+  "device": "NVIDIA H100 NVL",
+  "disclosure_note": "undeclared iteration counts are researcher-side measurements from the operator's side of the boundary; a regulator receives none of them",
+  "hidden_ceiling_iterations_per_second": null,
+  "hidden_work_mode": "separate competing process",
+  "matrix_n": 8192,
+  "points": [
+    {
+      "aggregate": {
+        "detected_across_repeats": false,
+        "hidden_device_share_mean": 0.3310510112290568,
+        "hidden_iterations_per_second_mean": 120.38489472418031,
+        "hidden_kept_vs_no_verifier": null,
+        "in_window_drop_pct_across_repeat_sd": 0.016016542685207302,
+        "in_window_drop_pct_mean": -0.12071903416294161,
+        "in_window_drop_pct_standard_error": 0.011325405943873877,
+        "n_repeats": 2,
+        "out_window_drop_pct_mean": 48.88042027036336
+      },
+      "challenge_windows": 6,
+      "duty": 0.25,
+      "repeats": [
+        {
+          "contended": {
+            "adaptive": true,
+            "challenge_windows": [
+              {
+                "declared_steps": 380,
+                "elapsed_s": 1.0218,
+                "hidden_iterations_in_window": 0,
+                "tflops": 408.89770211602854
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.001,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.4197917024956
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0007,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.5544891247379
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0051,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.77108130182825
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0087,
+                "hidden_iterations_in_window": 0,
+                "tflops": 403.29481491504254
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0057,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.52340772088473
+              }
+            ],
+            "declared_steps_total": 5660,
+            "duty_achieved": 0.24916493395893027,
+            "hidden_counted_seconds": 24.273635864257812,
+            "hidden_counters": {
+              "achieved_duty_of_active_time": 1.0,
+              "adaptive": true,
+              "burst_matmuls": 15,
+              "calibration": {
+                "elapsed_s": 1.5002646446228027,
+                "iterations": 544,
+                "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+                "queue_depth": 2,
+                "seconds_per_matmul": 0.002757839420262505,
+                "solo_iterations_per_second": 362.602692764764,
+                "solo_tflops": 398.6858769577465
+              },
+              "counted_elapsed_s": 24.273635864257812,
+              "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+              "device_share_taken": 0.3317546309172476,
+              "duty_requested": 1.0,
+              "flop_per_iteration": 1099511627776,
+              "iterations": 2920,
+              "iterations_per_second": 120.29512250777441,
+              "matrix_n": 8192,
+              "paused_s": 6.024662971496582,
+              "queue_depth": 2,
+              "react_ms_nominal": 0.0,
+              "reaction_latency_max_s": 0.010352,
+              "reaction_latency_mean_s": 0.004729333333333334,
+              "reaction_latency_s": [
+                0.000859,
+                0.000575,
+                0.000774,
+                0.010352,
+                0.010283,
+                0.005533
+              ],
+              "schema": "ccverify.e1.contention.v2",
+              "slept_s": 0.0,
+              "tflops_delivered": 132.26588596203638,
+              "worked_s": 18.238651990890503,
+              "yield_events": 6
+            },
+            "hidden_device_share": 0.3317546309172476,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": 2920,
+            "hidden_iterations_per_second": 120.29512250777441,
+            "hidden_paused_seconds": 6.024662971496582,
+            "idle_phases": [
+              {
+                "declared_steps": 330,
+                "elapsed_s": 1.774,
+                "tflops": 204.52714038041577
+              },
+              {
+                "declared_steps": 690,
+                "elapsed_s": 3.6577,
+                "tflops": 207.41531846449087
+              },
+              {
+                "declared_steps": 380,
+                "elapsed_s": 2.0093,
+                "tflops": 207.9372281227987
+              },
+              {
+                "declared_steps": 440,
+                "elapsed_s": 2.3343,
+                "tflops": 207.25237070925408
+              },
+              {
+                "declared_steps": 1050,
+                "elapsed_s": 5.5762,
+                "tflops": 207.0376346791321
+              },
+              {
+                "declared_steps": 170,
+                "elapsed_s": 0.8976,
+                "tflops": 208.24290013271883
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.9586,
+                "tflops": 207.7144615255367
+              }
+            ],
+            "in_window_tflops": [
+              408.89770211602854,
+              406.4197917024956,
+              406.5544891247379,
+              404.77108130182825,
+              403.29481491504254,
+              404.52340772088473
+            ],
+            "out_window_tflops": [
+              204.52714038041577,
+              207.41531846449087,
+              207.9372281227987,
+              207.25237070925408,
+              207.0376346791321,
+              208.24290013271883,
+              207.7144615255367
+            ],
+            "tag": "e1v2-d0.25-r0-con",
+            "total_elapsed_s": 24.253,
+            "with_hidden": true
+          },
+          "reference": {
+            "adaptive": false,
+            "challenge_windows": [
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0009,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.46374495932525
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0028,
+                "hidden_iterations_in_window": 0,
+                "tflops": 405.6998877566162
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0031,
+                "hidden_iterations_in_window": 0,
+                "tflops": 405.5773238350858
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0053,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.68362682778843
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0052,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.6982159464319
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0053,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.6782521544869
+              }
+            ],
+            "declared_steps_total": 8900,
+            "duty_achieved": 0.24951481879827703,
+            "hidden_counted_seconds": null,
+            "hidden_counters": null,
+            "hidden_device_share": null,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": null,
+            "hidden_iterations_per_second": null,
+            "hidden_paused_seconds": null,
+            "idle_phases": [
+              {
+                "declared_steps": 650,
+                "elapsed_s": 1.7553,
+                "tflops": 407.1618962417344
+              },
+              {
+                "declared_steps": 1350,
+                "elapsed_s": 3.6543,
+                "tflops": 406.19328885817765
+              },
+              {
+                "declared_steps": 730,
+                "elapsed_s": 1.9781,
+                "tflops": 405.7692095825494
+              },
+              {
+                "declared_steps": 850,
+                "elapsed_s": 2.3062,
+                "tflops": 405.2551652733487
+              },
+              {
+                "declared_steps": 2060,
+                "elapsed_s": 5.5953,
+                "tflops": 404.802160772988
+              },
+              {
+                "declared_steps": 330,
+                "elapsed_s": 0.8953,
+                "tflops": 405.2815097710923
+              },
+              {
+                "declared_steps": 710,
+                "elapsed_s": 1.9301,
+                "tflops": 404.45500902881116
+              }
+            ],
+            "in_window_tflops": [
+              406.46374495932525,
+              405.6998877566162,
+              405.5773238350858,
+              404.68362682778843,
+              404.6982159464319,
+              404.6782521544869
+            ],
+            "out_window_tflops": [
+              407.1618962417344,
+              406.19328885817765,
+              405.7692095825494,
+              405.2551652733487,
+              404.802160772988,
+              405.2815097710923,
+              404.45500902881116
+            ],
+            "tag": "e1v2-d0.25-r0-ref",
+            "total_elapsed_s": 24.137,
+            "with_hidden": false
+          },
+          "repeat": 0,
+          "summary": {
+            "detected_within_run_raw_sigma_DEPRECATED": false,
+            "detected_within_run_sem": false,
+            "hidden_device_share": 0.3317546309172476,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": 2920,
+            "hidden_iterations_per_second": 120.29512250777441,
+            "in_window_drop_pct": -0.10939362821906773,
+            "in_window_ratio": 1.0010939362821907,
+            "out_window_drop_pct": 48.91973168430918,
+            "out_window_ratio": 0.5108026831569082,
+            "within_run_sigma_pct": 0.1819712566163753,
+            "within_run_standard_error_pct": 0.2123131638760524
+          }
+        },
+        {
+          "contended": {
+            "adaptive": true,
+            "challenge_windows": [
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0008,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.5018971216822
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0005,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.6285090237557
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0016,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.1752213051874
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0066,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.1437064119545
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0009,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.4633576644497
+              },
+              {
+                "declared_steps": 380,
+                "elapsed_s": 1.0264,
+                "hidden_iterations_in_window": 0,
+                "tflops": 407.07535713561805
+              }
+            ],
+            "declared_steps_total": 5660,
+            "duty_achieved": 0.24932306484391356,
+            "hidden_counted_seconds": 24.245761156082153,
+            "hidden_counters": {
+              "achieved_duty_of_active_time": 1.0,
+              "adaptive": true,
+              "burst_matmuls": 15,
+              "calibration": {
+                "elapsed_s": 1.5026426315307617,
+                "iterations": 548,
+                "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+                "queue_depth": 2,
+                "seconds_per_matmul": 0.0027420485976838715,
+                "solo_iterations_per_second": 364.6908376622759,
+                "solo_tflops": 400.98181655304194
+              },
+              "counted_elapsed_s": 24.245761156082153,
+              "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+              "device_share_taken": 0.3303473915408659,
+              "duty_requested": 1.0,
+              "flop_per_iteration": 1099511627776,
+              "iterations": 2921,
+              "iterations_per_second": 120.47466694058622,
+              "matrix_n": 8192,
+              "paused_s": 6.017975807189941,
+              "queue_depth": 2,
+              "react_ms_nominal": 0.0,
+              "reaction_latency_max_s": 0.010473,
+              "reaction_latency_mean_s": 0.004747499999999999,
+              "reaction_latency_s": [
+                0.005666,
+                0.005306,
+                0.005516,
+                0.010473,
+                0.000821,
+                0.000703
+              ],
+              "schema": "ccverify.e1.contention.v2",
+              "slept_s": 0.0,
+              "tflops_delivered": 132.4632971536154,
+              "worked_s": 18.217339277267456,
+              "yield_events": 6
+            },
+            "hidden_device_share": 0.3303473915408659,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": 2921,
+            "hidden_iterations_per_second": 120.47466694058622,
+            "hidden_paused_seconds": 6.017975807189941,
+            "idle_phases": [
+              {
+                "declared_steps": 330,
+                "elapsed_s": 1.7605,
+                "tflops": 206.10541107297306
+              },
+              {
+                "declared_steps": 690,
+                "elapsed_s": 3.6424,
+                "tflops": 208.28551072658172
+              },
+              {
+                "declared_steps": 380,
+                "elapsed_s": 2.0108,
+                "tflops": 207.78806382308207
+              },
+              {
+                "declared_steps": 440,
+                "elapsed_s": 2.3314,
+                "tflops": 207.50534430625305
+              },
+              {
+                "declared_steps": 1060,
+                "elapsed_s": 5.6123,
+                "tflops": 207.66512400861484
+              },
+              {
+                "declared_steps": 170,
+                "elapsed_s": 0.9005,
+                "tflops": 207.58014693235683
+              },
+              {
+                "declared_steps": 360,
+                "elapsed_s": 1.9158,
+                "tflops": 206.6143400146727
+              }
+            ],
+            "in_window_tflops": [
+              406.5018971216822,
+              406.6285090237557,
+              406.1752213051874,
+              404.1437064119545,
+              406.4633576644497,
+              407.07535713561805
+            ],
+            "out_window_tflops": [
+              206.10541107297306,
+              208.28551072658172,
+              207.78806382308207,
+              207.50534430625305,
+              207.66512400861484,
+              207.58014693235683,
+              206.6143400146727
+            ],
+            "tag": "e1v2-d0.25-r1-con",
+            "total_elapsed_s": 24.213,
+            "with_hidden": true
+          },
+          "reference": {
+            "adaptive": false,
+            "challenge_windows": [
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0011,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.36684742942765
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.001,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.41301561442907
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0018,
+                "hidden_iterations_in_window": 0,
+                "tflops": 406.09199137185766
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0038,
+                "hidden_iterations_in_window": 0,
+                "tflops": 405.2962178783263
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0049,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.83225469368807
+              },
+              {
+                "declared_steps": 370,
+                "elapsed_s": 1.0051,
+                "hidden_iterations_in_window": 0,
+                "tflops": 404.774057914911
+              }
+            ],
+            "declared_steps_total": 8900,
+            "duty_achieved": 0.24932894409594783,
+            "hidden_counted_seconds": null,
+            "hidden_counters": null,
+            "hidden_device_share": null,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": null,
+            "hidden_iterations_per_second": null,
+            "hidden_paused_seconds": null,
+            "idle_phases": [
+              {
+                "declared_steps": 650,
+                "elapsed_s": 1.7589,
+                "tflops": 406.3314254297998
+              },
+              {
+                "declared_steps": 1350,
+                "elapsed_s": 3.6556,
+                "tflops": 406.0418887038015
+              },
+              {
+                "declared_steps": 730,
+                "elapsed_s": 1.9798,
+                "tflops": 405.4094228561628
+              },
+              {
+                "declared_steps": 850,
+                "elapsed_s": 2.3054,
+                "tflops": 405.38693091553955
+              },
+              {
+                "declared_steps": 2060,
+                "elapsed_s": 5.5914,
+                "tflops": 405.08817520314136
+              },
+              {
+                "declared_steps": 330,
+                "elapsed_s": 0.897,
+                "tflops": 404.49547612867093
+              },
+              {
+                "declared_steps": 710,
+                "elapsed_s": 1.9296,
+                "tflops": 404.57154929968095
+              }
+            ],
+            "in_window_tflops": [
+              406.36684742942765,
+              406.41301561442907,
+              406.09199137185766,
+              405.2962178783263,
+              404.83225469368807,
+              404.774057914911
+            ],
+            "out_window_tflops": [
+              406.3314254297998,
+              406.0418887038015,
+              405.4094228561628,
+              405.38693091553955,
+              405.08817520314136,
+              404.49547612867093,
+              404.57154929968095
+            ],
+            "tag": "e1v2-d0.25-r1-ref",
+            "total_elapsed_s": 24.136,
+            "with_hidden": false
+          },
+          "repeat": 1,
+          "summary": {
+            "detected_within_run_raw_sigma_DEPRECATED": false,
+            "detected_within_run_sem": false,
+            "hidden_device_share": 0.3303473915408659,
+            "hidden_in_window_iterations": 0,
+            "hidden_iterations": 2921,
+            "hidden_iterations_per_second": 120.47466694058622,
+            "in_window_drop_pct": -0.13204444010681549,
+            "in_window_ratio": 1.0013204444010682,
+            "out_window_drop_pct": 48.841108856417534,
+            "out_window_ratio": 0.5115889114358246,
+            "within_run_sigma_pct": 0.1861243866322208,
+            "within_run_standard_error_pct": 0.12874607842497898
+          }
+        }
+      ]
+    }
+  ],
+  "react_ms": 0.0,
+  "repeats_per_point": 2,
+  "run_seconds": 24.0,
+  "schema": "ccverify.e1.verifier_duty.v2",
+  "scope_note": "the challenge is the declared chain itself, timed, and the operator learns of it from a flag this harness sets. So this measures an operator that is TOLD. Whether a real challenge is distinguishable is untested, and no puzzle displacing production work was modelled, so the cost side of the trade is not addressed here.",
+  "settle_s": 0.0,
+  "solo_undeclared_iterations_per_second": 359.0030128731854
+}

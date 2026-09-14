@@ -1,0 +1,21 @@
+
+[PASS] quote is a TPM 2.0 quote answering the regulator's challenge  (PCRs selected [10])
+[PASS] quote signature verifies under the key the bundle names  (RSASSA)
+[PASS] disclosure's quote and key hashes match
+[FAIL] quote key is the vTPM attestation key the platform attests (HCLAkPub)  (no platform token supplied, so nothing ties the quote key to hardware)
+[PASS] exported log and quoted boot registers reproduce the quote's pcrDigest  (prefix 2697 of 2717 entries)
+[FAIL] log's boot_aggregate equals sha256 over the quoted PCRs 0 to 9  (quote does not cover PCRs 0 to 9)
+[PASS] replayed PCR 10 value is the one in the disclosure
+[FAIL] verifier's own verdict is accept  (reject, reasons ['payload_identity'])
+[FAIL] disclosure agrees with the verifier's own verdict, reasons and counts  (disclosure accept [] 2697/0; verifier 2697/0)
+[PASS] declaration and baseline the operator used are the approved ones
+[PASS] disclosure carries no fields beyond the allowlist
+
+what the regulator established for itself:
+  - 2697 measured entries in the attested window, 0 outside the approved sets
+  - declared weights present by digest: False; declared configuration present by digest: None
+  - it holds the file names and digests behind those counts, never the weights, outputs or prompts
+not covered: which IMA policy was loaded (a single unmeasured write on this image); work an
+already-declared process submits to the accelerator; code that never arrives as a file.
+
+7/11 checks passed

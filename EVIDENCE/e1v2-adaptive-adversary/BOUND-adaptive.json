@@ -1,0 +1,91 @@
+{
+  "clean_mean_tflops": 360.87355779855795,
+  "clean_runs": [
+    363.3079936117065,
+    360.9383569045187,
+    362.46908327611277,
+    358.3299590471879,
+    362.0689913295417,
+    359.00255645860415,
+    358.14100378921626,
+    360.8413653915405,
+    362.3994963460011,
+    362.2058518903891,
+    358.7273826596861,
+    362.0506528781908
+  ],
+  "detection_threshold_paired_drop": 0.025823935880868062,
+  "detection_threshold_unpaired_drop": 0.015336698531079189,
+  "device": "NVIDIA H100 NVL",
+  "matrix_n": 8192,
+  "modes": {
+    "adaptive": {
+      "adversary": "pauses its undeclared work while the challenge is in flight",
+      "duty_response": [
+        {
+          "device_share_per_pair": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "device_share_taken": 0.0,
+          "drop": 2.02006561318413e-05,
+          "duty_knob": 0.1,
+          "mean_ratio": 0.9999797993438682,
+          "stdev_ratio": 0.0005231850976031003,
+          "undeclared_iterations_in_window": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "device_share_per_pair": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "device_share_taken": 0.0,
+          "drop": 0.00019799196935998964,
+          "duty_knob": 0.3,
+          "mean_ratio": 0.99980200803064,
+          "stdev_ratio": 0.0003726368669123553,
+          "undeclared_iterations_in_window": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "hideable_device_share_paired": null,
+      "hideable_device_share_unpaired": null,
+      "hideable_duty_knob_paired_DEPRECATED": null,
+      "hideable_duty_knob_unpaired_DEPRECATED": null,
+      "max_measured_drop": 0.00019799196935998964,
+      "no_tested_level_detectable_paired": true,
+      "no_tested_level_detectable_unpaired": true,
+      "nothing_undeclared_executed": true,
+      "react_ms": 0.0
+    }
+  },
+  "null_sigma_paired": 0.00860797862695602,
+  "null_sigma_paired_excl_warmup": 0.0076440763090158724,
+  "null_sigma_unpaired": 0.005112232843693063,
+  "null_sigma_unpaired_excl_warmup": 0.0048798689148977555,
+  "paired_null_mean_ratio": 0.9983098026961986,
+  "schema": "ccverify.tier05.bound.v3",
+  "seconds_per_run": 10.0,
+  "sigma_multiple": 3.0,
+  "solo_calibration": {
+    "elapsed_s": 3.0092484951019287,
+    "iterations": 1072,
+    "iterations_per_second": 356.2351204112472,
+    "note": "denominator for every device share below, measured in this run on this device",
+    "tflops": 391.68465711434976
+  },
+  "units_note": "hideable figures are DEVICE SHARES, measured from the undeclared work's own iteration count over the solo calibration. The duty knob is retained only as the knob; v1 of this script reported the knob and labelled it device capacity, which overstated the width by about 1.5x"
+}

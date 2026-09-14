@@ -1,0 +1,40 @@
+=== CAL-before 2026-09-04T04:40:33+00:00
+contention requested=1.0 achieved_share=1.1033 iters=8920 burst=40 yields=0 paused=0.00s
+=== BOUND 2026-09-04T04:41:00+00:00
+== solo calibration for the undeclared operation ==
+  401.7 matmul/s solo = 441.7 TFLOP/s (1208 its in 3.01s)
+== null distribution: repeated clean runs, nothing undeclared ==
+  clean 0: 412.5 TFLOP/s
+  clean 1: 405.8 TFLOP/s
+  clean 2: 402.3 TFLOP/s
+  clean 3: 391.4 TFLOP/s
+  clean 4: 392.9 TFLOP/s
+  clean 5: 386.8 TFLOP/s
+  clean 6: 385.4 TFLOP/s
+  clean 7: 387.7 TFLOP/s
+  clean 8: 388.2 TFLOP/s
+  clean 9: 387.7 TFLOP/s
+  clean 10: 384.4 TFLOP/s
+  clean 11: 388.2 TFLOP/s
+
+clean mean 392.8 TFLOP/s
+unpaired null sigma: 2.31%   (n=12)
+paired   null sigma: 1.45%   (n=6) mean ratio 0.99260
+  excluding the first (warmup) clean run: unpaired 1.78%  paired 0.57%
+
+== duty response, paired, same CUDA context, NONADAPTIVE ==
+  duty knob 0.01   drop   0.92%   DEVICE SHARE TAKEN   0.85%   undeclared its [34, 34, 34, 34, 34, 34]
+  duty knob 0.02   drop   1.80%   DEVICE SHARE TAKEN   1.69%   undeclared its [68, 68, 68, 68, 68, 68]
+  duty knob 0.03   drop   2.72%   DEVICE SHARE TAKEN   2.53%   undeclared its [102, 102, 102, 101, 102, 101]
+  duty knob 0.05   drop   4.46%   DEVICE SHARE TAKEN   4.14%   undeclared its [167, 167, 167, 166, 166, 166]
+  duty knob 0.1    drop   8.42%   DEVICE SHARE TAKEN   7.93%   undeclared its [319, 320, 320, 318, 319, 318]
+
+=== THE BOUND, in device share ===
+at 3.0 sigma: paired threshold 4.35% drop, stored-ceiling threshold 6.93% drop
+
+  nonadaptive adversary:
+    clean baseline adjacent to the challenge: undeclared work up to 4.0% OF THE DEVICE is indistinguishable from noise
+    compared against a stored ceiling: undeclared work up to 6.5% OF THE DEVICE is indistinguishable from noise
+=== CAL-after 2026-09-04T04:53:07+00:00
+contention requested=1.0 achieved_share=1.0932 iters=8360 burst=38 yields=0 paused=0.00s
+E1c done 2026-09-04T04:53:32+00:00

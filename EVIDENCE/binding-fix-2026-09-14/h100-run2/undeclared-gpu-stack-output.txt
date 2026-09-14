@@ -1,0 +1,18 @@
+{
+  "config_effect": {
+    "safety_filter": "on",
+    "sampling_temperature": 0.0,
+    "system_prompt_sha256": "75357d685f238b6a"
+  },
+  "config_sha256": "cb84cbdc80bdec507c0084f20bd1c444d1ef2169b0831855f33e05f096553229",
+  "elapsed_s": 9.867,
+  "euid": 996,
+  "gpu": {
+    "checksum": 856731264.0,
+    "device": "NVIDIA H100 NVL"
+  },
+  "pid": 2854,
+  "undeclared_gpu_iterations": 22089,
+  "weights_bytes": 65536,
+  "weights_sha256": "a59c6cb8ff9762b43f13f9c68f29e1344504f6f057968c1c1170c0e7874a04c4"
+}

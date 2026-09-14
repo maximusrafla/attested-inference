@@ -1,0 +1,91 @@
+=== separate, window 1.0  2026-09-04T01:20:24+00:00
+E1 v2: hidden work separate, ADAPTIVE, react 0 ms, settle 0.00s, window 1.0s, run 60.0s, 6 repeats
+solo undeclared rate 407.7 matmul/s = 448.3 TFLOP/s
+
+-- verifier duty 0.25: 15 windows of 1.0s in 60.0s, 6 repeats --
+   rep 0: in-window drop 4.10%  out-of-window 52.69%  hidden share 36.78%  hidden in window 0
+   rep 1: in-window drop 0.42%  out-of-window 51.30%  hidden share 37.68%  hidden in window 0
+   rep 2: in-window drop 0.37%  out-of-window 51.19%  hidden share 37.72%  hidden in window 0
+   rep 3: in-window drop 0.40%  out-of-window 51.20%  hidden share 37.72%  hidden in window 0
+   rep 4: in-window drop 0.35%  out-of-window 51.40%  hidden share 37.59%  hidden in window 0
+   rep 5: in-window drop 0.70%  out-of-window 51.43%  hidden share 37.68%  hidden in window 0
+   => mean in-window drop 1.06%  across-repeat sd 1.50%  detected False
+
+=== SUMMARY ===
+duty    in-win drop   across-rep sd   detected   out-win drop   hidden share   kept
+0.25          1.06%           1.50%      False         51.54%         37.53%       -
+
+written to /home/azureuser/e3/E1b-sep-win1.0.json
+=== separate, window 0.5  2026-09-04T01:34:07+00:00
+E1 v2: hidden work separate, ADAPTIVE, react 0 ms, settle 0.00s, window 0.5s, run 60.0s, 6 repeats
+solo undeclared rate 383.7 matmul/s = 421.9 TFLOP/s
+
+-- verifier duty 0.25: 30 windows of 0.5s in 60.0s, 6 repeats --
+   rep 0: in-window drop 0.68%  out-of-window 51.12%  hidden share 37.88%  hidden in window 0
+   rep 1: in-window drop 0.85%  out-of-window 51.22%  hidden share 37.88%  hidden in window 0
+   rep 2: in-window drop 0.64%  out-of-window 51.10%  hidden share 37.88%  hidden in window 0
+   rep 3: in-window drop 0.76%  out-of-window 51.14%  hidden share 37.77%  hidden in window 0
+   rep 4: in-window drop 0.45%  out-of-window 51.38%  hidden share 37.88%  hidden in window 0
+   rep 5: in-window drop 0.45%  out-of-window 51.20%  hidden share 37.96%  hidden in window 0
+   => mean in-window drop 0.64%  across-repeat sd 0.16%  detected True
+
+=== SUMMARY ===
+duty    in-win drop   across-rep sd   detected   out-win drop   hidden share   kept
+0.25          0.64%           0.16%       True         51.19%         37.88%       -
+
+written to /home/azureuser/e3/E1b-sep-win0.5.json
+=== separate, window 0.25  2026-09-04T01:47:53+00:00
+E1 v2: hidden work separate, ADAPTIVE, react 0 ms, settle 0.00s, window 0.25s, run 60.0s, 6 repeats
+solo undeclared rate 384.8 matmul/s = 423.1 TFLOP/s
+
+-- verifier duty 0.25: 60 windows of 0.25s in 60.0s, 6 repeats --
+   rep 0: in-window drop 1.17%  out-of-window 51.44%  hidden share 38.13%  hidden in window 0
+   rep 1: in-window drop 0.82%  out-of-window 51.38%  hidden share 38.10%  hidden in window 0
+   rep 2: in-window drop 0.98%  out-of-window 51.59%  hidden share 38.16%  hidden in window 0
+   rep 3: in-window drop 0.76%  out-of-window 51.60%  hidden share 37.93%  hidden in window 0
+   rep 4: in-window drop 0.89%  out-of-window 51.56%  hidden share 38.24%  hidden in window 0
+   rep 5: in-window drop 1.17%  out-of-window 51.39%  hidden share 38.24%  hidden in window 0
+   => mean in-window drop 0.97%  across-repeat sd 0.17%  detected True
+
+=== SUMMARY ===
+duty    in-win drop   across-rep sd   detected   out-win drop   hidden share   kept
+0.25          0.97%           0.17%       True         51.49%         38.13%       -
+
+written to /home/azureuser/e3/E1b-sep-win0.25.json
+=== separate, window 3.0  2026-09-04T02:01:48+00:00
+E1 v2: hidden work separate, ADAPTIVE, react 0 ms, settle 0.00s, window 3.0s, run 60.0s, 6 repeats
+solo undeclared rate 384.9 matmul/s = 423.2 TFLOP/s
+
+-- verifier duty 0.25: 5 windows of 3.0s in 60.0s, 6 repeats --
+   rep 0: in-window drop 0.11%  out-of-window 51.72%  hidden share 37.52%  hidden in window 0
+   rep 1: in-window drop 0.32%  out-of-window 51.58%  hidden share 37.55%  hidden in window 0
+   rep 2: in-window drop -0.12%  out-of-window 51.52%  hidden share 37.51%  hidden in window 0
+   rep 3: in-window drop -0.07%  out-of-window 51.53%  hidden share 37.62%  hidden in window 0
+   rep 4: in-window drop 0.07%  out-of-window 51.67%  hidden share 37.60%  hidden in window 0
+   rep 5: in-window drop 0.15%  out-of-window 51.63%  hidden share 37.59%  hidden in window 0
+   => mean in-window drop 0.08%  across-repeat sd 0.16%  detected False
+
+=== SUMMARY ===
+duty    in-win drop   across-rep sd   detected   out-win drop   hidden share   kept
+0.25          0.08%           0.16%      False         51.61%         37.56%       -
+
+written to /home/azureuser/e3/E1b-sep-win3.0.json
+=== inline, window 0.25  2026-09-04T02:15:25+00:00
+E1 v2: hidden work inline, ADAPTIVE, react 0 ms, settle 0.00s, window 0.25s, run 60.0s, 6 repeats
+solo undeclared rate 384.8 matmul/s = 423.1 TFLOP/s
+
+-- verifier duty 0.25: 60 windows of 0.25s in 60.0s, 6 repeats --
+   rep 0: in-window drop -0.20%  out-of-window 45.74%  hidden share 41.44%  hidden in window 0
+   rep 1: in-window drop -0.21%  out-of-window 45.62%  hidden share 41.38%  hidden in window 0
+   rep 2: in-window drop -0.24%  out-of-window 45.74%  hidden share 41.37%  hidden in window 0
+   rep 3: in-window drop -0.17%  out-of-window 45.71%  hidden share 41.36%  hidden in window 0
+   rep 4: in-window drop -0.06%  out-of-window 45.76%  hidden share 41.37%  hidden in window 0
+   rep 5: in-window drop -0.04%  out-of-window 45.63%  hidden share 41.40%  hidden in window 0
+   => mean in-window drop -0.15%  across-repeat sd 0.08%  detected False
+
+=== SUMMARY ===
+duty    in-win drop   across-rep sd   detected   out-win drop   hidden share   kept
+0.25         -0.15%           0.08%      False         45.70%         41.39%       -
+
+written to /home/azureuser/e3/E1b-inline-win0.25.json
+E1b done 2026-09-04T02:28:48+00:00

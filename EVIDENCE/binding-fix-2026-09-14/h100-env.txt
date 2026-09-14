@@ -1,0 +1,11 @@
+kernel 6.8.0-1064-azure-fde
+NVIDIA H100 NVL, 595.71.05, 96.00.88.00.11
+CC status: ON
+DevTools Mode: OFF
+/home/azureuser/venv/lib/python3.10/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+torch 2.13.0+cu130
+nv-attestation-sdk Version: 2.7.3
+attributes:
+  value: fixedtpm|fixedparent|sensitivedataorigin|userwithauth|noda|restricted|sign
+PRETTY_NAME="Ubuntu 22.04.5 LTS"

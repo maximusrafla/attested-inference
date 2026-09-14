@@ -1,0 +1,168 @@
+{
+  "clean_mean_tflops": 392.77608407421457,
+  "clean_runs": [
+    412.5046690454911,
+    405.82245821425664,
+    402.32847944238364,
+    391.35766152676473,
+    392.91303372524476,
+    386.82137895766374,
+    385.4016191297688,
+    387.69077698276647,
+    388.1756196981746,
+    387.7242767126901,
+    384.4068668689681,
+    388.16616858640214
+  ],
+  "detection_threshold_paired_drop": 0.04347063551405903,
+  "detection_threshold_unpaired_drop": 0.06933242325248477,
+  "device": "NVIDIA H100 NVL",
+  "matrix_n": 8192,
+  "modes": {
+    "nonadaptive": {
+      "adversary": "never reacts to the verifier",
+      "duty_response": [
+        {
+          "device_share_per_pair": [
+            0.008455277197467496,
+            0.008458218095062978,
+            0.008452754921505452,
+            0.008446180008416878,
+            0.00844359547969264,
+            0.008463465782075156
+          ],
+          "device_share_taken": 0.008453248580703433,
+          "drop": 0.00920050982990539,
+          "duty_knob": 0.01,
+          "mean_ratio": 0.9907994901700946,
+          "stdev_ratio": 0.0004608756201948235,
+          "undeclared_iterations_in_window": [
+            34,
+            34,
+            34,
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "device_share_per_pair": [
+            0.016888930231448003,
+            0.01692411538870549,
+            0.016916900090851436,
+            0.01690455232608918,
+            0.016911154916801657,
+            0.01689348737671221
+          ],
+          "device_share_taken": 0.016906523388434663,
+          "drop": 0.017972341795738034,
+          "duty_knob": 0.02,
+          "mean_ratio": 0.982027658204262,
+          "stdev_ratio": 0.0004163427584189469,
+          "undeclared_iterations_in_window": [
+            68,
+            68,
+            68,
+            68,
+            68,
+            68
+          ]
+        },
+        {
+          "device_share_per_pair": [
+            0.025391993612128606,
+            0.025340144849735124,
+            0.025333121778240587,
+            0.025089405493719068,
+            0.025332161923417043,
+            0.025081107403718016
+          ],
+          "device_share_taken": 0.02526132251015974,
+          "drop": 0.02715097091774643,
+          "duty_knob": 0.03,
+          "mean_ratio": 0.9728490290822536,
+          "stdev_ratio": 0.000471739108900239,
+          "undeclared_iterations_in_window": [
+            102,
+            102,
+            102,
+            101,
+            102,
+            101
+          ]
+        },
+        {
+          "device_share_per_pair": [
+            0.0415192807976055,
+            0.04147992517155884,
+            0.04150905249567958,
+            0.04128388140913024,
+            0.04130931710233622,
+            0.04127069576022064
+          ],
+          "device_share_taken": 0.041395358789421834,
+          "drop": 0.04456256978666717,
+          "duty_knob": 0.05,
+          "mean_ratio": 0.9554374302133328,
+          "stdev_ratio": 0.0012260981882717874,
+          "undeclared_iterations_in_window": [
+            167,
+            167,
+            167,
+            166,
+            166,
+            166
+          ]
+        },
+        {
+          "device_share_per_pair": [
+            0.07937711632799566,
+            0.07955363951439426,
+            0.07954603360251128,
+            0.07899947969447642,
+            0.07923005835754299,
+            0.07899446729376623
+          ],
+          "device_share_taken": 0.0792834657984478,
+          "drop": 0.08421493446642736,
+          "duty_knob": 0.1,
+          "mean_ratio": 0.9157850655335726,
+          "stdev_ratio": 0.0006546917751521452,
+          "undeclared_iterations_in_window": [
+            319,
+            320,
+            320,
+            318,
+            319,
+            318
+          ]
+        }
+      ],
+      "hideable_device_share_paired": 0.04038354434886084,
+      "hideable_device_share_unpaired": 0.06506312403596264,
+      "hideable_duty_knob_paired_DEPRECATED": 0.04874573922724901,
+      "hideable_duty_knob_unpaired_DEPRECATED": 0.08123376583699801,
+      "max_measured_drop": 0.08421493446642736,
+      "no_tested_level_detectable_paired": false,
+      "no_tested_level_detectable_unpaired": false,
+      "nothing_undeclared_executed": false,
+      "react_ms": null
+    }
+  },
+  "null_sigma_paired": 0.014490211838019677,
+  "null_sigma_paired_excl_warmup": 0.005688171668450088,
+  "null_sigma_unpaired": 0.023110807750828258,
+  "null_sigma_unpaired_excl_warmup": 0.017752900413357968,
+  "paired_null_mean_ratio": 0.9925975292068775,
+  "schema": "ccverify.tier05.bound.v3",
+  "seconds_per_run": 10.0,
+  "sigma_multiple": 3.0,
+  "solo_calibration": {
+    "elapsed_s": 3.0073089599609375,
+    "iterations": 1208,
+    "iterations_per_second": 401.68802610014865,
+    "note": "denominator for every device share below, measured in this run on this device",
+    "tflops": 441.6606554355028
+  },
+  "units_note": "hideable figures are DEVICE SHARES, measured from the undeclared work's own iteration count over the solo calibration. The duty knob is retained only as the knob; v1 of this script reported the knob and labelled it device capacity, which overstated the width by about 1.5x"
+}

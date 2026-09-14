@@ -1,0 +1,376 @@
+{
+  "adversary": "adaptive, pauses while a challenge is in flight",
+  "challenge_window_seconds": 1.0,
+  "device": "NVIDIA H100 NVL",
+  "disclosure_note": "hidden iteration counts are researcher-side measurements taken on the operator's side of the boundary; a regulator receives none of them",
+  "hidden_ceiling_iterations": null,
+  "hidden_ceiling_iterations_per_second": null,
+  "hidden_work_mode": "same process, same CUDA context",
+  "hidden_yield_note": "hidden work kept is a RATE ratio, iterations per counted second at verifier duty d over the same at d=0, so a few seconds of timing difference between runs cannot masquerade as a result",
+  "matrix_n": 8192,
+  "points": [
+    {
+      "challenge_windows": 10,
+      "contended": {
+        "adaptive": true,
+        "challenge_seconds": 10.21,
+        "challenge_windows": [
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0264,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 2.926,
+            "tflops": 385.6558925598737
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0261,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 6.726,
+            "tflops": 385.746932912068
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.026,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 11.091,
+            "tflops": 385.776960561979
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0255,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 15.412,
+            "tflops": 385.9880029968138
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0254,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 18.387,
+            "tflops": 386.02363300933706
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0266,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 21.364,
+            "tflops": 385.5623879764724
+          },
+          {
+            "declared_steps": 350,
+            "elapsed_s": 1.0004,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 30.051,
+            "tflops": 384.6839753152459
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0261,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 32.742,
+            "tflops": 385.73922507537463
+          },
+          {
+            "declared_steps": 350,
+            "elapsed_s": 1.0003,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 35.244,
+            "tflops": 384.73000479803176
+          },
+          {
+            "declared_steps": 360,
+            "elapsed_s": 1.0267,
+            "hidden_iterations_in_window": 30,
+            "offset_s": 38.715,
+            "tflops": 385.53687017778685
+          }
+        ],
+        "declared_steps_total": 10570,
+        "declared_tflops_overall": 286.798260434191,
+        "duty_achieved": 0.25194524856467965,
+        "duty_nominal": 0.25,
+        "hidden_counted_seconds": 40.522693157196045,
+        "hidden_counters": null,
+        "hidden_iterations": 7290,
+        "hidden_iterations_per_second": 179.89919800543754,
+        "idle_phases": [
+          {
+            "declared_steps": 670,
+            "elapsed_s": 2.9253,
+            "tflops": 251.82652615870833
+          },
+          {
+            "declared_steps": 640,
+            "elapsed_s": 2.7739,
+            "tflops": 253.6796532942944
+          },
+          {
+            "declared_steps": 770,
+            "elapsed_s": 3.3381,
+            "tflops": 253.62331071428594
+          },
+          {
+            "declared_steps": 760,
+            "elapsed_s": 3.2948,
+            "tflops": 253.62332716040405
+          },
+          {
+            "declared_steps": 450,
+            "elapsed_s": 1.9486,
+            "tflops": 253.91127039431169
+          },
+          {
+            "declared_steps": 450,
+            "elapsed_s": 1.9511,
+            "tflops": 253.58694752031738
+          },
+          {
+            "declared_steps": 1770,
+            "elapsed_s": 7.6605,
+            "tflops": 254.0467291834133
+          },
+          {
+            "declared_steps": 390,
+            "elapsed_s": 1.6897,
+            "tflops": 253.77200182053627
+          },
+          {
+            "declared_steps": 340,
+            "elapsed_s": 1.4762,
+            "tflops": 253.24127655570996
+          },
+          {
+            "declared_steps": 570,
+            "elapsed_s": 2.4704,
+            "tflops": 253.69505227994628
+          },
+          {
+            "declared_steps": 180,
+            "elapsed_s": 0.7804,
+            "tflops": 253.6177214881929
+          }
+        ],
+        "in_window_tflops": [
+          385.6558925598737,
+          385.746932912068,
+          385.776960561979,
+          385.9880029968138,
+          386.02363300933706,
+          385.5623879764724,
+          384.6839753152459,
+          385.73922507537463,
+          384.73000479803176,
+          385.53687017778685
+        ],
+        "out_window_tflops": [
+          251.82652615870833,
+          253.6796532942944,
+          253.62331071428594,
+          253.62332716040405,
+          253.91127039431169,
+          253.58694752031738,
+          254.0467291834133,
+          253.77200182053627,
+          253.24127655570996,
+          253.69505227994628,
+          253.6177214881929
+        ],
+        "tag": "e1-d0.25-con",
+        "total_elapsed_s": 40.523,
+        "with_hidden": true
+      },
+      "duty": 0.25,
+      "duty_achieved": 0.25194524856467965,
+      "reference": {
+        "adaptive": false,
+        "challenge_seconds": 10.043,
+        "challenge_windows": [
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0002,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 2.923,
+            "tflops": 406.722913799719
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0037,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 6.716,
+            "tflops": 405.30449712780904
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0037,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 11.029,
+            "tflops": 405.3001649201925
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0038,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 15.318,
+            "tflops": 405.2804304796017
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0039,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 18.251,
+            "tflops": 405.23018853120146
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0043,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 21.184,
+            "tflops": 405.0574205488302
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0057,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 29.82,
+            "tflops": 404.49454339861074
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0046,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 32.509,
+            "tflops": 404.9552336032286
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.0054,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 34.981,
+            "tflops": 404.6446636805796
+          },
+          {
+            "declared_steps": 370,
+            "elapsed_s": 1.008,
+            "hidden_iterations_in_window": 0,
+            "offset_s": 38.427,
+            "tflops": 403.5760140685853
+          }
+        ],
+        "declared_steps_total": 14810,
+        "declared_tflops_overall": 405.113099525933,
+        "duty_achieved": 0.2498606336394436,
+        "duty_nominal": 0.25,
+        "hidden_counted_seconds": 40.19560766220093,
+        "hidden_counters": null,
+        "hidden_iterations": 0,
+        "hidden_iterations_per_second": 0.0,
+        "idle_phases": [
+          {
+            "declared_steps": 1080,
+            "elapsed_s": 2.9231,
+            "tflops": 406.23694167340756
+          },
+          {
+            "declared_steps": 1030,
+            "elapsed_s": 2.7921,
+            "tflops": 405.60178707455344
+          },
+          {
+            "declared_steps": 1220,
+            "elapsed_s": 3.3102,
+            "tflops": 405.2390377965319
+          },
+          {
+            "declared_steps": 1210,
+            "elapsed_s": 3.2847,
+            "tflops": 405.02941595985897
+          },
+          {
+            "declared_steps": 710,
+            "elapsed_s": 1.9296,
+            "tflops": 404.56974971135884
+          },
+          {
+            "declared_steps": 710,
+            "elapsed_s": 1.9283,
+            "tflops": 404.84297042756214
+          },
+          {
+            "declared_steps": 2810,
+            "elapsed_s": 7.6315,
+            "tflops": 404.8502951073815
+          },
+          {
+            "declared_steps": 620,
+            "elapsed_s": 1.6833,
+            "tflops": 404.98038250507113
+          },
+          {
+            "declared_steps": 540,
+            "elapsed_s": 1.4675,
+            "tflops": 404.57809145652044
+          },
+          {
+            "declared_steps": 900,
+            "elapsed_s": 2.4411,
+            "tflops": 405.3816462542228
+          },
+          {
+            "declared_steps": 280,
+            "elapsed_s": 0.7603,
+            "tflops": 404.92686359118863
+          }
+        ],
+        "in_window_tflops": [
+          406.722913799719,
+          405.30449712780904,
+          405.3001649201925,
+          405.2804304796017,
+          405.23018853120146,
+          405.0574205488302,
+          404.49454339861074,
+          404.9552336032286,
+          404.6446636805796,
+          403.5760140685853
+        ],
+        "out_window_tflops": [
+          406.23694167340756,
+          405.60178707455344,
+          405.2390377965319,
+          405.02941595985897,
+          404.56974971135884,
+          404.84297042756214,
+          404.8502951073815,
+          404.98038250507113,
+          404.57809145652044,
+          405.3816462542228,
+          404.92686359118863
+        ],
+        "tag": "e1-d0.25-ref",
+        "total_elapsed_s": 40.196,
+        "with_hidden": false
+      },
+      "summary": {
+        "declared_steps_ratio": 0.7137069547602971,
+        "detected_at_3sigma": true,
+        "hidden_counted_seconds": 40.522693157196045,
+        "hidden_iterations": 7290,
+        "hidden_iterations_per_second": 179.89919800543754,
+        "hidden_paused_fraction": null,
+        "hidden_paused_seconds": null,
+        "hidden_yield_events": null,
+        "hidden_yield_vs_ceiling": null,
+        "in_window_drop_pct": 4.817158426642987,
+        "in_window_null_sigma_pct": 0.1958785113417004,
+        "in_window_ratio": 0.9518284157335701,
+        "out_window_drop_pct": 37.422006438280064,
+        "out_window_ratio": 0.6257799356171994
+      }
+    }
+  ],
+  "react_ms": 100.0,
+  "run_seconds": 40.0,
+  "schema": "ccverify.e1.verifier_duty.v1",
+  "settle_s": 0.0
+}

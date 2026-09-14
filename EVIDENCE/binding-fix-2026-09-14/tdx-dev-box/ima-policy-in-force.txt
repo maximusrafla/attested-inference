@@ -1,0 +1,12 @@
+dont_measure fsmagic=0x9fa0 func=FILE_CHECK
+dont_measure fsmagic=0x62656572 func=FILE_CHECK
+dont_measure fsmagic=0x73636673 func=FILE_CHECK
+dont_measure fsmagic=0x63677270 func=FILE_CHECK
+dont_measure fsmagic=0x27e0eb func=FILE_CHECK
+dont_measure fsmagic=0xde5e81e4 func=FILE_CHECK
+measure func=POLICY_CHECK
+measure func=BPRM_CHECK mask=MAY_EXEC
+measure func=MMAP_CHECK mask=MAY_EXEC
+measure func=FILE_CHECK mask=^MAY_READ euid=0
+measure func=FILE_CHECK mask=^MAY_READ uid=997
+measure func=MODULE_CHECK

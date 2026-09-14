@@ -1,0 +1,21 @@
+{
+  "config_effect": {
+    "safety_filter": "on",
+    "sampling_temperature": 0.0,
+    "system_prompt_sha256": "75357d685f238b6a"
+  },
+  "config_sha256": "cb84cbdc80bdec507c0084f20bd1c444d1ef2169b0831855f33e05f096553229",
+  "elapsed_s": 9.895,
+  "euid": 996,
+  "gpu": {
+    "checksum": 856688512.0,
+    "device": "NVIDIA H100 NVL"
+  },
+  "pid": 8862,
+  "undeclared_gpu_iterations": 23769,
+  "weights_bytes": 65536,
+  "weights_sha256": "da8d276ef18ac4ef6ffbd96f6385cc7416632356065f8e5e5fff245b0440d7be"
+}dont_measure fsmagic=0x9fa0 func=FILE_CHECK
+dont_measure fsmagic=0x62656572 func=FILE_CHECK
+dont_measure fsmagic=0x73636673 func=FILE_CHECK
+6.8.0-1064-azure-fde

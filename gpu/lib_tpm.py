@@ -49,6 +49,29 @@ def parse_attest(blob):
             "selections": selections, "pcr_digest": pcr_digest}
 
 
+ALG_SHA256 = 0x000B
+
+
+def selected_pcrs(selections, alg=ALG_SHA256):
+    """PCR indices the quote selected in one bank, ascending, which is the order the TPM
+    concatenates their values before hashing them into pcrDigest."""
+    out = []
+    for a, bitmap in selections:
+        if a != alg:
+            continue
+        for byte_index, byte in enumerate(bitmap):
+            for bit in range(8):
+                if byte & (1 << bit):
+                    out.append(byte_index * 8 + bit)
+    return sorted(out)
+
+
+def composite_digest(values_in_order):
+    """pcrDigest for a sha256 selection: sha256 over the selected values, concatenated in order."""
+    import hashlib
+    return hashlib.sha256(b"".join(values_in_order)).digest()
+
+
 def parse_signature(blob):
     o = 0
     sig_alg, o = _u16(blob, o)

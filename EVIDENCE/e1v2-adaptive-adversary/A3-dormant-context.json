@@ -1,0 +1,176 @@
+{
+  "adversary": "adaptive, yields while a challenge is in flight",
+  "competitor_startup_excluded_from_window": true,
+  "contention_queue_depth": 4,
+  "contention_ready_wait_s": [
+    1.357,
+    1.357,
+    1.357,
+    1.357
+  ],
+  "device": "NVIDIA H100 NVL",
+  "hidden_work_counters": [
+    {
+      "achieved_duty_of_active_time": 0.258968098485322,
+      "adaptive": true,
+      "burst_matmuls": 9,
+      "calibration": {
+        "elapsed_s": 1.5075902938842773,
+        "iterations": 552,
+        "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+        "queue_depth": 4,
+        "seconds_per_matmul": 0.002731141836746879,
+        "solo_iterations_per_second": 366.147223313426,
+        "solo_tflops": 402.5831295110076
+      },
+      "counted_elapsed_s": 13.508589744567871,
+      "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+      "device_share_taken": 0.0636861208196228,
+      "duty_requested": 0.25,
+      "flop_per_iteration": 1099511627776,
+      "iterations": 315,
+      "iterations_per_second": 23.318496301708258,
+      "matrix_n": 8192,
+      "paused_s": 10.513932704925537,
+      "queue_depth": 4,
+      "react_ms_nominal": 0.0,
+      "reaction_latency_max_s": 0.002487,
+      "reaction_latency_mean_s": 0.002487,
+      "reaction_latency_s": [
+        0.002487
+      ],
+      "schema": "ccverify.e1.contention.v2",
+      "slept_s": 2.2189478874206543,
+      "tflops_delivered": 25.638957825979883,
+      "worked_s": 0.7754547595977783,
+      "yield_events": 1
+    },
+    {
+      "achieved_duty_of_active_time": 0.2537661555966507,
+      "adaptive": true,
+      "burst_matmuls": 9,
+      "calibration": {
+        "elapsed_s": 1.508012056350708,
+        "iterations": 552,
+        "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+        "queue_depth": 4,
+        "seconds_per_matmul": 0.002731905899186065,
+        "solo_iterations_per_second": 366.04481885629247,
+        "solo_tflops": 402.47053461965317
+      },
+      "counted_elapsed_s": 13.500282526016235,
+      "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+      "device_share_taken": 0.06192190448903281,
+      "duty_requested": 0.25,
+      "flop_per_iteration": 1099511627776,
+      "iterations": 306,
+      "iterations_per_second": 22.666192311924657,
+      "matrix_n": 8192,
+      "paused_s": 10.522855520248413,
+      "queue_depth": 4,
+      "react_ms_nominal": 0.0,
+      "reaction_latency_max_s": 0.001125,
+      "reaction_latency_mean_s": 0.001125,
+      "reaction_latency_s": [
+        0.001125
+      ],
+      "schema": "ccverify.e1.contention.v2",
+      "slept_s": 2.2216379642486572,
+      "tflops_delivered": 24.921742004368138,
+      "worked_s": 0.7554957866668701,
+      "yield_events": 1
+    },
+    {
+      "achieved_duty_of_active_time": 0.2593352326384456,
+      "adaptive": true,
+      "burst_matmuls": 9,
+      "calibration": {
+        "elapsed_s": 1.5045790672302246,
+        "iterations": 552,
+        "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+        "queue_depth": 4,
+        "seconds_per_matmul": 0.0027256867159967837,
+        "solo_iterations_per_second": 366.8800211451667,
+        "solo_tflops": 403.3888492478156
+      },
+      "counted_elapsed_s": 13.517054319381714,
+      "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+      "device_share_taken": 0.0635191140948422,
+      "duty_requested": 0.25,
+      "flop_per_iteration": 1099511627776,
+      "iterations": 315,
+      "iterations_per_second": 23.303893922237968,
+      "matrix_n": 8192,
+      "paused_s": 10.509949922561646,
+      "queue_depth": 4,
+      "react_ms_nominal": 0.0,
+      "reaction_latency_max_s": 0.000202,
+      "reaction_latency_mean_s": 0.000202,
+      "reaction_latency_s": [
+        0.000202
+      ],
+      "schema": "ccverify.e1.contention.v2",
+      "slept_s": 2.2270655632019043,
+      "tflops_delivered": 25.6229023399591,
+      "worked_s": 0.7797813415527344,
+      "yield_events": 1
+    },
+    {
+      "achieved_duty_of_active_time": 0.2537549353926435,
+      "adaptive": true,
+      "burst_matmuls": 9,
+      "calibration": {
+        "elapsed_s": 1.5103638172149658,
+        "iterations": 552,
+        "note": "solo rate at the run's own queue depth, so device shares divide by a commensurable denominator",
+        "queue_depth": 4,
+        "seconds_per_matmul": 0.0027361663355343585,
+        "solo_iterations_per_second": 365.4748569241151,
+        "solo_tflops": 401.8438548478345
+      },
+      "counted_elapsed_s": 13.502035140991211,
+      "device_share_note": "iterations per counted second over the solo rate calibrated on this device at the same queue depth. THIS, not the --duty label, is the fraction of the device this process took.",
+      "device_share_taken": 0.06201042212752294,
+      "duty_requested": 0.25,
+      "flop_per_iteration": 1099511627776,
+      "iterations": 306,
+      "iterations_per_second": 22.663250154860428,
+      "matrix_n": 8192,
+      "paused_s": 10.525182723999023,
+      "queue_depth": 4,
+      "react_ms_nominal": 0.0,
+      "reaction_latency_max_s": 0.001846,
+      "reaction_latency_mean_s": 0.001846,
+      "reaction_latency_s": [
+        0.001846
+      ],
+      "schema": "ccverify.e1.contention.v2",
+      "slept_s": 2.221238136291504,
+      "tflops_delivered": 24.918507068465274,
+      "worked_s": 0.7553150653839111,
+      "yield_events": 1
+    }
+  ],
+  "matrix_n": 8192,
+  "pairs_per_duty": 4,
+  "react_ms_nominal": 0.0,
+  "rows": [
+    {
+      "drop_pct": 0.3114013162416107,
+      "duty": 0.25,
+      "mean_ratio": 0.9968859868375839,
+      "ratios": [
+        1.001553837410559,
+        0.9986107274225127,
+        0.9933071118744962,
+        0.9940722706427677
+      ],
+      "stdev_ratio": 0.0038939655829377793
+    }
+  ],
+  "schema": "ccverify.tier05.sweep.paired.v1",
+  "seconds_per_run": 10.0,
+  "undeclared_work_mode": "separate competing process",
+  "what_the_adaptive_arm_actually_measures": "With a single challenge as long as the measured window, an operator that pauses on the challenge does no undeclared work inside it at all: the competitor's own counters show it paused for the whole window. So this arm is NOT evasion at a duty cycle. It is the cost of an undeclared CUDA context that is present, allocated and resident but submitting nothing, measured against a run with no such process. The duty axis has no effect on it and the rows are replicates.",
+  "yield_settle_s": 0.5
+}

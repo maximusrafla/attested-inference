@@ -1,0 +1,38 @@
+== vTPM access, serving account, platform quiesce ==
+== GPU ready state ==
+CC status: ON
+== IMA policy: written once, after boot (this image's kernel command line is inside a signed UKI) ==
+policy loaded (12 rules); second write: DENIED
+== warmup ==
+== executing every utility the ceremony uses, so none of them first appears mid-run ==
+== warming the tool set (throwaway quote and a throwaway check) ==
+warmup done
+== settling 300s so the provider's in-guest agents cycle into the platform set ==
+== baseline ==
+baseline: 766 log entries, 719 distinct file digests
+== declaration (approved reference run, as ccvsvc) ==
+declared stack ran: weights a59c6cb8ff9762b4... euid=996 elapsed 17.066s
+declaration 'declared-serving-stack': 943 newly measured file digests since baseline (log entries 766 to 1724)
+declared weights: /home/azureuser/t1/work/weights.bin  sha256 a59c6cb8ff9762b4...
+########## case: undeclared-gpu --undeclared-gpu
+log window 1725 of 1725 entries; baseline froze the first 766
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1725,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_in_measured_window": true,
+########## case: accept
+log window 1725 of 1725 entries; baseline froze the first 766
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1725,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_in_measured_window": true,
+== binding every case to the platform and accelerator roots ==
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/undeclared-gpu/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/accept/nras-token.json
+== sequence done ==

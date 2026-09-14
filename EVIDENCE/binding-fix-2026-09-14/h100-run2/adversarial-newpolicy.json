@@ -1,0 +1,62 @@
+[
+  {
+    "caught": null,
+    "error": "quote does not match this log (stale quote)",
+    "probe": "trim_log"
+  },
+  {
+    "caught": false,
+    "code_bytes": 6,
+    "code_executed": true,
+    "new_entries_during_probe": 0,
+    "new_entry_paths": [],
+    "note": "the declared, approved interpreter executed code that never existed as a file. Generalises the Python-import result: file-backed measurement cannot see execution that is not file-backed",
+    "payload_digest": "sha256::5560556834f27a03...",
+    "payload_digest_appears_in_log": false,
+    "payload_is_a_file": true,
+    "probe": "jit_anon",
+    "question": "does executing code from anonymous memory reach the measurement?"
+  },
+  {
+    "caught": true,
+    "child_status": 0,
+    "new_entries_during_probe": 1,
+    "new_entry_paths": [
+      "memfd:anon"
+    ],
+    "payload_bytes": 15960,
+    "payload_digest": "sha256::9c410ce79abadede...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "memfd_exec",
+    "question": "is a binary that never exists on disk measured when executed?"
+  },
+  {
+    "caught": true,
+    "edited": true,
+    "new_entries_during_probe": 1,
+    "new_entry_paths": [
+      "/home/azureuser/t1/bin/declared_stack.py"
+    ],
+    "original_digest": "sha256::9a4f566b225abac8...",
+    "payload_digest": "sha256::30dd088ad281fa5e...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "post_approval_edit",
+    "question": "does editing the approved program after approval change the measurement?"
+  },
+  {
+    "as_user": "undeclared as nobody",
+    "caught": true,
+    "new_entries_during_probe": 1,
+    "new_entry_paths": [
+      "/tmp/tmpu2bumapb/u.sh"
+    ],
+    "payload_digest": "sha256::dd7c284e6aaa4dc5...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "other_user",
+    "question": "does running undeclared code as another user avoid measurement?",
+    "ran": true
+  }
+]

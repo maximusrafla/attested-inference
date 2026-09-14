@@ -11,3 +11,4 @@ Thumbs.db
 
 # Internal build-execution runbook (process notes, not part of the artifact)
 gpu/RUNBOOK.md
+gpu/e*out/

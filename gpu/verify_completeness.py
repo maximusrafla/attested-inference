@@ -1,79 +1,84 @@
 """Tier 1, regulator side: check the completeness disclosure from a separate machine.
 
-Extends M1's verifier. M1 asked "did the approved code run inside real SEV-SNP isolation, and
-did the operator hand me the same artifact it attested." This adds the completeness half: a
-vTPM quote over PCR 10, which is the register Linux IMA extends with the digest of every file
-executed, so the operator cannot run something undeclared without moving a value it does not
-control.
+The regulator holds its own copies of the approved baseline, the approved declaration and, optionally,
+reference values for the boot registers. It receives the disclosure, the quote and its signature, the
+quoted boot register values, the exported measurement log, and the platform and accelerator tokens. It
+recomputes the verdict itself. Nothing on this side depends on the operator's pre-check having run, and
+nothing is taken from the disclosure except the claims it checks.
 
-What gets checked here, with nothing taken on the operator's word:
+What gets checked:
 
-  the quote
-  1. the quote is signed by the attestation key whose public half the disclosure names,
-  2. the quote is a TPM 2.0 quote structure, not some other attestation type,
-  3. the quote's extraData equals the challenge the regulator issued, so it is fresh,
-  4. the quote's pcrDigest equals sha256 of the PCR 10 value in the disclosure, so the
-     disclosure and the signed evidence describe the same register,
+  the quote, and that it came from the attested vTPM
+  1. the quote is a TPM 2.0 quote structure answering the regulator's challenge,
+  2. its signature verifies under the attestation key the bundle names,
+  3. that key is the vTPM attestation key the platform token attests (MAA's HCLAkPub). Without this
+     check a software key signs anything, including a structure that starts with TPM_GENERATED_VALUE;
+     the magic value only restricts what a TPM restricted key will sign,
+  4. the disclosure's hashes of the quote and the key match,
 
-  the platform, if an MAA token is supplied
-  5. the MAA token verifies against Microsoft's JWKS and reports an AMD SEV-SNP CVM,
-  6. the MAA nonce equals sha256 of this disclosure, binding the platform report, the vTPM
-     attestation key, and the verdict into one artifact,
+  the platform (MAA token)
+  5. the token verifies against the issuer's published keys and reports a compliant confidential VM,
+  6. its nonce is sha256 of this disclosure,
+  7. secure boot is on and boot and kernel debugging are off,
+  8. the boot register values MAA attests (PCRs 0 to 7) equal the values the quote covers, and equal the
+     regulator's reference values when those are supplied. On Azure's confidential Ubuntu image the kernel
+     is a signed unified kernel image with its command line built in, so PCR 4 pins both,
 
-  the scheme's content
-  7. the declaration and baseline the enclave checked against are the ones the regulator holds,
-  8. the verdict is accept and nothing objected,
-  9. the disclosure carries nothing beyond the allowlist,
+  the measurement log
+  9. some prefix of the exported log, together with the quoted boot registers, reproduces the quote's
+     pcrDigest, so the log is the one the vTPM sealed and nothing was trimmed,
+  10. the log's first entry, IMA's boot_aggregate, equals sha256 over the quoted PCRs 0 to 9, which ties
+      the log to the boot the platform attested,
+  11. the replayed PCR 10 value is the one in the disclosure,
 
-  the measurement log, exported with the receipt (added 2026-09-14)
-  10. some prefix of the exported log replays, entry by entry, to the register value the
-      quote signed, so the log is the one the hardware sealed and nothing was trimmed,
-  11. that replayed value is the one written in the disclosure,
-  12. the verifier's own recount of the attested window, every measured digest checked
-      against the baseline and the declaration it holds, agrees with the disclosure's counts,
-  13. the verifier's own finding on undeclared execution agrees with the disclosure's verdict.
+  the verdict, recomputed here
+  12. the verifier's own verdict over the window (every digest in the baseline or the declaration, the
+      declared weights and configuration present by digest) is the one expected, and
+  13. it agrees with the disclosure's verdict, reasons and counts,
 
-Why 10 to 13 exist. The first build kept the log inside the enclave and sent out a verdict, on
-the argument that the replay ran in attested code and check 4 made it non-repudiable. A blind
-review (2026-09-12) pointed out what that leaves the regulator with: a register value it cannot
-interpret and a verdict from code it cannot identify, so an operator could run a modified
-checker, or none, and write "accept". Check 4 binds the disclosure to the quote; it does not bind
-the verdict to the log. The remedy is the one Keylime has used in production for years: the
-attester sends the measurement list out with the quote and the verifier replays it. The
-enclave-side checker (completeness_check.py) is kept as the operator's own pre-check; the
-regulator no longer depends on it. The cost, stated plainly: the regulator now holds the file
-names and digests of everything the machine loaded in the window. It still never holds the
-weights, the outputs or the prompts.
+  the accelerator (NRAS token), and the content
+  14 onward. the GPU token is NVIDIA-issued, verifies, is bound to this disclosure, reports matching
+      measurements, secure boot and debug disabled; the declaration and baseline the operator used are the
+      approved ones; the disclosure carries nothing beyond the allowlist.
 
-PCR 10 liveness: on a live cloud guest the register advances between any two commands, so the
-log is dumped after the quote and the verifier finds the prefix the quote covers by replaying
-until the running value hashes to the quote's pcrDigest. Entries after that prefix are outside
-the attested window and are ignored, not counted.
+History, stated because it matters. Before 2026-09-14 this verifier had neither check 3 nor checks 8,
+10 and 12. The ceremony quoted with a key it created itself, so a bundle signed by a software key over a
+log with the undeclared entry deleted passed every check (see forge_quote_demo.py). The weight and
+configuration verdicts were read from the disclosure, which the operator's own code wrote.
+
+What the checks still cannot establish: which IMA policy was loaded. On this image the policy is written
+once after boot, and that write is not measured, so the verdict is exactly as wide as the policy the
+operator chose to load.
 
 Usage:
-  python verify_completeness.py --disclosure out/disclosure.json --quote out/quote.msg \
-      --signature out/quote.sig --ak-pub out/ak.pub.pem --challenge <hex> \
-      --declaration declaration.json --baseline baseline.json --ima-log out/ima.bin \
-      [--maa-token out/maa-token.jwt] [--nras-token out/nras-token.json]
+  python verify_completeness.py --disclosure disclosure.json --quote quote.msg --signature quote.sig \
+      --ak-pub ak.pub.pem --challenge <hex> --pcr-values boot-pcrs.json --ima-log ima.bin \
+      --declaration declaration.json --baseline baseline.json --maa-token maa-token.jwt \
+      [--nras-token nras-token.json] [--reference-pcrs reference-pcrs.json] [--platform sevsnpvm|tdxvm]
+      [--allow-expired-tokens] [--expect accept|reject]
 """
 
 import argparse
+import base64
 import hashlib
 import json
-import struct
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+from lib_ima import parse_binary_log  # noqa: E402
+from lib_tpm import (TPM_GENERATED_VALUE, TPM_ST_ATTEST_QUOTE, ALG_RSASSA, ALG_RSAPSS,  # noqa: E402
+                     ALG_ECDSA, parse_attest, parse_signature, selected_pcrs)
+from lib_verdict import boot_aggregate_matches, find_window, judge  # noqa: E402
+
 ALLOWED_DISCLOSURE_FIELDS = {
     "schema", "verdict", "declaration_sha256", "baseline_sha256", "pcr10_sha256",
-    "ima_entries_checked", "undeclared_entries", "weights_sha256",
-    "weights_match_declaration", "config_sha256", "config_matches_declaration",
+    "ima_entries_checked", "undeclared_entries", "weights_sha256", "config_sha256",
+    "weights_in_measured_window", "config_in_measured_window",
     "quote_sha256", "ak_pub_sha256", "rejected_by",
+    # v3 fields, accepted so that pre-2026-09-14 bundles can still be checked and fail honestly
+    "weights_match_declaration", "config_matches_declaration",
 }
-
-TPM_GENERATED_VALUE = 0xFF544347
-TPM_ST_ATTEST_QUOTE = 0x8018
-ALG_RSASSA, ALG_RSAPSS, ALG_ECDSA = 0x0014, 0x0016, 0x0018
 
 results = []
 
@@ -83,46 +88,12 @@ def check(name, ok, detail=""):
     return ok
 
 
-def _u16(b, o):
-    return struct.unpack_from(">H", b, o)[0], o + 2
+def sha256_file(p):
+    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
-def _tpm2b(b, o):
-    n, o = _u16(b, o)
-    return b[o:o + n], o + n
-
-
-def parse_attest(blob):
-    o = 0
-    magic, = struct.unpack_from(">I", blob, o); o += 4
-    typ, o = _u16(blob, o)
-    _signer, o = _tpm2b(blob, o)
-    extra, o = _tpm2b(blob, o)
-    o += 17          # TPMS_CLOCK_INFO
-    o += 8           # firmwareVersion
-    count, = struct.unpack_from(">I", blob, o); o += 4
-    selections = []
-    for _ in range(count):
-        alg, o = _u16(blob, o)
-        size = blob[o]; o += 1
-        selections.append((alg, blob[o:o + size])); o += size
-    pcr_digest, o = _tpm2b(blob, o)
-    return {"magic": magic, "type": typ, "extra_data": extra,
-            "selections": selections, "pcr_digest": pcr_digest}
-
-
-def parse_signature(blob):
-    o = 0
-    sig_alg, o = _u16(blob, o)
-    hash_alg, o = _u16(blob, o)
-    if sig_alg in (ALG_RSASSA, ALG_RSAPSS):
-        sig, o = _tpm2b(blob, o)
-        return sig_alg, hash_alg, sig
-    if sig_alg == ALG_ECDSA:
-        r, o = _tpm2b(blob, o)
-        s, o = _tpm2b(blob, o)
-        return sig_alg, hash_alg, (r, s)
-    raise ValueError(f"unsupported TPM signature algorithm 0x{sig_alg:04x}")
+def b64u(s):
+    return base64.urlsafe_b64decode(s + "=" * (-len(s) % 4))
 
 
 def verify_quote_signature(quote_bytes, sig_blob, ak_pem):
@@ -147,64 +118,98 @@ def verify_quote_signature(quote_bytes, sig_blob, ak_pem):
         return False, f"{type(e).__name__}"
 
 
-def sha256_file(p):
-    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def load_boot_values(path):
+    """{index: 32 raw bytes} from the ceremony's boot-pcrs.json ({"sha256": {"0": "hex", ...}})."""
+    if not path:
+        return {}
+    doc = json.loads(Path(path).read_text())
+    bank = doc.get("sha256", doc)
+    return {int(k): bytes.fromhex(v.lower().removeprefix("0x")) for k, v in bank.items()}
 
 
-def check_maa(token_path, disclosure_bytes):
+def decode_jwt(token, issuer_certs, allow_expired):
     import jwt
     from jwt import PyJWKClient
+    header = json.loads(b64u(token.split(".")[0]))
+    key = PyJWKClient(issuer_certs).get_signing_key_from_jwt(token)
+    return jwt.decode(token, key.key, algorithms=[header["alg"]],
+                      options={"verify_aud": False, "verify_exp": not allow_expired})
+
+
+def check_maa(token_path, disclosure_bytes, ak_pem, boot_values, reference, platform, allow_expired):
+    from cryptography.hazmat.primitives import serialization
     token = Path(token_path).read_text().strip()
-    unverified = jwt.decode(token, options={"verify_signature": False})
-    issuer = unverified.get("iss", "")
-    signing_key = PyJWKClient(issuer.rstrip("/") + "/certs").get_signing_key_from_jwt(token)
-    claims = jwt.decode(token, signing_key.key, algorithms=["RS256"], options={"verify_aud": False})
-    tee = claims.get("x-ms-isolation-tee") or claims
-    check("MAA token signature verifies against Microsoft's JWKS", True, issuer)
-    check("MAA reports an AMD SEV-SNP confidential VM",
-          tee.get("x-ms-attestation-type") == "sevsnpvm", str(tee.get("x-ms-attestation-type")))
-    check("MAA compliance status is azure-compliant-cvm",
-          tee.get("x-ms-compliance-status") == "azure-compliant-cvm",
-          str(tee.get("x-ms-compliance-status")))
+    issuer = json.loads(b64u(token.split(".")[1])).get("iss", "")
+    try:
+        claims = decode_jwt(token, issuer.rstrip("/") + "/certs", allow_expired)
+    except Exception as e:
+        check("MAA token verifies against the issuer's published keys", False, f"{type(e).__name__}: {e}")
+        return
+    check("MAA token verifies against the issuer's published keys", True,
+          issuer + (" (expiry not enforced: archival check)" if allow_expired else ""))
+
+    tee = claims.get("x-ms-isolation-tee") or {}
+    check(f"MAA reports a compliant {platform} confidential VM",
+          tee.get("x-ms-attestation-type") == platform
+          and tee.get("x-ms-compliance-status") == "azure-compliant-cvm",
+          f"{tee.get('x-ms-attestation-type')}, {tee.get('x-ms-compliance-status')}")
+
     expected = hashlib.sha256(disclosure_bytes).hexdigest()
-    import base64
-    seen, cur = set(), None
-    runtime = claims.get("x-ms-runtime") or {}
-    payload = runtime.get("client-payload") or {}
-    for key in ("nonce", "user-data", "userdata"):
-        for src in (payload, runtime, claims):
-            if isinstance(src, dict) and isinstance(src.get(key), str):
-                cur = src[key]
-                seen.add(cur)
-                for _ in range(3):
-                    try:
-                        cur = base64.b64decode(cur + "=" * (-len(cur) % 4)).decode()
-                        seen.add(cur)
-                    except Exception:
-                        break
-    check("MAA nonce equals sha256 of this disclosure", expected in seen,
-          f"expected {expected[:16]}...")
-    return claims
+    seen = set()
+    for src in ((claims.get("x-ms-runtime") or {}).get("client-payload") or {}, claims.get("x-ms-runtime") or {}):
+        for key in ("nonce", "user-data"):
+            cur = src.get(key) if isinstance(src, dict) else None
+            for _ in range(4):
+                if not isinstance(cur, str):
+                    break
+                seen.add(cur.lower())
+                try:
+                    cur = base64.b64decode(cur + "=" * (-len(cur) % 4)).decode()
+                except Exception:
+                    break
+    check("MAA nonce equals sha256 of this disclosure", expected in seen, f"expected {expected[:16]}...")
+
+    runtime_keys = (tee.get("x-ms-runtime") or {}).get("keys") or []
+    hcl = next((k for k in runtime_keys if k.get("kid") == "HCLAkPub"), None)
+    ak = serialization.load_pem_public_key(ak_pem).public_numbers()
+    bound = (hcl is not None
+             and int.from_bytes(b64u(hcl["n"]), "big") == ak.n
+             and int.from_bytes(b64u(hcl["e"]), "big") == ak.e)
+    check("quote key is the vTPM attestation key the platform attests (HCLAkPub)", bound,
+          "matches" if bound else ("no HCLAkPub in token" if hcl is None else "a different key signed the quote"))
+
+    vmcfg = (tee.get("x-ms-runtime") or {}).get("vm-configuration") or {}
+    check("secure boot on; boot and kernel debugging off",
+          claims.get("secureboot") is True and vmcfg.get("secure-boot") is True
+          and claims.get("x-ms-azurevm-bootdebug-enabled") is False
+          and claims.get("x-ms-azurevm-kerneldebug-enabled") is False)
+
+    attested = claims.get("x-ms-azurevm-attested-pcr-values") or {}
+    att_vals = {int(k.removeprefix("pcr")): base64.b64decode(v) for k, v in attested.items()}
+    same = bool(att_vals) and all(i in boot_values and boot_values[i] == v for i, v in att_vals.items())
+    check("boot registers MAA attests equal the ones the quote covers",
+          same, f"MAA attests PCRs {sorted(att_vals)}" if att_vals else "token carries no PCR values")
+    if reference:
+        # Compared against the quote-covered values, which equal MAA's for PCRs 0 to 7 (checked above)
+        # and are bound to the quote's pcrDigest for all ten (checked by the log replay).
+        ref = load_boot_values(reference)
+        check("quoted boot registers equal the regulator's reference values",
+              bool(ref) and all(boot_values.get(i) == v for i, v in ref.items()),
+              f"reference covers PCRs {sorted(ref)}")
 
 
-def check_gpu(nras_path, disclosure_bytes):
-    """The accelerator root: an NVIDIA-signed attestation of THIS GPU, bound to this disclosure.
-
-    Which token this is matters, and finding out cost a probe. The Azure CGPU image's shipped
-    path (`gpu-attestation`, the bundled local_gpu_verifier) emits an EAT signed HS256 and issued
-    by LOCAL_GPU_VERIFIER, so it is a symmetric self-assertion and a regulator cannot verify it
-    at all. The remote NRAS path emits ES384 tokens issued by nras.attestation.nvidia.com against
-    a published JWKS, which is what a regulator can actually check. So this function insists on
-    the NRAS token and says so.
-    """
-    import base64
-    import json as _json
-    import jwt
-    from jwt import PyJWKClient
-
-    bundle = _json.loads(Path(nras_path).read_text())
+def check_gpu(nras_path, disclosure_bytes, allow_expired):
+    """The accelerator root: an NVIDIA-signed attestation of this GPU, bound to this disclosure. The
+    Azure CGPU image's shipped local verifier emits an HS256 token a regulator cannot verify, so only
+    tokens issued by nras.attestation.nvidia.com are accepted."""
+    bundle = json.loads(Path(nras_path).read_text())
 
     def find_jwts(o, acc):
+        if isinstance(o, str) and o.strip()[:1] in ("[", "{"):
+            try:
+                return find_jwts(json.loads(o), acc)
+            except ValueError:
+                pass
         if isinstance(o, str) and o.count(".") == 2:
             acc.append(o)
         elif isinstance(o, list):
@@ -215,113 +220,34 @@ def check_gpu(nras_path, disclosure_bytes):
                 find_jwts(x, acc)
         return acc
 
-    def hdr(t):
-        h = t.split(".")[0]
-        return _json.loads(base64.urlsafe_b64decode(h + "=" * (-len(h) % 4)))
-
-    tokens = find_jwts(bundle, [])
-    nras = [t for t in tokens
-            if _json.loads(base64.urlsafe_b64decode(
-                t.split(".")[1] + "=" * (-len(t.split(".")[1]) % 4))).get("iss", "")
-            .startswith("https://nras.attestation.nvidia.com")]
-    check("bundle contains an NVIDIA-issued (not local self-signed) GPU attestation",
-          bool(nras), f"{len(nras)} of {len(tokens)} tokens are NRAS-issued")
+    nras = []
+    for t in find_jwts(bundle, []):
+        try:
+            if json.loads(b64u(t.split(".")[1])).get("iss", "").startswith("https://nras.attestation.nvidia.com"):
+                nras.append(t)
+        except Exception:
+            pass
+    check("bundle contains an NVIDIA-issued GPU attestation", bool(nras))
     if not nras:
         return
-
-    jwks = PyJWKClient("https://nras.attestation.nvidia.com/.well-known/jwks.json")
     device = None
-    for t in nras:
-        key = jwks.get_signing_key_from_jwt(t)
-        claims = jwt.decode(t, key.key, algorithms=[hdr(t)["alg"]],
-                            options={"verify_aud": False})
-        if "hwmodel" in claims:
-            device = claims
-    check("GPU attestation verifies against NVIDIA's published JWKS", True,
-          f"alg {hdr(nras[0])['alg']}, iss nras.attestation.nvidia.com")
-    if device is None:
-        check("GPU attestation carries per-device claims", False)
+    try:
+        for t in nras:
+            c = decode_jwt(t, "https://nras.attestation.nvidia.com/.well-known/jwks.json", allow_expired)
+            if "hwmodel" in c:
+                device = c
+    except Exception as e:
+        check("GPU attestation verifies against NVIDIA's published keys", False, f"{type(e).__name__}: {e}")
         return
-
+    check("GPU attestation verifies against NVIDIA's published keys", device is not None)
+    if device is None:
+        return
     expected = hashlib.sha256(disclosure_bytes).hexdigest()
-    check("GPU attestation nonce equals sha256 of this disclosure",
-          device.get("eat_nonce") == expected, f"expected {expected[:16]}...")
-    check("NVIDIA's verifier reports the GPU measurements matched golden values",
+    check("GPU attestation nonce equals sha256 of this disclosure", device.get("eat_nonce") == expected)
+    check("NVIDIA's verifier reports the GPU measurements matched reference values",
           device.get("measres") == "success", str(device.get("measres")))
     check("GPU reports secure boot on and debug disabled",
-          device.get("secboot") is True and device.get("dbgstat") == "disabled",
-          f"secboot={device.get('secboot')} dbgstat={device.get('dbgstat')}")
-    print(f"\nattested accelerator: {device.get('hwmodel')} ueid {str(device.get('ueid'))[:18]}..., "
-          f"driver {device.get('x-nvidia-gpu-driver-version')}, "
-          f"vbios {device.get('x-nvidia-gpu-vbios-version')}")
-
-
-def check_log(log_path, disclosure, att, declaration_path, baseline_path, verbose=False):
-    """Checks 10 to 13: replay the exported measurement log on the regulator's own machine.
-
-    The regulator holds the baseline and the declaration (digest sets) and now the log. It finds
-    the prefix the quote covers from the quote's pcrDigest, replays it, and does its own count.
-    Nothing here relies on the enclave-side checker having run at all.
-    """
-    sys.path.insert(0, str(Path(__file__).parent))
-    from lib_ima import parse_binary_log
-    entries = parse_binary_log(Path(log_path).read_bytes())
-    target = att["pcr_digest"].hex()
-
-    covered, value = None, None
-    pcr = bytes(32)
-    if hashlib.sha256(pcr).hexdigest() == target:
-        covered, value = 0, pcr.hex()
-    else:
-        for i, e in enumerate(entries):
-            if e.pcr != 10:
-                continue
-            pcr = hashlib.sha256(pcr + e.bank_digest("sha256")).digest()
-            if hashlib.sha256(pcr).hexdigest() == target:
-                covered, value = i + 1, pcr.hex()
-                break
-    check("exported measurement log replays to the register value the quote signed",
-          covered is not None,
-          (f"prefix {covered} of {len(entries)} entries reproduces the quoted digest"
-           if covered is not None else "no prefix of the log reproduces the quoted digest"))
-    if covered is None:
-        return None
-    check("replayed register value equals the one in the disclosure",
-          value == disclosure.get("pcr10_sha256"))
-
-    baseline = json.loads(Path(baseline_path).read_text())
-    declaration = json.loads(Path(declaration_path).read_text())
-    approved = set(baseline["digests"]) | set(declaration["digests"])
-    if declaration.get("weights_sha256"):
-        approved.add("sha256::" + declaration["weights_sha256"])
-
-    checked, undeclared = 0, []
-    for e in entries[:covered]:
-        digest, path = e.file_digest_and_path()
-        if digest is None:
-            continue
-        checked += 1
-        if digest not in approved:
-            undeclared.append((digest, path))
-
-    check("verifier's own recount of the attested window agrees with the disclosure",
-          checked == disclosure.get("ima_entries_checked")
-          and len(undeclared) == disclosure.get("undeclared_entries"),
-          f"verifier counts {checked} measured and {len(undeclared)} undeclared; "
-          f"disclosure says {disclosure.get('ima_entries_checked')} and "
-          f"{disclosure.get('undeclared_entries')}")
-    says_undeclared = "undeclared_execution" in (disclosure.get("rejected_by") or [])
-    check("verifier's own finding on undeclared execution agrees with the verdict",
-          bool(undeclared) == says_undeclared,
-          "undeclared execution found in the log" if undeclared else "none found in the log")
-    if undeclared and verbose:
-        print("\nundeclared executions the regulator can now see for itself:")
-        for d, p in undeclared[:20]:
-            print(f"  {p}  {d[:24]}...")
-        if len(undeclared) > 20:
-            print(f"  ... and {len(undeclared) - 20} more")
-    return {"covered": covered, "total": len(entries), "checked": checked,
-            "undeclared": len(undeclared)}
+          device.get("secboot") is True and device.get("dbgstat") == "disabled")
 
 
 def main():
@@ -333,94 +259,96 @@ def main():
     ap.add_argument("--challenge", required=True, help="the hex challenge the regulator issued")
     ap.add_argument("--declaration", required=True)
     ap.add_argument("--baseline", required=True)
+    ap.add_argument("--ima-log", required=True, help="the measurement log exported with the receipt")
+    ap.add_argument("--pcr-values", help="boot-pcrs.json: the quoted PCR 0 to 9 values")
     ap.add_argument("--maa-token")
-    ap.add_argument("--nras-token", help="the NVIDIA-issued GPU attestation bundle")
-    ap.add_argument("--cc-mode", help="nvidia-smi conf-compute capture, checked for CC ON / DevTools OFF")
-    ap.add_argument("--ima-log", help="the measurement log exported with the receipt, replayed here")
-    ap.add_argument("--audit-log", help=argparse.SUPPRESS)   # the pre-2026-09-14 name, same file
-    ap.add_argument("--verbose", action="store_true", help="list undeclared paths found in the log")
+    ap.add_argument("--reference-pcrs", help="regulator-held reference values for the attested boot PCRs")
+    ap.add_argument("--platform", default="sevsnpvm", choices=["sevsnpvm", "tdxvm"])
+    ap.add_argument("--nras-token")
+    ap.add_argument("--cc-mode", help="nvidia-smi conf-compute capture (on-box, the operator's word)")
+    ap.add_argument("--allow-expired-tokens", action="store_true",
+                    help="verify token signatures but not expiry, for re-checking archived bundles")
+    ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--expect", choices=["accept", "reject"], default="accept")
     args = ap.parse_args()
 
     disclosure_bytes = Path(args.disclosure).read_bytes()
     disclosure = json.loads(disclosure_bytes)
     quote_bytes = Path(args.quote).read_bytes()
-    sig_blob = Path(args.signature).read_bytes()
     ak_pem = Path(args.ak_pub).read_bytes()
-
-    ok, how = verify_quote_signature(quote_bytes, sig_blob, ak_pem)
-    check("quote is signed by the attestation key named in the disclosure", ok, how)
-
     att = parse_attest(quote_bytes)
-    check("quote is a TPM 2.0 quote structure",
-          att["magic"] == TPM_GENERATED_VALUE and att["type"] == TPM_ST_ATTEST_QUOTE,
-          f"magic 0x{att['magic']:08x}, type 0x{att['type']:04x}")
-    check("quote answers the regulator's challenge",
-          att["extra_data"].hex() == args.challenge.lower(),
-          f"carried {att['extra_data'].hex()[:24]}...")
-    expected_pcr_digest = hashlib.sha256(bytes.fromhex(disclosure["pcr10_sha256"])).hexdigest()
-    check("quoted PCR digest matches the PCR 10 value in the disclosure",
-          att["pcr_digest"].hex() == expected_pcr_digest,
-          f"quote {att['pcr_digest'].hex()[:24]}...")
-    check("AK public key hashes to the value in the disclosure",
-          hashlib.sha256(ak_pem).hexdigest() == disclosure.get("ak_pub_sha256"))
-    check("quote hashes to the value in the disclosure",
-          hashlib.sha256(quote_bytes).hexdigest() == disclosure.get("quote_sha256"))
+    boot_values = load_boot_values(args.pcr_values)
+
+    check("quote is a TPM 2.0 quote answering the regulator's challenge",
+          att["magic"] == TPM_GENERATED_VALUE and att["type"] == TPM_ST_ATTEST_QUOTE
+          and att["extra_data"].hex() == args.challenge.lower(),
+          f"PCRs selected {selected_pcrs(att['selections'])}")
+    ok, how = verify_quote_signature(quote_bytes, Path(args.signature).read_bytes(), ak_pem)
+    check("quote signature verifies under the key the bundle names", ok, how)
+    check("disclosure's quote and key hashes match",
+          hashlib.sha256(quote_bytes).hexdigest() == disclosure.get("quote_sha256")
+          and hashlib.sha256(ak_pem).hexdigest() == disclosure.get("ak_pub_sha256"))
 
     if args.maa_token:
-        check_maa(args.maa_token, disclosure_bytes)
+        check_maa(args.maa_token, disclosure_bytes, ak_pem, boot_values, args.reference_pcrs,
+                  args.platform, args.allow_expired_tokens)
+    else:
+        check("quote key is the vTPM attestation key the platform attests (HCLAkPub)", False,
+              "no platform token supplied, so nothing ties the quote key to hardware")
+
+    entries = parse_binary_log(Path(args.ima_log).read_bytes())
+    covered, pcr10 = find_window(entries, att, boot_values)
+    check("exported log and quoted boot registers reproduce the quote's pcrDigest", covered is not None,
+          f"prefix {covered} of {len(entries)} entries" if covered is not None
+          else "no prefix matches (log edited, or boot register values missing or wrong)")
+    agg = boot_aggregate_matches(entries, boot_values)
+    check("log's boot_aggregate equals sha256 over the quoted PCRs 0 to 9", agg is True,
+          {None: "quote does not cover PCRs 0 to 9", False: "mismatch", True: "matches"}[agg])
+    check("replayed PCR 10 value is the one in the disclosure", pcr10 is not None and pcr10 == disclosure.get("pcr10_sha256"))
+
+    baseline = json.loads(Path(args.baseline).read_text())
+    declaration = json.loads(Path(args.declaration).read_text())
+    mine = judge(entries, covered, baseline, declaration)
+    check(f"verifier's own verdict is {args.expect}", mine["verdict"] == args.expect,
+          f"{mine['verdict']}, reasons {mine['rejected_by']}")
+    check("disclosure agrees with the verifier's own verdict, reasons and counts",
+          disclosure.get("verdict") == mine["verdict"]
+          and sorted(disclosure.get("rejected_by") or []) == sorted(mine["rejected_by"])
+          and disclosure.get("ima_entries_checked") == mine["ima_entries_checked"]
+          and disclosure.get("undeclared_entries") == mine["undeclared_entries"],
+          f"disclosure {disclosure.get('verdict')} {disclosure.get('rejected_by')} "
+          f"{disclosure.get('ima_entries_checked')}/{disclosure.get('undeclared_entries')}; "
+          f"verifier {mine['ima_entries_checked']}/{mine['undeclared_entries']}")
+
     if args.nras_token:
-        check_gpu(args.nras_token, disclosure_bytes)
+        check_gpu(args.nras_token, disclosure_bytes, args.allow_expired_tokens)
     if args.cc_mode:
         txt = Path(args.cc_mode).read_text()
-        check("GPU is in full confidential-compute mode, not DevTools mode",
-              "CC status: ON" in txt and "DevTools Mode: OFF" in txt,
-              "CC status and DevTools mode as captured on the box")
+        check("GPU CC mode ON and DevTools OFF (on-box capture, not signed evidence)",
+              "CC status: ON" in txt and "DevTools Mode: OFF" in txt)
 
-    check("declaration checked against is the one the regulator approved",
-          sha256_file(args.declaration) == disclosure.get("declaration_sha256"))
-    check("baseline checked against is the one the regulator approved",
-          sha256_file(args.baseline) == disclosure.get("baseline_sha256"))
-    check(f"disclosure verdict is {args.expect}", disclosure.get("verdict") == args.expect,
-          f"verdict {disclosure.get('verdict')}, rejected_by {disclosure.get('rejected_by')}")
+    check("declaration and baseline the operator used are the approved ones",
+          sha256_file(args.declaration) == disclosure.get("declaration_sha256")
+          and sha256_file(args.baseline) == disclosure.get("baseline_sha256"))
     extra = set(disclosure) - ALLOWED_DISCLOSURE_FIELDS
-    check("disclosure carries no fields beyond the allowlist", not extra,
-          f"unexpected: {sorted(extra)}" if extra else "weights and outputs withheld")
-
-    log_path = args.ima_log or args.audit_log
-    replay = check_log(log_path, disclosure, att, args.declaration, args.baseline,
-                       args.verbose) if log_path else None
+    check("disclosure carries no fields beyond the allowlist", not extra, f"unexpected: {sorted(extra)}" if extra else "")
 
     print()
     for status, name, detail in results:
         print(f"[{status}] {name}" + (f"  ({detail})" if detail else ""))
+    if mine["undeclared"] and args.verbose:
+        print("\nundeclared measurements in the window:")
+        for d, p in mine["undeclared"][:20]:
+            print(f"  {p}  {d[:24]}...")
 
-    print("\nwhat the regulator now knows:")
-    if replay:
-        print(f"  - by its own replay, {replay['checked']} files executed or were read in this domain")
-        print(f"    inside the attested window (log prefix {replay['covered']} of {replay['total']})")
-        print(f"  - {replay['undeclared']} of them were outside the approved baseline and declaration")
-        print("  - and it holds the file names and digests behind those counts")
-    else:
-        print(f"  - {disclosure['ima_entries_checked']} files have executed in this domain since it booted")
-        print(f"  - {disclosure['undeclared_entries']} of them were outside the approved declaration")
-        print("    (both figures on the enclave-side checker's word: no log was supplied to replay)")
-    print(f"  - the declared payload {'matched' if disclosure.get('weights_match_declaration') else 'did NOT match'}"
-          " the approved digest")
-    cfg = disclosure.get("config_matches_declaration")
-    print(f"  - the runtime configuration {'matched' if cfg else ('did NOT match' if cfg is False else 'was not declared at all in')}"
-          " the approved digest")
-    print("what it does not know: the weights, the outputs, the prompts"
-          + ("" if replay else ", which files, which paths"))
-
-    print("\nnot covered by this evidence:")
-    print("  - work submitted to an accelerator by an already-declared process. IMA measures")
-    print("    file execution, not GPU kernel launches. Tier 0 binds the accelerator's identity")
-    print("    and mode; it does not itemize what was submitted to it.")
-    print("  - code the declared interpreter loads as data. Under the tcb policy a non-root read")
-    print("    is not measured, so completeness here is only as wide as the IMA policy is.")
-    print("  - anything executed outside the quoted window.")
-    print("  - physical interposition by an operator with sustained access to the host.")
+    print("\nwhat the regulator established for itself:")
+    print(f"  - {mine['ima_entries_checked']} measured entries in the attested window, "
+          f"{mine['undeclared_entries']} outside the approved sets")
+    print(f"  - declared weights present by digest: {mine['weights_in_measured_window']}; "
+          f"declared configuration present by digest: {mine['config_in_measured_window']}")
+    print("  - it holds the file names and digests behind those counts, never the weights, outputs or prompts")
+    print("not covered: which IMA policy was loaded (a single unmeasured write on this image); work an")
+    print("already-declared process submits to the accelerator; code that never arrives as a file.")
 
     failed = [r for r in results if r[0] == "FAIL"]
     print(f"\n{len(results) - len(failed)}/{len(results)} checks passed")

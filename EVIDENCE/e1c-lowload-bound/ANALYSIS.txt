@@ -1,0 +1,39 @@
+============================================================================================
+E1c. Same-context bound below 4 percent of a device. Recomputed from raw values.
+============================================================================================
+
+DENOMINATORS (matmul/s, 8192 bf16)
+  in-run short calibration (3 s, sync every 4)      :    401.7
+  CAL-before   short cal    404.1  sustained 20 s    445.9  (sustained/short 1.103)
+  CAL-after    short cal    381.6  sustained 20 s    417.1  (sustained/short 1.093)
+  session drift, sustained after/before - 1          : -6.45%
+
+NULL from 12 retained clean runs: 412.5, 405.8, 402.3, 391.4, 392.9, 386.8, 385.4, 387.7, 388.2, 387.7, 384.4, 388.2
+  all runs                     mean  392.8  unpaired sigma  2.31%  paired sigma 1.45%  (n pairs 6)  paired threshold 3s 4.35%
+  dropping the first run       mean  391.0  unpaired sigma  1.78%  paired sigma 0.57%  (n pairs 5)  paired threshold 3s 1.71%
+  dropping the first two runs  mean  389.5  unpaired sigma  1.32%  paired sigma 1.55%  (n pairs 5)  paired threshold 3s 4.64%
+  harness reports: paired 1.45%  unpaired 2.31%  excl warmup paired 0.57%
+
+DUTY RESPONSE, six pairs per point
+    knob    drop     sd  its/pair   share vs in-runshare vs CAL-beforeshare vs CAL-after  drop/share(in-run)
+    0.01   0.92%  0.05%        34             0.85%             0.76%             0.81%                1.09
+    0.02   1.80%  0.04%        68             1.69%             1.52%             1.63%                1.06
+    0.03   2.72%  0.05%       102             2.53%             2.28%             2.43%                1.07
+    0.05   4.46%  0.12%       167             4.14%             3.73%             3.99%                1.08
+     0.1   8.42%  0.07%       319             7.93%             7.14%             7.63%                1.06
+  drop/share above 1 means the declared chain loses more than the undeclared kernels' own device time.
+
+WIDTH: smallest device share whose drop reaches the threshold, between measured points
+  null all runs               paired 3s          threshold  4.35% :  vs in-run 4.04% [measured]  vs CAL-before 3.64% [measured]  vs CAL-after 3.89% [measured]
+  null all runs               stored-ceiling 3s  threshold  6.93% :  vs in-run 6.51% [measured]  vs CAL-before 5.86% [measured]  vs CAL-after 6.27% [measured]
+  null dropping the first run paired 3s          threshold  1.71% :  vs in-run 1.60% [measured]  vs CAL-before 1.44% [measured]  vs CAL-after 1.54% [measured]
+  null dropping the first run stored-ceiling 3s  threshold  5.33% :  vs in-run 4.97% [measured]  vs CAL-before 4.48% [measured]  vs CAL-after 4.79% [measured]
+  harness's own: hideable paired 4.04%  unpaired 6.51% (both against the in-run denominator)
+
+BOTTOM-END LINEARITY: drop per unit share (in-run denominator) by knob
+  knob 0.01  share  0.85%  drop  0.92%  ratio 1.088
+  knob 0.02  share  1.69%  drop  1.80%  ratio 1.063
+  knob 0.03  share  2.53%  drop  2.72%  ratio 1.075
+  knob 0.05  share  4.14%  drop  4.46%  ratio 1.077
+  knob 0.1   share  7.93%  drop  8.42%  ratio 1.062
+  v2 for comparison (BOUND-nonadaptive, in-run denominator): knob 0.05 share 4.33 drop 4.50 ratio 1.04; knob 0.10 share 8.27 drop 8.52 ratio 1.03
