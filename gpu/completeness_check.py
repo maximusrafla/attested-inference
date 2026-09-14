@@ -5,10 +5,15 @@ before the quote is taken. It reads the IMA measurement log, replays it against 
 the vTPM just signed, checks every measured file against what the regulator approved, and emits
 a disclosure carrying the answer and nothing else.
 
-Why the checker is in here and not on the regulator's desk: the log names every file path the
-operator executed, which is exactly the kind of thing the domestic scheme withholds. The
-regulator gets a verdict from attested code instead of a directory listing. Same discipline as
-M1 and M3.
+Why the checker is in here at all, and what changed on 2026-09-14. The first design kept the
+log inside on the argument that the paths are the kind of thing the domestic scheme withholds,
+and sent the regulator a verdict from attested code instead of a directory listing. A blind
+review pointed out the hole: the regulator cannot interpret PCR 10 without the log and cannot
+identify the code that produced the verdict (this script is read as data by an already-measured
+interpreter, so under the policy in force it was never itself measured), so the verdict rested
+on the operator's word. The log is therefore now exported with the receipt and replayed on the
+regulator's machine (verify_completeness.py checks 10 to 13), as Keylime does. This script is
+retained as the operator's own pre-check; nothing on the regulator's side depends on it.
 
 Three separate things get decided, and the disclosure keeps them separate:
   1. log integrity   replay of the log must reproduce the quoted PCR 10 value, else the log

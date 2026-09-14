@@ -23,18 +23,38 @@ What gets checked here, with nothing taken on the operator's word:
   the scheme's content
   7. the declaration and baseline the enclave checked against are the ones the regulator holds,
   8. the verdict is accept and nothing objected,
-  9. the disclosure carries nothing beyond the allowlist.
+  9. the disclosure carries nothing beyond the allowlist,
 
-Deliberately NOT here: the measurement log. The regulator does not receive it, so it cannot
-replay it. That is the design, not an oversight. The replay happens inside the enclave, in
-attested code, and check 4 is what makes the enclave's replay non-repudiable. For our own
-audit there is --audit-log, which replays a log the regulator would never be given; it prints
-under a banner saying so.
+  the measurement log, exported with the receipt (added 2026-09-14)
+  10. some prefix of the exported log replays, entry by entry, to the register value the
+      quote signed, so the log is the one the hardware sealed and nothing was trimmed,
+  11. that replayed value is the one written in the disclosure,
+  12. the verifier's own recount of the attested window, every measured digest checked
+      against the baseline and the declaration it holds, agrees with the disclosure's counts,
+  13. the verifier's own finding on undeclared execution agrees with the disclosure's verdict.
+
+Why 10 to 13 exist. The first build kept the log inside the enclave and sent out a verdict, on
+the argument that the replay ran in attested code and check 4 made it non-repudiable. A blind
+review (2026-09-12) pointed out what that leaves the regulator with: a register value it cannot
+interpret and a verdict from code it cannot identify, so an operator could run a modified
+checker, or none, and write "accept". Check 4 binds the disclosure to the quote; it does not bind
+the verdict to the log. The remedy is the one Keylime has used in production for years: the
+attester sends the measurement list out with the quote and the verifier replays it. The
+enclave-side checker (completeness_check.py) is kept as the operator's own pre-check; the
+regulator no longer depends on it. The cost, stated plainly: the regulator now holds the file
+names and digests of everything the machine loaded in the window. It still never holds the
+weights, the outputs or the prompts.
+
+PCR 10 liveness: on a live cloud guest the register advances between any two commands, so the
+log is dumped after the quote and the verifier finds the prefix the quote covers by replaying
+until the running value hashes to the quote's pcrDigest. Entries after that prefix are outside
+the attested window and are ignored, not counted.
 
 Usage:
   python verify_completeness.py --disclosure out/disclosure.json --quote out/quote.msg \
       --signature out/quote.sig --ak-pub out/ak.pub.pem --challenge <hex> \
-      --declaration declaration.json --baseline baseline.json [--maa-token out/maa-token.jwt]
+      --declaration declaration.json --baseline baseline.json --ima-log out/ima.bin \
+      [--maa-token out/maa-token.jwt] [--nras-token out/nras-token.json]
 """
 
 import argparse
@@ -236,18 +256,72 @@ def check_gpu(nras_path, disclosure_bytes):
           f"vbios {device.get('x-nvidia-gpu-vbios-version')}")
 
 
-def audit_replay(log_path, disclosure):
-    """Researcher cross-check only. The regulator does not receive this log."""
+def check_log(log_path, disclosure, att, declaration_path, baseline_path, verbose=False):
+    """Checks 10 to 13: replay the exported measurement log on the regulator's own machine.
+
+    The regulator holds the baseline and the declaration (digest sets) and now the log. It finds
+    the prefix the quote covers from the quote's pcrDigest, replays it, and does its own count.
+    Nothing here relies on the enclave-side checker having run at all.
+    """
     sys.path.insert(0, str(Path(__file__).parent))
-    from lib_ima import parse_binary_log, replay
+    from lib_ima import parse_binary_log
     entries = parse_binary_log(Path(log_path).read_bytes())
-    full = replay(entries, "sha256")
-    print("\n--- audit cross-check, OUTSIDE the regulator's view ---")
-    print(f"  log entries: {len(entries)}")
-    print(f"  full-log PCR 10 replay: {full[:32]}...")
-    print(f"  disclosure PCR 10:      {disclosure['pcr10_sha256'][:32]}...")
-    print(f"  full-log replay equals the quoted value: {full == disclosure['pcr10_sha256']}")
-    print("  (a prefix match is the normal case: entries logged after the quote are outside the window)")
+    target = att["pcr_digest"].hex()
+
+    covered, value = None, None
+    pcr = bytes(32)
+    if hashlib.sha256(pcr).hexdigest() == target:
+        covered, value = 0, pcr.hex()
+    else:
+        for i, e in enumerate(entries):
+            if e.pcr != 10:
+                continue
+            pcr = hashlib.sha256(pcr + e.bank_digest("sha256")).digest()
+            if hashlib.sha256(pcr).hexdigest() == target:
+                covered, value = i + 1, pcr.hex()
+                break
+    check("exported measurement log replays to the register value the quote signed",
+          covered is not None,
+          (f"prefix {covered} of {len(entries)} entries reproduces the quoted digest"
+           if covered is not None else "no prefix of the log reproduces the quoted digest"))
+    if covered is None:
+        return None
+    check("replayed register value equals the one in the disclosure",
+          value == disclosure.get("pcr10_sha256"))
+
+    baseline = json.loads(Path(baseline_path).read_text())
+    declaration = json.loads(Path(declaration_path).read_text())
+    approved = set(baseline["digests"]) | set(declaration["digests"])
+    if declaration.get("weights_sha256"):
+        approved.add("sha256::" + declaration["weights_sha256"])
+
+    checked, undeclared = 0, []
+    for e in entries[:covered]:
+        digest, path = e.file_digest_and_path()
+        if digest is None:
+            continue
+        checked += 1
+        if digest not in approved:
+            undeclared.append((digest, path))
+
+    check("verifier's own recount of the attested window agrees with the disclosure",
+          checked == disclosure.get("ima_entries_checked")
+          and len(undeclared) == disclosure.get("undeclared_entries"),
+          f"verifier counts {checked} measured and {len(undeclared)} undeclared; "
+          f"disclosure says {disclosure.get('ima_entries_checked')} and "
+          f"{disclosure.get('undeclared_entries')}")
+    says_undeclared = "undeclared_execution" in (disclosure.get("rejected_by") or [])
+    check("verifier's own finding on undeclared execution agrees with the verdict",
+          bool(undeclared) == says_undeclared,
+          "undeclared execution found in the log" if undeclared else "none found in the log")
+    if undeclared and verbose:
+        print("\nundeclared executions the regulator can now see for itself:")
+        for d, p in undeclared[:20]:
+            print(f"  {p}  {d[:24]}...")
+        if len(undeclared) > 20:
+            print(f"  ... and {len(undeclared) - 20} more")
+    return {"covered": covered, "total": len(entries), "checked": checked,
+            "undeclared": len(undeclared)}
 
 
 def main():
@@ -262,7 +336,9 @@ def main():
     ap.add_argument("--maa-token")
     ap.add_argument("--nras-token", help="the NVIDIA-issued GPU attestation bundle")
     ap.add_argument("--cc-mode", help="nvidia-smi conf-compute capture, checked for CC ON / DevTools OFF")
-    ap.add_argument("--audit-log", help="local cross-check only, not part of the regulator's view")
+    ap.add_argument("--ima-log", help="the measurement log exported with the receipt, replayed here")
+    ap.add_argument("--audit-log", help=argparse.SUPPRESS)   # the pre-2026-09-14 name, same file
+    ap.add_argument("--verbose", action="store_true", help="list undeclared paths found in the log")
     ap.add_argument("--expect", choices=["accept", "reject"], default="accept")
     args = ap.parse_args()
 
@@ -309,21 +385,33 @@ def main():
           f"verdict {disclosure.get('verdict')}, rejected_by {disclosure.get('rejected_by')}")
     extra = set(disclosure) - ALLOWED_DISCLOSURE_FIELDS
     check("disclosure carries no fields beyond the allowlist", not extra,
-          f"unexpected: {sorted(extra)}" if extra else "log, weights and outputs withheld")
+          f"unexpected: {sorted(extra)}" if extra else "weights and outputs withheld")
+
+    log_path = args.ima_log or args.audit_log
+    replay = check_log(log_path, disclosure, att, args.declaration, args.baseline,
+                       args.verbose) if log_path else None
 
     print()
     for status, name, detail in results:
         print(f"[{status}] {name}" + (f"  ({detail})" if detail else ""))
 
     print("\nwhat the regulator now knows:")
-    print(f"  - {disclosure['ima_entries_checked']} files have executed in this domain since it booted")
-    print(f"  - {disclosure['undeclared_entries']} of them were outside the approved declaration")
+    if replay:
+        print(f"  - by its own replay, {replay['checked']} files executed or were read in this domain")
+        print(f"    inside the attested window (log prefix {replay['covered']} of {replay['total']})")
+        print(f"  - {replay['undeclared']} of them were outside the approved baseline and declaration")
+        print("  - and it holds the file names and digests behind those counts")
+    else:
+        print(f"  - {disclosure['ima_entries_checked']} files have executed in this domain since it booted")
+        print(f"  - {disclosure['undeclared_entries']} of them were outside the approved declaration")
+        print("    (both figures on the enclave-side checker's word: no log was supplied to replay)")
     print(f"  - the declared payload {'matched' if disclosure.get('weights_match_declaration') else 'did NOT match'}"
           " the approved digest")
     cfg = disclosure.get("config_matches_declaration")
     print(f"  - the runtime configuration {'matched' if cfg else ('did NOT match' if cfg is False else 'was not declared at all in')}"
           " the approved digest")
-    print("what it does not know: which files, which paths, the weights, the outputs")
+    print("what it does not know: the weights, the outputs, the prompts"
+          + ("" if replay else ", which files, which paths"))
 
     print("\nnot covered by this evidence:")
     print("  - work submitted to an accelerator by an already-declared process. IMA measures")
@@ -333,9 +421,6 @@ def main():
     print("    is not measured, so completeness here is only as wide as the IMA policy is.")
     print("  - anything executed outside the quoted window.")
     print("  - physical interposition by an operator with sustained access to the host.")
-
-    if args.audit_log:
-        audit_replay(args.audit_log, disclosure)
 
     failed = [r for r in results if r[0] == "FAIL"]
     print(f"\n{len(results) - len(failed)}/{len(results)} checks passed")

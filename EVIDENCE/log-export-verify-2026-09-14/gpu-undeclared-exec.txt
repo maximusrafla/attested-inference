@@ -1,0 +1,38 @@
+
+undeclared executions the regulator can now see for itself:
+  /home/azureuser/t1/work/undeclared_exec.sh  sha256::e5f6f387e9d3a4f9...
+
+[PASS] quote is signed by the attestation key named in the disclosure  (RSASSA)
+[PASS] quote is a TPM 2.0 quote structure  (magic 0xff544347, type 0x8018)
+[PASS] quote answers the regulator's challenge  (carried 9734bfef715dcdbc187765ea...)
+[PASS] quoted PCR digest matches the PCR 10 value in the disclosure  (quote 50cd551468441723b6f30d0b...)
+[PASS] AK public key hashes to the value in the disclosure
+[PASS] quote hashes to the value in the disclosure
+[PASS] declaration checked against is the one the regulator approved
+[PASS] baseline checked against is the one the regulator approved
+[PASS] disclosure verdict is reject  (verdict reject, rejected_by ['undeclared_execution'])
+[PASS] disclosure carries no fields beyond the allowlist  (weights and outputs withheld)
+[PASS] exported measurement log replays to the register value the quote signed  (prefix 2698 of 2718 entries reproduces the quoted digest)
+[PASS] replayed register value equals the one in the disclosure
+[PASS] verifier's own recount of the attested window agrees with the disclosure  (verifier counts 2698 measured and 1 undeclared; disclosure says 2698 and 1)
+[PASS] verifier's own finding on undeclared execution agrees with the verdict  (undeclared execution found in the log)
+
+what the regulator now knows:
+  - by its own replay, 2698 files executed or were read in this domain
+    inside the attested window (log prefix 2698 of 2718)
+  - 1 of them were outside the approved baseline and declaration
+  - and it holds the file names and digests behind those counts
+  - the declared payload matched the approved digest
+  - the runtime configuration was not declared at all in the approved digest
+what it does not know: the weights, the outputs, the prompts
+
+not covered by this evidence:
+  - work submitted to an accelerator by an already-declared process. IMA measures
+    file execution, not GPU kernel launches. Tier 0 binds the accelerator's identity
+    and mode; it does not itemize what was submitted to it.
+  - code the declared interpreter loads as data. Under the tcb policy a non-root read
+    is not measured, so completeness here is only as wide as the IMA policy is.
+  - anything executed outside the quoted window.
+  - physical interposition by an operator with sustained access to the host.
+
+14/14 checks passed
