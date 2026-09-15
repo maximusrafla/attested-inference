@@ -38,6 +38,13 @@ echo "== IMA policy: written once, after boot (this image's kernel command line 
 # The first rules keep pseudo-filesystem reads out of FILE_CHECK only, so program launches from
 # in-memory files (BPRM_CHECK) are still measured. The serving-account read rule is what makes the
 # weight and configuration files, and any other file the declared stack reads, part of the log.
+#
+# There is deliberately no rule for files read by the administrator, though the kernel's own tcb table
+# has one. On a live cloud guest the provider's agents continuously read files that are being written
+# at the same moment, which IMA cannot measure and records as a violation, and a violation can never be
+# approved. That would reject every run for reasons that have nothing to do with the workload. The
+# coverage the scheme needs comes from the serving account's reads instead. The cost of dropping it is
+# real and stated: a file read by the administrator, rather than by the serving account, is not covered.
 POLICY=$(printf '%s\n' \
   'dont_measure fsmagic=0x9fa0 func=FILE_CHECK' \
   'dont_measure fsmagic=0x62656572 func=FILE_CHECK' \
@@ -48,7 +55,6 @@ POLICY=$(printf '%s\n' \
   'measure func=POLICY_CHECK' \
   'measure func=BPRM_CHECK mask=MAY_EXEC' \
   'measure func=MMAP_CHECK mask=MAY_EXEC' \
-  'measure func=FILE_CHECK mask=^MAY_READ euid=0' \
   "measure func=FILE_CHECK mask=^MAY_READ uid=$SVC_UID" \
   'measure func=MODULE_CHECK')
 echo "$POLICY" > ~/ima-policy-in-force.txt

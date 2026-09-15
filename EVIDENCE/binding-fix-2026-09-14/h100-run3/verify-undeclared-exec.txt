@@ -1,0 +1,40 @@
+
+[PASS] quote is a TPM 2.0 quote answering the regulator's challenge  (PCRs selected [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+[PASS] quote signature verifies under the key the bundle names  (RSASSA)
+[PASS] disclosure's quote and key hashes match
+[PASS] platform token was issued by Microsoft's attestation service  (https://sharedeus2.eus2.attest.azure.net)
+[PASS] MAA token verifies against the issuer's published keys  (https://sharedeus2.eus2.attest.azure.net)
+[PASS] MAA reports a compliant sevsnpvm confidential VM  (sevsnpvm, azure-compliant-cvm)
+[PASS] MAA nonce equals sha256 of this disclosure  (expected 297ebbfd26edafc5...)
+[PASS] quote key is the vTPM attestation key the platform attests (HCLAkPub)  (matches)
+[PASS] secure boot on; boot and kernel debugging off
+[PASS] boot registers MAA attests equal the ones the quote covers  (MAA attests PCRs [0, 1, 2, 3, 4, 5, 6, 7])
+[PASS] quoted boot registers equal the regulator's reference values  (reference covers PCRs [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+[PASS] exported log and quoted boot registers reproduce the quote's pcrDigest  (prefix 1319 of 1319 entries)
+[PASS] log's boot_aggregate equals sha256 over the quoted PCRs 0 to 9  (matches)
+[PASS] replayed PCR 10 value is the one in the disclosure
+[PASS] verifier's own verdict is reject  (reject, reasons ['undeclared_measurement'])
+[PASS] disclosure agrees with the verifier's own verdict, reasons and counts  (disclosure reject ['undeclared_measurement'] 1319/4; verifier 1319/4)
+[PASS] bundle contains an NVIDIA-issued GPU attestation
+[PASS] GPU attestation verifies against NVIDIA's published keys
+[PASS] GPU attestation nonce equals sha256 of this disclosure
+[PASS] NVIDIA's verifier reports the GPU measurements matched reference values  (success)
+[PASS] GPU reports secure boot on and debug disabled
+[PASS] GPU CC mode ON and DevTools OFF (on-box capture, not signed evidence)
+[PASS] declaration and baseline the operator used are the approved ones
+[PASS] disclosure carries no fields beyond the allowlist
+
+undeclared measurements in the window:
+  /home/azureuser/t1/work/weights.tampered.bin  sha256::c66f9b0aa191688a...
+  /home/azureuser/t1/work/config.json  sha256::66e8db95956c04f1...
+  /home/azureuser/t1/bin/undeclared_module.py  sha256::64b40723b4d0735d...
+  /home/azureuser/t1/work/undeclared_exec.sh  sha256::cb7e518d854801ff...
+
+what the regulator established for itself:
+  - 1319 measured entries in the attested window, 4 outside the approved sets
+  - declared weights present by digest: True; declared configuration present by digest: True
+  - it holds the file names and digests behind those counts, never the weights, outputs or prompts
+not covered: which IMA policy was loaded (a single unmeasured write on this image); work an
+already-declared process submits to the accelerator; code that never arrives as a file.
+
+24/24 checks passed

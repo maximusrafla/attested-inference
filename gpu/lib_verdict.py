@@ -69,12 +69,20 @@ def judge(entries, covered, baseline, declaration):
     config = ("sha256::" + declaration["config_sha256"]) if declaration.get("config_sha256") else None
     approved |= {d for d in (weights, config) if d}
 
-    measured, undeclared, checked = set(), [], 0
+    measured, undeclared, violations, checked = set(), [], [], 0
     for e in entries[:covered or 0]:
         digest, path = e.file_digest_and_path()
         if digest is None:
             continue
         checked += 1
+        # A violation is IMA saying it could not measure this file: the log records an all-zero
+        # digest and the register is extended with all ones, whatever the file held. Both recorded
+        # fields are therefore worthless, and the same all-zero digest appears for every violation,
+        # so letting one into an approved set approves every unmeasurable file at once. They are
+        # counted separately and never matched against the approved set.
+        if e.is_violation:
+            violations.append((digest, path))
+            continue
         measured.add(digest)
         if digest not in approved:
             undeclared.append((digest, path))
@@ -87,6 +95,8 @@ def judge(entries, covered, baseline, declaration):
         rejected_by.append("log_integrity")
     if undeclared:
         rejected_by.append("undeclared_measurement")
+    if violations:
+        rejected_by.append("measurement_violation")
     if weights_seen is False:
         rejected_by.append("payload_identity")
     if config_seen is False:
@@ -98,5 +108,7 @@ def judge(entries, covered, baseline, declaration):
         "undeclared_entries": len(undeclared),
         "weights_in_measured_window": weights_seen,
         "config_in_measured_window": config_seen,
+        "violation_entries": len(violations),
         "undeclared": undeclared,
+        "violations": violations,
     }

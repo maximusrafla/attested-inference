@@ -19,7 +19,12 @@ for D in "$EV"/*/; do
   [ "$L" = approved ] && continue
   [ -f "$D/disclosure.json" ] || continue
   case "$L" in accept|undeclared-gpu) EXP=accept ;; *) EXP=reject ;; esac
-  GPU=(); [ "${CCV_GPU:-0}" = 1 ] && [ -f "$D/nras-token.json" ] && GPU=(--nras-token "$D/nras-token.json" --cc-mode "$D/cc-mode.txt")
+  GPU=()
+  if [ "${CCV_GPU:-0}" = 1 ]; then
+    # Never silently skip the accelerator root: a missing token is a failure, not an absent check.
+    [ -f "$D/nras-token.json" ] || { echo "== $L: NO GPU TOKEN, refusing to verify"; continue; }
+    GPU=(--nras-token "$D/nras-token.json" --cc-mode "$D/cc-mode.txt")
+  fi
   set +e
   "$PY" "$HERE/verify_completeness.py" --disclosure "$D/disclosure.json" --quote "$D/quote.msg" \
     --signature "$D/quote.sig" --ak-pub "$D/ak.pub.pem" --challenge "$(cat "$D/challenge.txt")" \

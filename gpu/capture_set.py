@@ -38,8 +38,12 @@ def sha256_file(p):
 
 
 def digests(entries, start=0):
+    """Approved digests. Violation entries are skipped: IMA logs an all-zero digest when it could
+    not measure a file, the same value for every such file, so approving one approves them all."""
     out = []
     for e in entries[start:]:
+        if e.is_violation:
+            continue
         d, _path = e.file_digest_and_path()
         if d is not None:
             out.append(d)

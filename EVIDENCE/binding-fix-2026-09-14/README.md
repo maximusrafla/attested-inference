@@ -103,3 +103,45 @@ straight after the pull; the raw HCL report and AK certificate are archived besi
 - **Code that never arrives as a file**, which the anonymous-memory probe shows.
 - **A live cloud host's own agents** can put an undeclared digest into the window at any time, as run 1 shows;
   a real deployment has to either declare the provider's agent configuration or quiesce it.
+
+## Two more holes, found by a cold review of the fixed verifier, and run 3
+
+Two fresh reviewers were given the fixed verifier and told to break it. Both succeeded, in ways the hardware
+runs above could not have shown.
+
+1. **The platform issuer was taken from the token itself.** `check_maa` read the `iss` claim and fetched the
+   signing keys from that URL. An operator can sign its own token, publish a matching key set at its own
+   address, and put a **software key in `HCLAkPub`**, which is the one claim the whole chain hangs on. A
+   reviewer demonstrated a bundle assembled with no confidential hardware at all: **17/17, accept**. The GPU
+   path had always pinned NVIDIA's issuer; the platform path had not. Fixed: the issuer must match
+   Microsoft's attestation service, checked before any key is fetched, and the token algorithm must be
+   asymmetric. A self-issued token now fails that check offline.
+2. **Entries IMA could not measure were treated as approved.** When a file is written while it is being read,
+   IMA records a **violation**: an all-zero digest in the log and all-ones into the register, whatever the file
+   held. The all-zero digest reached the approved sets, and since every violation produces that same digest,
+   approving one approved every unmeasurable file. A reviewer rewrote an existing violation entry's path to
+   `/root/undeclared_miner.py` without touching the register (a violation's extend value does not depend on its
+   contents) and the verifier still returned **accept, 23/23**. Fixed: a violation is now its own rejection
+   reason (`measurement_violation`), and `capture_set.py` never puts the all-zero digest into a baseline or a
+   declaration.
+
+Fixing (2) rejected the earlier accept runs, for a reason that had nothing to do with the workload: the
+provider's own agents read `/var/log/auth.log`, `/var/log/syslog` and a waagent results file while they were
+being written, three or four violations per boot, all through the administrator-read rule inherited from the
+kernel's `tcb` table. **That rule is now dropped.** The scheme's coverage comes from the serving account's
+reads instead, and the cost is stated: a file read by the administrator rather than by the serving account is
+no longer covered.
+
+**H100 box, run 3** (`h100-run3/`), the current results: same instance type, driver 595.71.05, VBIOS
+96.00.9F.00.04, kernel 6.8.0-1064-azure-fde, policy in `h100-env-and-policy.txt` (11 rules, no
+administrator-read rule). Baseline 270 entries / 269 digests; declaration 1,045 digests. **All six cases
+24/24 with the expected verdict, in one boot, no violations:** undeclared-GPU accept (21,739 hidden
+4096-square bf16 matmuls, about 3.0 PFLOP in 9.9 s), clean accept over the same 1,315-entry window, then
+tampered, config-changed, undeclared-import and undeclared-exec each rejecting on exactly the one fingerprint
+it added. Probes rerun under this policy: memfd exec, post-approval edit and other-user caught; JIT into
+anonymous memory not; the trim probe still assumes a PCR-10-only quote. About 17 minutes of H100 time, $2 to
+$3.
+
+**A precondition the code cannot enforce**, raised by the same review: the challenge must be the regulator's
+own and unpredictable to the operator. The ceremony writes one into the bundle for convenience, and a
+regulator that feeds that file back in gets no freshness, since the operator chose it.

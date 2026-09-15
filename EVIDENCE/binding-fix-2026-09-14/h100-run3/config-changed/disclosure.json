@@ -1,0 +1,18 @@
+{
+  "ak_pub_sha256": "26462dbb0771f58500a3c20b450597bf224a78c4e6d591321fb12974e2b4bd8c",
+  "baseline_sha256": "57c2cf0b010e9a7077fa03a9394561e879ec1e934d986c450e3086b5c7449e34",
+  "config_in_measured_window": true,
+  "config_sha256": "cb84cbdc80bdec507c0084f20bd1c444d1ef2169b0831855f33e05f096553229",
+  "declaration_sha256": "bbec0b6d29a7290eb4b3f07557e8249d86668306195eb703ae8b0b90c1877134",
+  "ima_entries_checked": 1317,
+  "pcr10_sha256": "b2b0dcca1699ed51c0c76da1606b54bf2fc147d634b7949e554b2fc7bf139895",
+  "quote_sha256": "fb2cd1415e33b1e9b438614bb0358a028bff9dc843b03803f034edaff6e50e81",
+  "rejected_by": [
+    "undeclared_measurement"
+  ],
+  "schema": "ccverify.disclosure.v4",
+  "undeclared_entries": 2,
+  "verdict": "reject",
+  "weights_in_measured_window": true,
+  "weights_sha256": "6f808b22fc40a8f08133dbc8580ddfd75f1ad2612e351e143d42942a404a07e6"
+}

@@ -1,0 +1,92 @@
+== vTPM access, serving account, platform quiesce ==
+== GPU ready state ==
+CC status: ON
+== IMA policy: written once, after boot (this image's kernel command line is inside a signed UKI) ==
+policy loaded (11 rules); second write: DENIED
+== warmup ==
+== executing every utility the ceremony uses, so none of them first appears mid-run ==
+== warming the tool set (throwaway quote and a throwaway check) ==
+warmup done
+== settling 300s so the provider's in-guest agents cycle into the platform set ==
+== baseline ==
+baseline: 270 log entries, 269 distinct file digests
+== declaration (approved reference run, as ccvsvc) ==
+declared stack ran: weights 6f808b22fc40a8f0... euid=996 elapsed 12.019s
+declaration 'declared-serving-stack': 1045 newly measured file digests since baseline (log entries 270 to 1315)
+declared weights: /home/azureuser/t1/work/weights.bin  sha256 6f808b22fc40a8f0...
+########## case: undeclared-gpu --undeclared-gpu
+log window 1315 of 1315 entries; baseline froze the first 270
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1315,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_in_measured_window": true,
+########## case: accept
+log window 1315 of 1315 entries; baseline froze the first 270
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1315,
+  "rejected_by": [],
+  "undeclared_entries": 0,
+  "verdict": "accept",
+  "weights_in_measured_window": true,
+########## case: tampered --tampered
+log window 1316 of 1316 entries; baseline froze the first 270
+undeclared measurements (local view):
+  /home/azureuser/t1/work/weights.tampered.bin  sha256::c66f9b0aa191688a...
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1316,
+  "rejected_by": [
+  "undeclared_entries": 1,
+  "verdict": "reject",
+  "weights_in_measured_window": true,
+########## case: config-changed --config-changed
+log window 1317 of 1317 entries; baseline froze the first 270
+undeclared measurements (local view):
+  /home/azureuser/t1/work/weights.tampered.bin  sha256::c66f9b0aa191688a...
+  /home/azureuser/t1/work/config.json  sha256::66e8db95956c04f1...
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1317,
+  "rejected_by": [
+  "undeclared_entries": 2,
+  "verdict": "reject",
+  "weights_in_measured_window": true,
+########## case: undeclared-import --undeclared-import
+log window 1318 of 1318 entries; baseline froze the first 270
+undeclared measurements (local view):
+  /home/azureuser/t1/work/weights.tampered.bin  sha256::c66f9b0aa191688a...
+  /home/azureuser/t1/work/config.json  sha256::66e8db95956c04f1...
+  /home/azureuser/t1/bin/undeclared_module.py  sha256::64b40723b4d0735d...
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1318,
+  "rejected_by": [
+  "undeclared_entries": 3,
+  "verdict": "reject",
+  "weights_in_measured_window": true,
+########## case: undeclared-exec --undeclared-exec
+log window 1319 of 1319 entries; baseline froze the first 270
+undeclared measurements (local view):
+  /home/azureuser/t1/work/weights.tampered.bin  sha256::c66f9b0aa191688a...
+  /home/azureuser/t1/work/config.json  sha256::66e8db95956c04f1...
+  /home/azureuser/t1/bin/undeclared_module.py  sha256::64b40723b4d0735d...
+  /home/azureuser/t1/work/undeclared_exec.sh  sha256::cb7e518d854801ff...
+  "config_in_measured_window": true,
+  "ima_entries_checked": 1319,
+  "rejected_by": [
+  "undeclared_entries": 4,
+  "verdict": "reject",
+  "weights_in_measured_window": true,
+== binding every case to the platform and accelerator roots ==
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/undeclared-gpu/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/accept/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/tampered/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/config-changed/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/undeclared-import/nras-token.json
+token bytes: 7327
+NRAS attest succeeded via https://nras.attestation.nvidia.com/v4/attest/gpu; token written to /home/azureuser/t1/out/undeclared-exec/nras-token.json
+== sequence done ==

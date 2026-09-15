@@ -1,0 +1,68 @@
+[
+  {
+    "caught": null,
+    "error": "quote does not match this log (stale quote)",
+    "probe": "trim_log"
+  },
+  {
+    "caught": false,
+    "code_bytes": 6,
+    "code_executed": true,
+    "new_entries_during_probe": 0,
+    "new_entry_paths": [],
+    "note": "the declared, approved interpreter executed code that never existed as a file. Generalises the Python-import result: file-backed measurement cannot see execution that is not file-backed",
+    "payload_digest": "sha256::97c8a845c444bbb9...",
+    "payload_digest_appears_in_log": false,
+    "payload_is_a_file": true,
+    "probe": "jit_anon",
+    "question": "does executing code from anonymous memory reach the measurement?"
+  },
+  {
+    "caught": true,
+    "child_status": 0,
+    "new_entries_during_probe": 7,
+    "new_entry_paths": [
+      "/usr/lib/gcc/x86_64-linux-gnu/11/cc1",
+      "/usr/lib/x86_64-linux-gnu/libisl.so.23.1.0",
+      "/usr/lib/x86_64-linux-gnu/libmpc.so.3.2.1",
+      "/usr/lib/x86_64-linux-gnu/libmpfr.so.6.1.0",
+      "/usr/bin/x86_64-linux-gnu-as",
+      "/usr/lib/x86_64-linux-gnu/libopcodes-2.38-system.so",
+      "memfd:anon"
+    ],
+    "payload_bytes": 15960,
+    "payload_digest": "sha256::1ec57c372be575de...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "memfd_exec",
+    "question": "is a binary that never exists on disk measured when executed?"
+  },
+  {
+    "caught": true,
+    "edited": true,
+    "new_entries_during_probe": 1,
+    "new_entry_paths": [
+      "/home/azureuser/t1/bin/declared_stack.py"
+    ],
+    "original_digest": "sha256::9a4f566b225abac8...",
+    "payload_digest": "sha256::c42a010fd7d44a67...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "post_approval_edit",
+    "question": "does editing the approved program after approval change the measurement?"
+  },
+  {
+    "as_user": "undeclared as nobody",
+    "caught": true,
+    "new_entries_during_probe": 1,
+    "new_entry_paths": [
+      "/tmp/tmpk41ex130/u.sh"
+    ],
+    "payload_digest": "sha256::a0d850bb1b7d56a4...",
+    "payload_digest_appears_in_log": true,
+    "payload_is_a_file": true,
+    "probe": "other_user",
+    "question": "does running undeclared code as another user avoid measurement?",
+    "ran": true
+  }
+]

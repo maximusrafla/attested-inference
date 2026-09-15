@@ -17,7 +17,10 @@ What gets checked:
   4. the disclosure's hashes of the quote and the key match,
 
   the platform (MAA token)
-  5. the token verifies against the issuer's published keys and reports a compliant confidential VM,
+  5. the token was issued by Microsoft's attestation service (the issuer is pinned, not read from the
+     token, because an operator that names its own issuer can put a software key in HCLAkPub), verifies
+     against that service's published keys under an asymmetric algorithm, and reports a compliant
+     confidential VM,
   6. its nonce is sha256 of this disclosure,
   7. secure boot is on and boot and kernel debugging are off,
   8. the boot register values MAA attests (PCRs 0 to 7) equal the values the quote covers, and equal the
@@ -33,7 +36,8 @@ What gets checked:
 
   the verdict, recomputed here
   12. the verifier's own verdict over the window (every digest in the baseline or the declaration, the
-      declared weights and configuration present by digest) is the one expected, and
+      declared weights and configuration present by digest, and no entry IMA failed to measure) is the
+      one expected, and
   13. it agrees with the disclosure's verdict, reasons and counts,
 
   the accelerator (NRAS token), and the content
@@ -45,6 +49,10 @@ History, stated because it matters. Before 2026-09-14 this verifier had neither 
 10 and 12. The ceremony quoted with a key it created itself, so a bundle signed by a software key over a
 log with the undeclared entry deleted passed every check (see forge_quote_demo.py). The weight and
 configuration verdicts were read from the disclosure, which the operator's own code wrote.
+
+A precondition the code cannot enforce: the challenge must be the regulator's own and unpredictable to
+the operator. The ceremony writes one into the bundle for convenience, and a regulator that feeds that
+file back in gets no freshness at all, since the operator chose it.
 
 What the checks still cannot establish: which IMA policy was loaded. On this image the policy is written
 once after boot, and that write is not measured, so the verdict is exactly as wide as the policy the
@@ -62,6 +70,7 @@ import argparse
 import base64
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -127,12 +136,23 @@ def load_boot_values(path):
     return {int(k): bytes.fromhex(v.lower().removeprefix("0x")) for k, v in bank.items()}
 
 
-def decode_jwt(token, issuer_certs, allow_expired):
+# The platform token says who issued it. Taking that at its word is fatal: an operator can sign a
+# token with its own key, publish a matching key set at its own URL, and put a software key in the
+# HCLAkPub claim, which is the only thing tying the quote to hardware. So the issuer is pinned to
+# Microsoft's attestation service, the way the GPU path has always pinned NVIDIA's.
+MAA_ISSUER = re.compile(r"^https://[a-z0-9][a-z0-9-]*\.[a-z0-9-]+\.attest\.azure\.net/?$")
+ASYMMETRIC_ALGS = ["RS256", "RS384", "RS512", "PS256", "PS384", "PS512", "ES256", "ES384", "ES512"]
+
+
+def decode_jwt(token, issuer_certs, allow_expired, algs=None):
     import jwt
     from jwt import PyJWKClient
     header = json.loads(b64u(token.split(".")[0]))
+    allowed = algs or ASYMMETRIC_ALGS
+    if header.get("alg") not in allowed:
+        raise ValueError(f"token algorithm {header.get('alg')} is not an allowed asymmetric algorithm")
     key = PyJWKClient(issuer_certs).get_signing_key_from_jwt(token)
-    return jwt.decode(token, key.key, algorithms=[header["alg"]],
+    return jwt.decode(token, key.key, algorithms=allowed,
                       options={"verify_aud": False, "verify_exp": not allow_expired})
 
 
@@ -140,6 +160,9 @@ def check_maa(token_path, disclosure_bytes, ak_pem, boot_values, reference, plat
     from cryptography.hazmat.primitives import serialization
     token = Path(token_path).read_text().strip()
     issuer = json.loads(b64u(token.split(".")[1])).get("iss", "")
+    if not check("platform token was issued by Microsoft's attestation service",
+                 bool(MAA_ISSUER.match(issuer)), issuer or "no issuer in the token"):
+        return
     try:
         claims = decode_jwt(token, issuer.rstrip("/") + "/certs", allow_expired)
     except Exception as e:
@@ -189,13 +212,14 @@ def check_maa(token_path, disclosure_bytes, ak_pem, boot_values, reference, plat
     same = bool(att_vals) and all(i in boot_values and boot_values[i] == v for i, v in att_vals.items())
     check("boot registers MAA attests equal the ones the quote covers",
           same, f"MAA attests PCRs {sorted(att_vals)}" if att_vals else "token carries no PCR values")
-    if reference:
-        # Compared against the quote-covered values, which equal MAA's for PCRs 0 to 7 (checked above)
-        # and are bound to the quote's pcrDigest for all ten (checked by the log replay).
-        ref = load_boot_values(reference)
-        check("quoted boot registers equal the regulator's reference values",
-              bool(ref) and all(boot_values.get(i) == v for i, v in ref.items()),
-              f"reference covers PCRs {sorted(ref)}")
+    # Compared against the quote-covered values, which equal MAA's for PCRs 0 to 7 (checked above)
+    # and are bound to the quote's pcrDigest for all ten (checked by the log replay). Without them,
+    # PCRs 8 and 9, where the kernel and its command line land, are pinned by nothing outside the
+    # bundle, so a missing reference file is a failure rather than a skipped check.
+    ref = load_boot_values(reference) if reference else {}
+    check("quoted boot registers equal the regulator's reference values",
+          bool(ref) and all(boot_values.get(i) == v for i, v in ref.items()),
+          f"reference covers PCRs {sorted(ref)}" if ref else "no reference values supplied")
 
 
 def check_gpu(nras_path, disclosure_bytes, allow_expired):
