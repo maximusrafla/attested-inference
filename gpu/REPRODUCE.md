@@ -116,7 +116,7 @@ ssh ... 'python3 -c "import json;print(json.load(open(\"/home/azureuser/t1/work/
 iterations recorded in the workload's own output. **~3 min, included in the session above.**
 
 **Retained result, so this claim does not depend on rerunning anything:**
-`./EVIDENCE/undeclared-gpu-rerun/`. It holds the measured iteration count with the FLOP arithmetic
+`../EVIDENCE/undeclared-gpu-rerun/`. It holds the measured iteration count with the FLOP arithmetic
 written out (`iteration-count.json`), and the disclosure from the same run with its quote, challenge,
 attestation key, declaration and baseline, so the accept verdict is checkable too:
 
@@ -246,10 +246,10 @@ The positive control matters here and is worth running: drop `--adaptive` from t
 and the same protocol catches the non-adaptive adversary at about 48 percent drop against a 0.13
 percent null. Without that, a null result says nothing.
 
-**About 100 min, ~$16** for the full v2 set including replicates and both positive controls. Findings
-in the project's own notes, retained results in `./EVIDENCE/e1v2-adaptive-adversary/`
-with `ANALYSIS.txt`. The v1 run is kept at `./EVIDENCE/e1-adaptive-adversary/` and several of its
-numbers are wrong; read it only alongside section 7 of the v2 findings.
+**About 100 min, ~$16** for the full v2 set including replicates and both positive controls. Retained
+results in `../EVIDENCE/e1v2-adaptive-adversary/` with `ANALYSIS.txt`. The v1 run is kept at
+`../EVIDENCE/e1-adaptive-adversary/` and several of its numbers are wrong; read it only alongside the v2
+README, which says which ones.
 
 ---
 

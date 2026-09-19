@@ -1,4 +1,10 @@
-# GPU phase COMPLETE: the scheme reaching the accelerator, on a confidential H100 (2026-07-30)
+# The scheme reaching the accelerator, on a confidential H100
+
+> **Currency.** This page was written for the July 2026 build and revised as later work changed the
+> answers. Where a July result no longer holds it is marked and the current one is given beside it; the
+> full record of what changed and when is in the changelog at the end. **The current evidence is
+> `../EVIDENCE/binding-fix-2026-09-14/` (run 3), and its README is the better place to start if you
+> only read one file.**
 
 The CPU build proved the wrapper. This closes the accelerator gap: one real NVIDIA H100 confidential-computing
 attestation, bound under a single nonce to the CPU's SEV-SNP report and to a vTPM quote over the register that
@@ -6,20 +12,50 @@ records every file executed in the domain, all verified from a separate machine.
 
 Substrate: `Standard_NCC40ads_H100_v5`, eastus2, community-gallery VMI `cgpu-NCC-2204-base-image`. One H100 NVL
 (94 GB) inside an AMD SEV-SNP CVM. Driver 595.71.05, VBIOS 96.00.9F.00.04, CUDA 13.2, torch 2.13.0+cu130.
-**1.36 GPU-hours, roughly $9.50 to $12 against a $150 cap.** Full command output: `./EVIDENCE/RUN-LOG.md`.
+**1.36 GPU-hours, roughly $9.50 to $12 against a $150 cap.** Full command output: `../EVIDENCE/RUN-LOG.md`.
 
 ## Results
 
 | Tier | Result |
 |---|---|
-| **0** accelerator binding | Three roots (AMD SEV-SNP via MAA, vTPM AK quote, NVIDIA NRAS ES384) bound to one disclosure hash. **20/20 off-machine checks**, on both an accept case and a reject case. **Partly perishable: ~13 of the 20 still verify offline today, the MAA and NRAS checks have expired (8h and 1h windows, key rotated). see the perishability note in `./EVIDENCE/RUN-LOG.md`** |
+| **0** accelerator binding | Three roots (AMD SEV-SNP via MAA, vTPM AK quote, NVIDIA NRAS ES384) bound to one disclosure hash. **20/20 off-machine checks** in the July ceremony, on both an accept case and a reject case. The
+September ceremony adds the hardware-binding checks and run 3 passes **24/24 on six cases in one boot**. **Partly perishable: ~13 of the 20 still verify offline today, the MAA and NRAS checks have expired (8h and 1h windows, key rotated). see the perishability note in `../EVIDENCE/RUN-LOG.md`** |
 | **0.5** occupancy | 84.7% of the device's measured ceiling sustained across a 93.6 s verifier-bracketed interval on a nonce-seeded dependent chain. **Second pass measured what this actually detects, see below: a strong presence detector for a second CUDA context, a weak meter of undeclared work inside the declared process** |
-| **1** completeness (executed files, under the policy in force) | 5 cases on one boot: declared-only accepts; a flipped bit in the declared payload rejects; an executed undeclared binary rejects on 1 measured entry; **undeclared code imported as data is NOT caught** |
+| **1** completeness (executed files, under the policy in force) | 5 cases on one boot: declared-only accepts; a flipped bit in the declared payload rejects; an executed undeclared binary rejects on 1 measured entry; undeclared code imported as data was **not** caught. **Superseded 2026-09-14:** under the serving-account read rule the data-import case rejects, so that miss was a policy choice, not a limit of the mechanism. Six cases, 24/24 |
 | **2** reviewer | Qwen2.5-Coder-7B in the CC GPU over the M3 fixtures, bounded verdict through the disclosure wrapper. Missed attack A once the fixtures' explanatory comments were stripped. **Second pass separated the variables: the token budget does nothing, naming the pattern moves the greedy verdict, and rejections per violation are 6 of 40 (15%, CI 7-29%) with 0 of 20 false alarms** |
 | **3a** tamper catch | The tampered row: identical verification, reject on the same chain, accept and reject side by side |
 | appendix | Bit-exact re-execution floor at the canonical shape, 100% catch across the tamper ladder, 30,000-record audit batch projected at 0.35 H100-hours |
 
 ## Tier 1 in full, because it is the tier the reshape put at the centre
+
+**Current, run 3 on the H100** (`../EVIDENCE/binding-fix-2026-09-14/h100-run3/`): baseline 270 entries / 269
+digests, declaration 1,045 digests, six cases in one boot, **24/24 checks each with the expected verdict and
+no violations**. The verdict is recomputed by the verifier off the box rather than read from the operator's
+disclosure, and every case replays against its quote exactly.
+
+| case | verdict | window / undeclared digests | rejected by |
+|---|---|---|---|
+| undeclared GPU work from the declared process | **accept** | 1315 / 0 | - (the headline negative; 21,739 hidden matmuls, about 3 PFLOP) |
+| declared stack only | **accept** | 1315 / 0 | - |
+| declared weight file, one bit flipped | **reject** | 1316 / 1 | undeclared_measurement |
+| configuration changed after approval | **reject** | 1317 / 2 | undeclared_measurement |
+| undeclared code imported as data | **reject** | 1318 / 3 | undeclared_measurement |
+| undeclared binary executed alongside | **reject** | 1319 / 4 | undeclared_measurement |
+
+Read the counts down the column rather than across: the log only grows within a boot, so each later window
+carries the earlier cases' fingerprints as well, and each case contributes exactly one of its own, which is
+the fingerprint named in its verifier output. Every reject fires the same reason here, `undeclared_measurement`,
+because once the serving account's reads are measured a tampered weight file and a changed config file both
+surface as digests that are not in the declaration. `payload_identity` and `configuration_identity` remain in
+`lib_verdict.py` as independent reasons; they did not need to fire in this run. The two accept cases covered
+the **same 1,315-entry window**, which is what makes the negative result legible: the hidden GPU work left no
+mark at all.
+
+The price of the read rule that catches the data-import case is measured: the declaration grows from 53
+fingerprints to between 915 and 1,045, almost all of them the serving account's reads of the Python and torch
+libraries.
+
+### The July build, superseded and kept for the record
 
 Baseline 2214 entries after a 300 s settle; declaration 53 digests from one approved reference run with real
 GPU work. All five cases replayed against their quote exactly.
@@ -31,6 +67,11 @@ GPU work. All five cases replayed against their quote exactly.
 | declared weight file, one bit flipped | **reject** | 0 | **no** | payload_identity |
 | undeclared binary executed alongside | **reject** | **1** | yes | undeclared_execution |
 | same import, run as root under tcb | **reject** | **994** (one run; 976 on a second boot, so "roughly 1000") | yes | undeclared_execution |
+
+The root-read rule in that last row came from the kernel's `tcb` table and was **dropped on 2026-09-14**: a
+live cloud machine's own agents trigger unmeasurable entries every boot through it. Coverage now comes from
+the serving account's reads instead, and the cost is that a file read by the administrator rather than by the
+serving account is no longer covered.
 
 The chain, each link cited and none of it ours: the SEV-SNP report roots the CVM, measured boot roots the
 kernel and the IMA policy, Linux IMA extends vTPM PCR 10 with the digest of every executed file, a quote over
@@ -48,7 +89,7 @@ mechanism. **Changed 2026-09-14:** the measurement log now leaves with the discl
 itself (`verify_completeness.py --ima-log`, checks 10 to 13), because with the log withheld the regulator could
 neither interpret the quoted register nor identify the code that wrote the verdict. Rerun on the retained July
 evidence: 14/14 on every case, the verifier's own recount matching every enclave count. See
-`./EVIDENCE/log-export-verify-2026-09-14/`.
+`../EVIDENCE/log-export-verify-2026-09-14/`.
 
 **The claim is deliberately not "nothing undeclared ran."** That phrasing is too strong and does not survive the
 build. Data-driven execution through a declared interpreter stays uncovered unless the policy widens, and both
@@ -90,7 +131,7 @@ as the external instruments, and it inherits their weakness.
 Run on Maxim's instruction to spend budget improving rather than only reporting. Second pass: one cheap Trusted
 Launch box (under $1) plus 0.82 more GPU-hours (about $5.70 to $7.20). Third pass, same day:
 0.39 more GPU-hours plus a cheap box, about $3.50. **Cumulative build spend across all three
-passes: 2.57 GPU-hours, roughly $19 to $23.** Full detail in `./EVIDENCE/RUN-LOG.md`.
+passes: 2.57 GPU-hours, roughly $19 to $23.** Full detail in `../EVIDENCE/RUN-LOG.md`.
 
 **The main result is negative and it is the most load-bearing thing in the build.** Tier 0.5 originally asserted
 its own mechanism. Measured with a paired protocol (clean and contended back to back, so thermal drift cancels;
@@ -117,7 +158,7 @@ an unpaired bookend showed 4.4% drift, which had made a naive first attempt far 
 > Both earlier sets reproduce on demand. Running the archived original pacing on 2026-09-03 gave
 > **35.5 / 44.3 / 49.8%** against the published 35.8 / 43.4 / 48.8, so the July numbers were correct
 > measurements of a competitor taking far more of the device than its label said. Detail and every result file:
-> `./EVIDENCE/e1v2-adaptive-adversary/`,
+> `../EVIDENCE/e1v2-adaptive-adversary/`,
 
 A separate process costs roughly the arithmetic it takes across most of the range, and is caught easily against
 a paired noise floor of about 1%. The exception is the very bottom: at a 2% share the drop is 2.0%, about twice
@@ -147,46 +188,41 @@ running: **paired sigma 1.16%** (n=6 consecutive pairs), **unpaired sigma 3.13%*
 mean, which is how a stored ceiling behaves). Duty response measured from 1% to 30%, with the two
 independent runs agreeing at their overlap (7.18% and 7.25% at duty 0.15).
 
-With the verifier's detection threshold set at 3 sigma of clean-run variation:
+With the verifier's detection threshold set at 3 sigma of clean-run variation, and drop and device share
+measured as the same quantity rather than inferred from the sweep's duty knob:
 
-| verifier protocol | threshold | duty knob at that threshold (WHAT THIS USED TO REPORT) | device share, corrected |
-|---|---|---|---|
-| clean baseline adjacent to the challenge | 3.47% drop | ~6% (was mislabelled "device capacity") | **about 3.5% of a device** |
-| compared against a stored ceiling | 9.39% drop | ~19% (same mislabel) | **about 9% of a device** |
+| verifier protocol | detection threshold | hideable device share |
+|---|---|---|
+| clean baseline adjacent to the challenge (paired) | 2.81% of throughput | **2.4% to 2.7% of a device** |
+| compared against a stored ceiling (unpaired) | - | 1.8% of a device in this session |
 
-The paired figure is a floor on what this instrument could ever do, and it is not free: it assumes the
-verifier can obtain an uncontended baseline on demand, which an operator choosing when to cheat can
-deny. **So roughly 6% to 19% of a device is what the handoff has to cover**, and that is the on-chip
-analogue of an identified-set width. Sigma estimates from n=12 carry perhaps 20% relative uncertainty,
-so treat these as one significant figure.
+**2.7% is the conservative headline.** The range exists because the device share depends on which solo rate
+is the denominator: a run's own short calibration sits about 1.10x below the warm sustained rate (measured at
+1.105, 1.103 and 1.093 across two sessions), so the same threshold divides out to 2.6% in in-run units and
+2.4% against warm sustained capacity. The 95% interval on the threshold itself is roughly **1.7% to 6.7%**,
+because the null rests on six paired ratios, and that interval dominates every other uncertainty here.
 
-> **CORRECTED 2026-09-03. The widths above are in the wrong units and are roughly twice too large.**
+This is no longer an extrapolation. The response was measured directly from **0.85% to 7.93% of a device** and
+is linear over that range, with drop running 1.06 to 1.09 times the share taken
+(`../EVIDENCE/e1c-lowload-bound/`). The paired figure is still a floor on what this instrument could ever do,
+and it is not free: it assumes the verifier can obtain an uncontended baseline on demand, which an operator
+choosing when to cheat can deny.
+
+> **Both figures are NON-ADAPTIVE-ADVERSARY figures, and this is the load-bearing caveat.** Against an
+> operator that pauses its undeclared work while the challenge is in flight, there is no width at all,
+> because no undeclared work executes inside the window: measured drops of 0.09%, 0.07% and 0.03% against
+> thresholds of 0.20%, 0.10% and 0.09% at verifier duty cycles of 10%, 25% and 50%, none detectable, with the
+> hidden work at about half the chip. What unpredictable timing buys is one minus the verifier's share of the
+> clock, and nothing more. A **separate** undeclared process does still leak, and the leak scales with the
+> number of challenge windows rather than the duty cycle. See `../EVIDENCE/e1v2-adaptive-adversary/` and
+> `../EVIDENCE/e1b-leak-vs-windows/`.
 >
-> This script interpolated the detection threshold back through its own duty knob and printed the answer as
-> "percent of device capacity". The knob is undeclared matmuls per declared step, which is not a device share.
-> Measured directly, with the undeclared work's throughput divided by a solo rate calibrated in the same run
-> and retained as an artifact, drop and device share are the same quantity for same-context work to within 3%:
->
-> ```
-> duty knob drop device share actually taken
-> 0.05 4.50% 4.33%
-> 0.10 8.52% 8.27%
-> 0.20 15.74% 15.29%
-> 0.30 21.94% 21.21%
-> ```
->
-> So the hideable width is the detection threshold itself. On a twelve-run null: **2.7% of a device** with a
-> baseline next to the challenge, **1.8%** against a stored ceiling. The 95% interval on the first is roughly
-> **1.7% to 6.7%**, because the null rests on six paired ratios, and the old ~6% figure sits at the top of that
-> interval. The duty knob at the same threshold reads 3.13%, which is the kind of number the old code printed.
->
-> **The instrument is therefore about twice as sensitive as this section claimed**, and the residual the
-> handoff must cover is correspondingly smaller. The structural point is unchanged: the width is set by a
-> baseline the operator controls.
->
-> **Both figures are NON-ADAPTIVE-ADVERSARY figures.** Against an operator that pauses its undeclared work
-> while the challenge is in flight there is no width, because no undeclared work executes inside the window at
-> all. See `./EVIDENCE/e1v2-adaptive-adversary/` and the project's own notes.
+> **What this section used to say, and why it changed.** It reported "roughly 6% to 19% of a device" as the
+> width. Those were the sweep's own duty knob, which is undeclared matmuls per declared step, printed under a
+> "percent of device capacity" label. The knob is not a device share. Corrected 2026-09-03 by measuring the
+> share directly against a solo calibration retained with each run, and the instrument turned out to be about
+> twice as sensitive as claimed. An intermediate correction quoted 3.5% and 9%; the figures above supersede
+> both.
 
 **Configuration: a correctness fix to our mechanism, not a discovery.** Measuring configuration alongside code
 is long-standing practice in measured-launch systems, and our declaration simply did not do it, which was a bug
@@ -194,7 +230,7 @@ on our side. Recording it because the demonstration is useful and the price is w
 undeclared, switching `safety_filter` off, swapping the system prompt and raising temperature to 1.4, with code
 and weights untouched, produced **accept** with every attested value identical. Declaring the config digest turns
 the same run into **reject, `configuration_identity`**. Cost of the fix: **one hash**, against 994 measured
-entries for the IMA-policy widening. What makes it worth a sentence in the paper is not novelty but that this is
+entries for the IMA-policy widening. What makes it worth stating is not novelty but that this is
 exactly where SB 53's promise-versus-practice hook lands, so a scheme aimed at that statute cannot omit it.
 
 **What the widened policy costs the operator, in time.** 994 log entries is a verifier-side burden; the operator
@@ -224,7 +260,7 @@ measurement cannot see execution that is not file-backed.
 answers. "Did PCR 10 move" is useless on a live cloud guest. "Is the digest new since the probe started" gave a
 false negative on the post-approval edit and would have supported a false and serious claim.
 
-## Findings worth carrying into the paper
+## Findings worth carrying forward
 
 1. **The shipped attestation path is not third-party verifiable.** The VMI's `gpu-attestation` wrapper emits an
  EAT signed HS256 and issued by `LOCAL_GPU_VERIFIER`. Neither `nvattest` nor the SDK ships on the image. Real
@@ -249,9 +285,11 @@ false negative on the post-approval edit and would have supported a false and se
 8. **The occupancy check detects a second CUDA context, not stolen arithmetic.** Even 2% duty in a separate
  process costs 36% of throughput, while 25% duty inside the declared process costs 12.7%. Any scheme leaning
  on occupancy should be designed around that asymmetry rather than around a FLOP budget.
-9. **Roughly 6% to 19% of a device can hide under the occupancy noise**, depending on whether the verifier can
- get a contemporaneous clean baseline. That is the width the handoff has to cover, and it is the number Q6
- should quote.
+9. **About 2.7% of a device can hide under the occupancy noise** against an adversary that does not react,
+ with an honest range of 2.4% to 2.7% depending on the denominator and a 95% interval on the underlying
+ threshold of roughly 1.7% to 6.7%. That is the width the handoff has to cover. Against an adversary that
+ pauses while the challenge is in flight there is no width, because nothing undeclared executes inside the
+ window. (An earlier version of this list said 6% to 19%; see the bound section for why that was wrong.)
 10. **The widened measurement policy is free in steady state** and costs about 250 MB/s of hashing on first
  touch. A one-time cost at model load, not a tax on serving.
 11. **Configuration has to be in the declaration.** Code and weights are not enough. Standard practice in
@@ -275,7 +313,11 @@ false negative on the post-approval edit and would have supported a false and se
 | `tier05_occupancy.py` / `tier05_verifier.py` | enclave chain and the verifier that owns the clock |
 | `tier2_reviewer.py` / `tier2_reviewer_reason.py` | the in-enclave reviewer, terse and reasoning prompts |
 | `appendix_reexec.py` | the demoted re-execution capture |
-| `tier1.sh`, `gpu_tier1_sequence.sh` | the ceremony, and the ordered evidence run |
+| `tier1.sh`, `tier1_sequence.sh` | the ceremony, and the ordered evidence run (`gpu_tier1_sequence.sh` is the July version) |
+| `lib_verdict.py` | the verdict, defined once and used by both sides |
+| `forge_quote_demo.py` | builds the forged bundle that defeats the pre-2026-09-14 verifier |
+| `verify_all.sh` | pulls a whole run and verifies it off the box |
+| `nras_attest.py` | fetches an NVIDIA-issued GPU token (NRAS v4), since the image's own is self-signed |
 | `gpuout/collect/` | the fetched evidence: disclosures, quotes, tokens, logs |
 | `devout/` | the Phase A evidence from the cheap box |
 
@@ -295,7 +337,7 @@ python verify_completeness.py --disclosure ... --quote ... --signature ... --ak-
 az group delete --name ccverify-gpu-rg --yes --no-wait
 ```
 
-## Status
+## Status of the July build
 
 - [x] Tier 0 accelerator binding, three roots, 20/20 off-machine on accept and on reject
 - [x] Tier 0 riders: clocks, counters (two probes), mode reporting
@@ -323,11 +365,32 @@ What changed:
  chosen subset.
 - `lib_verdict.py` defines the verdict for both sides; `completeness_check.py` is only the operator's
  rehearsal of it.
-- `verify_completeness.py` requires the key binding, the platform-attested boot registers, the regulator's
- reference values, `boot_aggregate` over the quoted PCRs 0 to 9, and its own recomputed verdict.
+- `verify_completeness.py` requires the platform token's issuer to be on its own allowlist of shared Microsoft
+ endpoints (`TRUSTED_MAA_ISSUERS`, tightened from a `*.attest.azure.net` regex on 2026-09-15),
+ the key binding, the platform-attested boot registers, the regulator's reference values, `boot_aggregate`
+ over the quoted PCRs 0 to 9, and its own recomputed verdict.
 - `forge_quote_demo.py` builds the forgery, `verify_all.sh` pulls and verifies a whole run, `nras_attest.py`
  fetches an NVIDIA-issued token (NRAS v4).
 
-Results are in `./EVIDENCE/binding-fix-2026-09-14/`: five cases 17/17 on a TDX box, 23/23 per case on the
-H100 across two boots, the forgery isolated to the key check (16/17 with a genuine platform token), and the
-undeclared-GPU case accepted with 22,089 hidden matmuls, about 3.0 PFLOP, leaving no trace in the log.
+Results are in `../EVIDENCE/binding-fix-2026-09-14/`: run 3 is the current evidence, all six cases 24/24 on the
+H100 in one boot, the undeclared-GPU case accepted with 21,739 hidden matmuls, about 3 PFLOP, leaving no trace
+in the log, and the forgery isolated to the key check (17/18 with a genuine platform token). Earlier boots
+(runs 1 and 2, 17/17 on a TDX box and 23/23 on the H100) predate the violation-reject fix that produced run 3.
+
+## Changelog
+
+What changed in this page's results after the July build, in order, each with the evidence that drove it.
+
+| date | what changed | evidence |
+|---|---|---|
+| 2026-09-03 | The occupancy width was being reported in the sweep's duty-knob units under a "percent of device capacity" label. Measured directly, the instrument is about twice as sensitive: 6% to 19% became 2.7% and 1.8%. | `../EVIDENCE/e1v2-adaptive-adversary/` |
+| 2026-09-03 | Every occupancy figure was shown to be a **non-adaptive-adversary** figure. An operator that pauses while the challenge is in flight is not detected at any duty cycle tested. | `../EVIDENCE/e1v2-adaptive-adversary/`, `../EVIDENCE/e1b-leak-vs-windows/` |
+| 2026-09-04 | The width stopped being an extrapolation: the response is measured from 0.85% to 7.93% of a device and is linear, and the denominator question is bracketed as a 2.4% to 2.7% range. | `../EVIDENCE/e1c-lowload-bound/` |
+| 2026-09-14 | The measurement log now leaves with the disclosure and the verifier replays and recounts it, instead of the regulator trusting the enclave's own count. | `../EVIDENCE/log-export-verify-2026-09-14/` |
+| 2026-09-14 | The quote is bound to the vTPM key the platform token attests, and weights and configuration are judged on the verifier's own replay. A forged bundle had passed the old verifier 14/14. | `../EVIDENCE/binding-fix-2026-09-14/` |
+| 2026-09-14 | The declared stack runs as a serving account whose reads are measured, so **undeclared code imported as data now rejects**. The administrator-read rule inherited from `tcb` was dropped, because a live cloud host's own agents trigger unmeasurable entries through it every boot. | `../EVIDENCE/binding-fix-2026-09-14/h100-run3/` |
+| 2026-09-14 | Entries IMA could not fingerprint were counting as approved; a violation is now its own rejection reason. | `../EVIDENCE/binding-fix-2026-09-14/` |
+| 2026-09-15 | The platform token's issuer is checked against the verifier's own allowlist of Microsoft-operated endpoints, not read out of the token. A bundle built with no confidential hardware at all had passed 17/17. | `../EVIDENCE/binding-fix-2026-09-14/forged-issuer-nohardware/` |
+
+What did not change: the claim the mechanism supports, and the headline negative. Undeclared GPU work from a
+declared process still passes an accepting verdict, because attestation answers what ran, not how much ran.

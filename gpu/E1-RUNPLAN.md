@@ -1,9 +1,8 @@
 # E1 run plan: the adaptive adversary, yield on puzzle
 
 Written 2026-09-03 before renting anything, and **updated the same day with what was actually run and what it
-returned**, so it now works as a reproduce document rather than only a plan. Brief:
-the project's own notes. Findings:
-the project's own notes. Results: `./EVIDENCE/e1-adaptive-adversary/`.
+returned**, so it now works as a reproduce document rather than only a plan. Results:
+`../EVIDENCE/e1-adaptive-adversary/`.
 
 
 **What E1 measures.** Every occupancy number in this repository, the roughly 6 percent and roughly 19 percent
@@ -90,7 +89,7 @@ when hidden work is present gives the contended run an idle pause before every t
 never gets, and the comparison then measures the device's clock response to that pause instead of contention.
 Measured, that was a constant **7 percent in the adversary's favour against a null of 0.05 percent**, which is
 large enough to manufacture the negative result. The uncorrected run is retained as
-`./EVIDENCE/e1-adaptive-adversary/B1x-sep-adaptive-CONFOUNDED-settle-asymmetry.json` so the artefact is
+`../EVIDENCE/e1-adaptive-adversary/B1x-sep-adaptive-CONFOUNDED-settle-asymmetry.json` so the artefact is
 visible.
 
 ## Part C: how fast does the operator have to be
@@ -174,7 +173,7 @@ python e1_audit.py
 
 ## Retained evidence
 
-`./EVIDENCE/e1-adaptive-adversary/`: every JSON above, a summary with the arithmetic written out longhand,
+`../EVIDENCE/e1-adaptive-adversary/`: every JSON above, a summary with the arithmetic written out longhand,
 the environment block, provenance, and the caveats. Hidden-work iteration counts are researcher-side
 measurements from the operator's side of the boundary and a regulator would receive none of them.
 
@@ -186,6 +185,6 @@ length 3.0 / 1.0 / 0.5 / 0.25 s giving 5 / 15 / 30 / 60 windows, plus the same-c
 **Got:** 0.08 / 0.45 / 0.64 / 0.97 percent, the last three called, same-context -0.15. About 70 minutes of
 measurement (the planned 25 was an underestimate: each pair is two 65 s runs plus competitor startup),
 VM about 1.3 hours, $9 to $12. Analyse with `python e1v2_analyse.py --dir <dir>`, which now carries an E1b
-section. Evidence `./EVIDENCE/e1b-leak-vs-windows/`, Two things to know: `provision_gpu.ps1` exits nonzero on an Azure stderr warning after the VM is
+section. Evidence `../EVIDENCE/e1b-leak-vs-windows/`, Two things to know: `provision_gpu.ps1` exits nonzero on an Azure stderr warning after the VM is
 created (write the IP and start files by hand), and the first pair of a fresh session runs on a cold, boosted
 device; run a throwaway pair first or discard it under the stated rule.

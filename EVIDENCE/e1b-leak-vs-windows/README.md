@@ -5,12 +5,12 @@ confidential virtual machine, same image, driver (595.71.05), torch (2.13.0+cu13
 v2 run. **About 1.3 GPU-hours, $9 to $12.** The protocol was fixed before the run and followed as written, with six repeats and a five second warmup;
 the launch script `e1b_run.sh` is retained here.
 
-**`ANALYSIS.txt` is the file to read first.** It is the output of `././gpu/e1v2_analyse.py`, whose E1b
+**`ANALYSIS.txt` is the file to read first.** It is the output of `../../gpu/e1v2_analyse.py`, whose E1b
 section recomputes every figure from the raw per-window and per-repeat values.
 
 ## The question
 
-The v2 run (`./e1v2-adaptive-adversary/`) found that a separate-process adaptive operator, one that pauses its undeclared work when a
+The v2 run (`../e1v2-adaptive-adversary/`) found that a separate-process adaptive operator, one that pauses its undeclared work when a
 challenge arrives, still leaks a little at every pause, and that at fifteen windows the leak crossed the
 detection threshold, marginally: 0.48 percent against 0.46 on three repeats. The prediction that would
 establish or kill it: at a FIXED verifier duty cycle, the leak should rise with the number of challenge

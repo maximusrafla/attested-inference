@@ -1,8 +1,7 @@
 # E1c: the same-context bound measured below 4 percent of a device, with the denominator bracketed in-session
 
 2026-09-04 (UTC 04:40 to 04:53), one NVIDIA H100 NVL in an AMD SEV-SNP confidential VM, same image, driver
-595.71.05, torch 2.13.0+cu130, CC ON. **About 0.45 GPU-hours, $3 to $4.** Protocol written before the run:
-the project's own notes.
+595.71.05, torch 2.13.0+cu130, CC ON. **About 0.45 GPU-hours, $3 to $4.** The protocol was written before the run.
 **Read `ANALYSIS.txt` first**; it is `e1c_analyse.py` run on the raw files and uses none of the harness's summary
 fields except to cross-check them.
 

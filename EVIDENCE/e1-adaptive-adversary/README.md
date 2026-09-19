@@ -1,6 +1,6 @@
 # E1: the occupancy check against an operator that reacts
 
-> **SUPERSEDED by `./e1v2-adaptive-adversary/`.** This run was reviewed and rebuilt the same day.
+> **SUPERSEDED by `../e1v2-adaptive-adversary/`.** This run was reviewed and rebuilt the same day.
 > Its duty axis was quantised, its device-share denominators were incommensurable, its detection rule
 > compared a mean against the spread of individuals, and every point was n=1. The results here are
 > retained as the record, including the deliberately-kept confounded run. For any number, use the v2
@@ -10,7 +10,7 @@ Retained results from one session on 2026-09-03, on one NVIDIA H100 NVL inside a
 virtual machine. **1.63 GPU-hours, $11 to $14.** Same driver 595.71.05, VBIOS 96.00.9F.00.04 and PyTorch
 2.13.0+cu130 as the July runs, deliberately, so the comparisons are like for like.
 
-Every command with its expected output, cost and runtime: `././gpu/E1-RUNPLAN.md`.
+Every command with its expected output, cost and runtime: `../../gpu/E1-RUNPLAN.md`.
 
 ## What was measured
 
@@ -24,7 +24,7 @@ one.
 ## The files
 
 `e1-summary.json` is the one to read first. It carries every headline number, the arithmetic that produced it,
-the environment, the provenance and the caveats, in the pattern of `./undeclared-gpu-rerun/iteration-count.json`.
+the environment, the provenance and the caveats, in the pattern of `../undeclared-gpu-rerun/iteration-count.json`.
 
 | file | what it is |
 |---|---|

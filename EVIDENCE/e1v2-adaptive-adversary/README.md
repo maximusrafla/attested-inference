@@ -1,16 +1,14 @@
 # E1 v2: the occupancy check, measured after an internal review
 
 One session on 2026-09-03, one NVIDIA H100 NVL inside an AMD SEV-SNP confidential virtual machine.
-**1.82 GPU-hours, $12.70 to $16.04.** The protocol
-changes, written before the rerun, are in the project's own notes. Proposed edits to shared
-documents, none applied, are in the project's own notes.
+**1.82 GPU-hours, $12.70 to $16.04.** The protocol changes were written before the rerun.
 
-**`ANALYSIS.txt` is the file to read first.** It is the output of `././gpu/e1v2_analyse.py`, which
+**`ANALYSIS.txt` is the file to read first.** It is the output of `../../gpu/e1v2_analyse.py`, which
 recomputes every figure from the raw per-window and per-repeat values rather than trusting any summary field
 written by the harness.
 
-The v1 run is kept at `./e1-adaptive-adversary/`. Several of its numbers are wrong and section 7 of the v2
-findings says which and why. Read it only alongside that section.
+The v1 run is kept at `../e1-adaptive-adversary/`. Several of its numbers are wrong; its own README is
+stamped with which ones and why. Read it only alongside that stamp.
 
 ## The headline, which is not about the adaptive adversary at all
 
