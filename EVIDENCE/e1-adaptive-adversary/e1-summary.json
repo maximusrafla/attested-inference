@@ -887,7 +887,7 @@
       "Absolute throughput reproducibility, which depends on the device's thermal state and on what else the cloud is running."
     ]
   },
-  "relationship_to_the_published_numbers": "These figures sit ALONGSIDE the earlier ones rather than replacing them. The earlier roughly 6 percent and roughly 19 percent widths remain correct for the adversary they were measured against, which is the one that never reacts, and must now be quoted with that qualifier. The adaptive figures answer a different question.",
+  "relationship_to_the_published_numbers": "The 6 percent and 19 percent widths this field used to call correct were not device shares at all. They were the sweep's own duty knob printed under a device-capacity label. Measured directly, the width is a detection threshold of 2.81 percent of throughput, which is 2.4 to 2.7 percent of a device depending on the denominator, with a 95 percent interval on the threshold of roughly 1.7 to 6.7 percent. See EVIDENCE/e1v2-adaptive-adversary/ and EVIDENCE/e1c-lowload-bound/. Separately, every one of those figures is a non-adaptive-adversary figure: against an operator that pauses while the challenge is in flight there is no width, because nothing undeclared executes inside the window.",
   "reproduce": "gpu/E1-RUNPLAN.md",
   "environment": {
     "device": "NVIDIA H100 NVL",

@@ -1,10 +1,8 @@
 # The scheme reaching the accelerator, on a confidential H100
 
-> **Currency.** This page was written for the July 2026 build and revised as later work changed the
-> answers. Where a July result no longer holds it is marked and the current one is given beside it; the
-> full record of what changed and when is in the changelog at the end. **The current evidence is
-> `../EVIDENCE/binding-fix-2026-09-14/` (run 3), and its README is the better place to start if you
-> only read one file.**
+> **The current evidence is `../EVIDENCE/binding-fix-2026-09-14/` (run 3), and its README is the better
+> place to start if you only read one file.** This page states the results as they now stand; the changelog
+> at the end records what changed since the July build and which evidence drove each change.
 
 The CPU build proved the wrapper. This closes the accelerator gap: one real NVIDIA H100 confidential-computing
 attestation, bound under a single nonce to the CPU's SEV-SNP report and to a vTPM quote over the register that
@@ -18,10 +16,10 @@ Substrate: `Standard_NCC40ads_H100_v5`, eastus2, community-gallery VMI `cgpu-NCC
 
 | Tier | Result |
 |---|---|
-| **0** accelerator binding | Three roots (AMD SEV-SNP via MAA, vTPM AK quote, NVIDIA NRAS ES384) bound to one disclosure hash. **20/20 off-machine checks** in the July ceremony, on both an accept case and a reject case. The
-September ceremony adds the hardware-binding checks and run 3 passes **24/24 on six cases in one boot**. **Partly perishable: ~13 of the 20 still verify offline today, the MAA and NRAS checks have expired (8h and 1h windows, key rotated). see the perishability note in `../EVIDENCE/RUN-LOG.md`** |
+| **0** accelerator binding | Three roots (AMD SEV-SNP via MAA, vTPM AK quote, NVIDIA NRAS ES384) bound to one disclosure hash. **24/24 off-machine checks on each of six cases in one boot** (run 3). The July ceremony ran 20 checks; the
+hardware-binding checks were added on 2026-09-14. **Partly perishable: ~13 of the 20 still verify offline today, the MAA and NRAS checks have expired (8h and 1h windows, key rotated). see the perishability note in `../EVIDENCE/RUN-LOG.md`** |
 | **0.5** occupancy | 84.7% of the device's measured ceiling sustained across a 93.6 s verifier-bracketed interval on a nonce-seeded dependent chain. **Second pass measured what this actually detects, see below: a strong presence detector for a second CUDA context, a weak meter of undeclared work inside the declared process** |
-| **1** completeness (executed files, under the policy in force) | 5 cases on one boot: declared-only accepts; a flipped bit in the declared payload rejects; an executed undeclared binary rejects on 1 measured entry; undeclared code imported as data was **not** caught. **Superseded 2026-09-14:** under the serving-account read rule the data-import case rejects, so that miss was a policy choice, not a limit of the mechanism. Six cases, 24/24 |
+| **1** completeness (executed files, under the policy in force) | 6 cases on one boot: declared-only accepts; a flipped bit in the declared payload, a changed configuration, an executed undeclared binary and undeclared code imported as data all reject. The one case that accepts and should not is undeclared GPU work from the declared process |
 | **2** reviewer | Qwen2.5-Coder-7B in the CC GPU over the M3 fixtures, bounded verdict through the disclosure wrapper. Missed attack A once the fixtures' explanatory comments were stripped. **Second pass separated the variables: the token budget does nothing, naming the pattern moves the greedy verdict, and rejections per violation are 6 of 40 (15%, CI 7-29%) with 0 of 20 false alarms** |
 | **3a** tamper catch | The tampered row: identical verification, reject on the same chain, accept and reject side by side |
 | appendix | Bit-exact re-execution floor at the canonical shape, 100% catch across the tamper ladder, 30,000-record audit batch projected at 0.35 H100-hours |
@@ -55,23 +53,11 @@ The price of the read rule that catches the data-import case is measured: the de
 fingerprints to between 915 and 1,045, almost all of them the serving account's reads of the Python and torch
 libraries.
 
-### The July build, superseded and kept for the record
-
-Baseline 2214 entries after a 300 s settle; declaration 53 digests from one approved reference run with real
-GPU work. All five cases replayed against their quote exactly.
-
-| case | verdict | undeclared | payload matches | rejected by |
-|---|---|---|---|---|
-| declared stack only | **accept** | 0 | yes | - |
-| undeclared code imported as data, non-root | **accept** | 0 | yes | - |
-| declared weight file, one bit flipped | **reject** | 0 | **no** | payload_identity |
-| undeclared binary executed alongside | **reject** | **1** | yes | undeclared_execution |
-| same import, run as root under tcb | **reject** | **994** (one run; 976 on a second boot, so "roughly 1000") | yes | undeclared_execution |
-
-The root-read rule in that last row came from the kernel's `tcb` table and was **dropped on 2026-09-14**: a
-live cloud machine's own agents trigger unmeasurable entries every boot through it. Coverage now comes from
-the serving account's reads instead, and the cost is that a file read by the administrator rather than by the
-serving account is no longer covered.
+The rule that used to cover the data-import case came from the kernel's `tcb` table and measured what the
+administrator read. It was dropped on 2026-09-14, because a live cloud machine's own agents trigger
+unmeasurable entries through it every boot. Coverage comes from the serving account's reads instead,
+and the cost is stated: a file read by the administrator rather than by the serving account is not
+covered.
 
 The chain, each link cited and none of it ours: the SEV-SNP report roots the CVM, measured boot roots the
 kernel and the IMA policy, Linux IMA extends vTPM PCR 10 with the digest of every executed file, a quote over
@@ -216,13 +202,6 @@ choosing when to cheat can deny.
 > clock, and nothing more. A **separate** undeclared process does still leak, and the leak scales with the
 > number of challenge windows rather than the duty cycle. See `../EVIDENCE/e1v2-adaptive-adversary/` and
 > `../EVIDENCE/e1b-leak-vs-windows/`.
->
-> **What this section used to say, and why it changed.** It reported "roughly 6% to 19% of a device" as the
-> width. Those were the sweep's own duty knob, which is undeclared matmuls per declared step, printed under a
-> "percent of device capacity" label. The knob is not a device share. Corrected 2026-09-03 by measuring the
-> share directly against a solo calibration retained with each run, and the instrument turned out to be about
-> twice as sensitive as claimed. An intermediate correction quoted 3.5% and 9%; the figures above supersede
-> both.
 
 **Configuration: a correctness fix to our mechanism, not a discovery.** Measuring configuration alongside code
 is long-standing practice in measured-launch systems, and our declaration simply did not do it, which was a bug
@@ -289,7 +268,7 @@ false negative on the post-approval edit and would have supported a false and se
  with an honest range of 2.4% to 2.7% depending on the denominator and a 95% interval on the underlying
  threshold of roughly 1.7% to 6.7%. That is the width the handoff has to cover. Against an adversary that
  pauses while the challenge is in flight there is no width, because nothing undeclared executes inside the
- window. (An earlier version of this list said 6% to 19%; see the bound section for why that was wrong.)
+ window.
 10. **The widened measurement policy is free in steady state** and costs about 250 MB/s of hashing on first
  touch. A one-time cost at model load, not a tax on serving.
 11. **Configuration has to be in the declaration.** Code and weights are not enough. Standard practice in
@@ -337,9 +316,9 @@ python verify_completeness.py --disclosure ... --quote ... --signature ... --ak-
 az group delete --name ccverify-gpu-rg --yes --no-wait
 ```
 
-## Status of the July build
+## What is built
 
-- [x] Tier 0 accelerator binding, three roots, 20/20 off-machine on accept and on reject
+- [x] Tier 0 accelerator binding, three roots, verified off-machine on accept and on reject
 - [x] Tier 0 riders: clocks, counters (two probes), mode reporting
 - [x] Tier 0.5 occupancy over a verifier-bracketed interval
 - [x] Tier 1 completeness, five cases, including the honest miss
