@@ -17,10 +17,10 @@ What gets checked:
   4. the disclosure's hashes of the quote and the key match,
 
   the platform (MAA token)
-  5. the token was issued by Microsoft's attestation service (the issuer is pinned, not read from the
-     token, because an operator that names its own issuer can put a software key in HCLAkPub), verifies
-     against that service's published keys under an asymmetric algorithm, and reports a compliant
-     confidential VM,
+  5. the token's issuer is one on the verifier's own list of Microsoft-operated shared endpoints (not a
+     pattern accepted from the token, because any customer can create a *.attest.azure.net provider with
+     a custom policy), it verifies against that endpoint's published keys under an asymmetric algorithm,
+     and reports a compliant confidential VM,
   6. its nonce is sha256 of this disclosure,
   7. secure boot is on and boot and kernel debugging are off,
   8. the boot register values MAA attests (PCRs 0 to 7) equal the values the quote covers, and equal the
@@ -70,7 +70,6 @@ import argparse
 import base64
 import hashlib
 import json
-import re
 import sys
 from pathlib import Path
 
@@ -136,11 +135,23 @@ def load_boot_values(path):
     return {int(k): bytes.fromhex(v.lower().removeprefix("0x")) for k, v in bank.items()}
 
 
-# The platform token says who issued it. Taking that at its word is fatal: an operator can sign a
-# token with its own key, publish a matching key set at its own URL, and put a software key in the
-# HCLAkPub claim, which is the only thing tying the quote to hardware. So the issuer is pinned to
-# Microsoft's attestation service, the way the GPU path has always pinned NVIDIA's.
-MAA_ISSUER = re.compile(r"^https://[a-z0-9][a-z0-9-]*\.[a-z0-9-]+\.attest\.azure\.net/?$")
+# The platform token says who issued it. Taking that at its word is fatal: an operator can stand up
+# its own attestation provider, or a local key server, name it in the token, and put a software key in
+# the HCLAkPub claim, which is the only thing tying the quote to hardware. Pinning by pattern to
+# *.attest.azure.net is not enough: any Azure customer can create a provider at <name>.<region>.attest
+# .azure.net and give it a custom policy, and whether such a policy can issue the isolation-tee claims
+# as constants is not something this build establishes. So the issuer must be one of Microsoft's shared,
+# Microsoft-operated endpoints, which run the fixed default policy and no customer can reconfigure; this
+# is the verifier's own list, not a pattern read off the token. The shared endpoint also does the work
+# that makes HCLAkPub trustworthy at all: it validates that the SNP report's report_data commits to the
+# runtime block carrying that key. A production regulator would instead pin its own dedicated provider by
+# its policy hash (x-ms-policy-hash); the four below are the regions this ceremony's bind step uses.
+TRUSTED_MAA_ISSUERS = frozenset({
+    "https://sharedeus2.eus2.attest.azure.net",   # East US 2
+    "https://sharedeus.eus.attest.azure.net",     # East US
+    "https://sharedwus.wus.attest.azure.net",     # West US
+    "https://sharedcus.cus.attest.azure.net",     # Central US
+})
 ASYMMETRIC_ALGS = ["RS256", "RS384", "RS512", "PS256", "PS384", "PS512", "ES256", "ES384", "ES512"]
 
 
@@ -161,7 +172,7 @@ def check_maa(token_path, disclosure_bytes, ak_pem, boot_values, reference, plat
     token = Path(token_path).read_text().strip()
     issuer = json.loads(b64u(token.split(".")[1])).get("iss", "")
     if not check("platform token was issued by Microsoft's attestation service",
-                 bool(MAA_ISSUER.match(issuer)), issuer or "no issuer in the token"):
+                 issuer.rstrip("/") in TRUSTED_MAA_ISSUERS, issuer or "no issuer in the token"):
         return
     try:
         claims = decode_jwt(token, issuer.rstrip("/") + "/certs", allow_expired)

@@ -11,9 +11,11 @@ set, and every later run is checked against it.
                     where the checked window starts.
 
   declaration.json  the declared stack: the files an approved reference run of the stack caused
-                    IMA to measure, plus the declared weight file's digest carried explicitly
-                    (IMA under the tcb policy does not measure a data file read by a non-root
-                    process, so the weight blob rides along the way M1 carried its code hash).
+                    IMA to measure, plus the declared weight and configuration digests carried
+                    explicitly as the values the verdict must find in the log. Under the final
+                    policy the serving account's reads are measured, so the weight and config
+                    files also appear in the log on their own; the explicit digests are the
+                    reference the verifier looks for, not a substitute for measuring them.
 
 Usage:
   python3 capture_set.py baseline --ima-log ima.bin --out baseline.json
@@ -88,11 +90,12 @@ def main():
         "digests": new,
         "weights_path": args.weights,
         "weights_sha256": sha256_file(args.weights) if args.weights else None,
-        # Configuration is declared explicitly, for the same reason the weights are: it is read
-        # as data at run time, so no measurement covers it. Behaviour is code times weights
-        # times config, and the statute's live hook is about applied safeguards, which live
-        # here and not in the code hash. Leaving it out was a real gap, demonstrated before it
-        # was closed: switching the safety filter off produced an identical accept.
+        # Configuration is declared explicitly, the same way the weights are, as the digest the
+        # verdict must find in the log (under the final policy the serving account's read of it is
+        # measured, so it appears there on its own too). Behaviour is code times weights times
+        # config, and the statute's live hook is about applied safeguards, which live here and not
+        # in the code hash. Leaving it out was a real gap, demonstrated before it was closed:
+        # switching the safety filter off produced an identical accept.
         "config_path": args.config,
         "config_sha256": sha256_file(args.config) if args.config else None,
     }

@@ -1,0 +1,12 @@
+{
+ "keys": [
+  {
+   "kty": "RSA",
+   "kid": "forged-key-1",
+   "use": "sig",
+   "alg": "RS256",
+   "n": "q2vHBNaShUdrqrUkVg4Fgdj6eRU9wthB88HOy3S78NFGQ0n7KAq9vViKwdpWZX4spRTGFuEi9KKbgFD5d_rV_RpI6AZQd05cEUj8TilNWZ-jzcJ70CyhMancxm6W0HUgKNWtQ1zx1w3AK-w1BoF4IqlCyLqJmlUu9aFfYeL6_s6avJ5lHExlI3SJzoxjO10rUMrbei-aOTTPAnjs__L6GVrDh5L8rvxETk5SAhFp9ncsdw4EQKyF4FVkHe7-CTN_ZaThfjyi0JYzqebmo_Rgj0C-Wpvb278UfIWUn5X7H84He6_g0Ct5YWg8R9FK2aKuvZr4E-21R_FRg0mVKfdacQ",
+   "e": "AQAB"
+  }
+ ]
+}

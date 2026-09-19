@@ -28,7 +28,7 @@ signs it with a fresh 2048-bit software RSA key and writes an accept disclosure 
 | July GPU undeclared-exec, forged (`forged-undeclared-exec/`) | pre-fix verifier | **14/14, accept** (`forged-vs-old-verifier.txt`) |
 | same forged bundle | fixed verifier | fails: no platform token ties the key to hardware, the quote does not cover the boot registers, the declared weights never appear in the log (`forged-vs-new-verifier.txt`) |
 | genuine July GPU accept bundle | fixed verifier | fails the same three bindings: a different key signed the quote (`july-accept-vs-new-verifier.txt`) |
-| TDX dev box undeclared-exec, forged, with a **genuine** MAA token requested over the forged disclosure's hash (`forged-tdx-with-genuine-token/`) | fixed verifier | **16/17: only the key-binding check stops it** (`forged-tdx-vs-new-verifier.txt`) |
+| TDX dev box undeclared-exec, forged, with a **genuine** MAA token requested over the forged disclosure's hash (`forged-tdx-with-genuine-token/`) | fixed verifier | **17/18: only the key-binding check stops it** (`forged-tdx-vs-new-verifier.txt`) |
 
 The last row isolates the check that matters. Everything else a forger controls can be made consistent.
 
@@ -113,9 +113,15 @@ runs above could not have shown.
    signing keys from that URL. An operator can sign its own token, publish a matching key set at its own
    address, and put a **software key in `HCLAkPub`**, which is the one claim the whole chain hangs on. A
    reviewer demonstrated a bundle assembled with no confidential hardware at all: **17/17, accept**. The GPU
-   path had always pinned NVIDIA's issuer; the platform path had not. Fixed: the issuer must match
-   Microsoft's attestation service, checked before any key is fetched, and the token algorithm must be
-   asymmetric. A self-issued token now fails that check offline.
+   path had always pinned NVIDIA's issuer; the platform path had not. Fixed: the issuer must be one on the
+   verifier's own allowlist of Microsoft-operated shared attestation endpoints (`TRUSTED_MAA_ISSUERS`),
+   checked before any key is fetched, and the token algorithm must be asymmetric. A pattern match on
+   `*.attest.azure.net` is deliberately not used, since any Azure customer can create a provider with that
+   suffix and a custom policy; a self-issued token, or a token from a customer-created provider, now fails
+   that check offline. A production regulator would instead pin its own dedicated provider by policy hash.
+   The full reproduction of this "no confidential hardware" forgery is retained in
+   `forged-issuer-nohardware/` (a 127.0.0.1 self-issued software key: pre-pin verifier 17/17 accept, current
+   verifier rejects at the issuer check); see its README.
 2. **Entries IMA could not measure were treated as approved.** When a file is written while it is being read,
    IMA records a **violation**: an all-zero digest in the log and all-ones into the register, whatever the file
    held. The all-zero digest reached the approved sets, and since every violation produces that same digest,
@@ -136,9 +142,10 @@ no longer covered.
 96.00.9F.00.04, kernel 6.8.0-1064-azure-fde, policy in `h100-env-and-policy.txt` (11 rules, no
 administrator-read rule). Baseline 270 entries / 269 digests; declaration 1,045 digests. **All six cases
 24/24 with the expected verdict, in one boot, no violations:** undeclared-GPU accept (21,739 hidden
-4096-square bf16 matmuls, about 3.0 PFLOP in 9.9 s), clean accept over the same 1,315-entry window, then
-tampered, config-changed, undeclared-import and undeclared-exec each rejecting on exactly the one fingerprint
-it added. Probes rerun under this policy: memfd exec, post-approval edit and other-user caught; JIT into
+4096-square bf16 matmuls, about 3 PFLOP in 9.9 s), clean accept over the same 1,315-entry window, then
+tampered, config-changed, undeclared-import and undeclared-exec. Because the log only grows in a boot, each
+of those later windows carries the earlier changes' fingerprints too; each case adds exactly one of its own,
+which is the fingerprint named in its verifier output. Probes rerun under this policy: memfd exec, post-approval edit and other-user caught; JIT into
 anonymous memory not; the trim probe still assumes a PCR-10-only quote. About 17 minutes of H100 time, $2 to
 $3.
 

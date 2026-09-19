@@ -1,0 +1,21 @@
+
+[PASS] quote is a TPM 2.0 quote answering the regulator's challenge  (PCRs selected [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+[PASS] quote signature verifies under the key the bundle names  (RSASSA)
+[PASS] disclosure's quote and key hashes match
+[FAIL] platform token was issued by Microsoft's attestation service  (http://127.0.0.1:8731)
+[PASS] exported log and quoted boot registers reproduce the quote's pcrDigest  (prefix 1315 of 1315 entries)
+[PASS] log's boot_aggregate equals sha256 over the quoted PCRs 0 to 9  (matches)
+[PASS] replayed PCR 10 value is the one in the disclosure
+[PASS] verifier's own verdict is accept  (accept, reasons [])
+[PASS] disclosure agrees with the verifier's own verdict, reasons and counts  (disclosure accept [] 1315/0; verifier 1315/0)
+[PASS] declaration and baseline the operator used are the approved ones
+[PASS] disclosure carries no fields beyond the allowlist
+
+what the regulator established for itself:
+  - 1315 measured entries in the attested window, 0 outside the approved sets
+  - declared weights present by digest: True; declared configuration present by digest: True
+  - it holds the file names and digests behind those counts, never the weights, outputs or prompts
+not covered: which IMA policy was loaded (a single unmeasured write on this image); work an
+already-declared process submits to the accelerator; code that never arrives as a file.
+
+10/11 checks passed

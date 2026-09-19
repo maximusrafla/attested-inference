@@ -1,0 +1,8 @@
+issuer                                        d7e8052 regex  current allowlist
+https://evil.eus2.attest.azure.net            True          False
+https://sharedeus2.eus2.attest.azure.net      True          True
+http://127.0.0.1:8731                         False         False
+
+The customer-created-provider variant cannot be run end to end off-box (no JWKS at a real
+*.attest.azure.net host we do not own). Its crux is the row above: the d7e8052 regex accepts
+evil.eus2.attest.azure.net; the current allowlist rejects it. Only the shared endpoint passes both.

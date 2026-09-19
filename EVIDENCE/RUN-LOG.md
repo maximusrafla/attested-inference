@@ -387,9 +387,9 @@ signal against an efficiency baseline the operator controls.
 
 Two sessions on one confidential H100 in an SEV-SNP CVM. The first was reviewed and several of its claims
 did not survive, so it was rebuilt and rerun the same day. **v1: 1.63 GPU-hours, $11.38 to $14.38. v2: 1.82
-GPU-hours, $12.70 to $16.04.** Read the project's own notes, not the v1 note; section 7 of
-it lists everything v1 got wrong. Evidence in `e1v2-adaptive-adversary/` with `ANALYSIS.txt` recomputing every
-figure from raw values. Protocol written before the rerun: the project's own notes.
+GPU-hours, $12.70 to $16.04.** Use the v2 results, not the v1 note: `e1v2-adaptive-adversary/README.md` says which v1 numbers the rerun
+superseded, and its `ANALYSIS.txt` recomputes every figure from raw values. The protocol was written before
+the rerun.
 
 **The largest finding is not about the adaptive adversary.** The hideable width had been reported in units of
 the sweep's own duty knob while labelled "percent of device capacity". Corrected, it is **2.7% of a device**
@@ -598,7 +598,7 @@ retained ~90 days.
 ## E1b, 2026-09-03 (UTC 09-04 01:20 to 02:29): leak versus window count at fixed duty
 
 One `Standard_NCC40ads_H100_v5` in eastus2, same image and driver as E1 v2, torch pinned 2.13.0. About 1.3
-GPU-hours, $9 to $12. Question: is the v2 separate-process leak (#220b, marginal at n=3) real? Answer: yes,
+GPU-hours, $9 to $12. Question: is the v2 separate-process leak (marginal at n=3) real? Answer: yes,
 and it is paid per transition. At 25 percent duty over 60 s with six pairs per arm, the in-window drop is
 0.08 / 0.45 / 0.64 / 0.97 percent at 5 / 15 / 30 / 60 windows (log-log exponent about 1.0), the same-context
 arm is -0.15. Mechanism from the competitor's counters: 8 to 10 ms of reaction overlap per window at about
@@ -703,7 +703,9 @@ address, and put a **software key in `HCLAkPub`**, the one claim the key binding
 assembled an accepting bundle with **no confidential hardware at all: 17/17**. The GPU path had pinned
 NVIDIA's issuer since July; the platform path never pinned Microsoft's. Fixed: the issuer must match
 `^https://<name>.<region>.attest.azure.net/?$`, checked before any key is fetched, and the token algorithm
-must be asymmetric. A self-issued token now fails offline, with no network call.
+must be asymmetric. A self-issued token now fails offline, with no network call. (Tightened 2026-09-15 to an
+explicit allowlist of the four shared Microsoft endpoints, `TRUSTED_MAA_ISSUERS`, because the regex still
+admits a customer-created `*.attest.azure.net` provider. Current code is the allowlist.)
 
 **(4) Unmeasurable entries counted as approved.** IMA logs a **violation** when a file is written while being
 read: all-zero digest in the log, all-ones into the register, independent of content. `capture_set.py` put

@@ -3,8 +3,9 @@
 
 Executed directly, never as `python3 declared_stack.py`, and that detail is load-bearing: IMA's
 BPRM_CHECK rule measures the file being executed, so running it as a script gives the regulator
-a measurement of THIS file. Handing the same code to an already-measured interpreter as data
-would measure nothing, which is the limit the --import-extra probe exists to show.
+a measurement of THIS file. Handing the same code to an already-measured interpreter as data is
+measured only when the reader is an account the policy names; the --import-extra probe exists to
+show where that boundary falls.
 
 
 Deliberately small. Tier 1 is about what the measurement chain can say about which code ran,
@@ -12,9 +13,13 @@ not about the code being interesting. On the GPU box this is the same script wit
 added (see --gpu), so the same declaration mechanism covers a real accelerator workload.
 
 --import-extra exists to probe a policy limit rather than to hide anything: it loads a Python
-module as DATA through the already-declared interpreter. Under the IMA tcb policy a non-root
-read is not measured, so that code never reaches PCR 10. Running the same thing under --as-root
-makes the tcb euid=0 read rule fire. The difference between those two runs is the finding.
+module as DATA through the already-declared interpreter. Under the final policy the declared
+stack runs as a dedicated serving account whose reads are measured (measure func=FILE_CHECK
+mask=^MAY_READ uid=<svc>), so that module IS measured and the case rejects. Under the old tcb
+policy, with the stack running as an ordinary non-root account whose reads were not measured, the
+same module never reached PCR 10 and the case accepted. That difference, July versus the final
+policy, is the finding: file-backed data reads are covered exactly as wide as the read rule. What
+no read rule reaches is code the process builds and runs in its own memory (the jit probe).
 """
 
 import argparse
