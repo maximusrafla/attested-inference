@@ -1,4 +1,4 @@
-# cc-verify PoC: confidential-computing verification of declared AI serving code
+# attested-inference: confidential-computing verification of declared AI serving code
 
 A working proof of concept for a question a domestic regulator would have to answer without being given a
 company's weights: **is the code running on these servers the code that was declared and approved?**

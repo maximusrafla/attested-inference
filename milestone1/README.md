@@ -92,7 +92,7 @@ az group delete --name ccverify-m1-rg --yes --no-wait
 
 - [x] build assets written
 - [x] disclosure path tested locally: accept on approved code, reject on an undeclared edit
-- [x] `az login` + subscription confirmed (ebadc6ba..., "Azure subscription 1")
+- [x] `az login` + subscription confirmed (the subscription id is redacted here)
 - [x] VM provisioned: `Standard_DC2as_v5`, eastus, zone 2, ConfidentialVM + vTPM + secure boot
 - [x] attestation client built (azguestattestation1 1.1.2 + Microsoft sample AttestationClient, clean build)
 - [x] token obtained (7198 B) and bound to the disclosure (nonce = sha256(disclosure.json))
